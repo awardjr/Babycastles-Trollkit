@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<gameSettings>
+	<version>1.0</version>
+	<gamePath>C:\Arcade\Games\VVVVVV\VVVVVV.exe</gamePath>
+	<joyToKeyPath>""</joyToKeyPath>
+	<useJoyToKey>false</useJoyToKey>
+	<repositionMouse>true</repositionMouse>
+	<hideMouse>true</hideMouse>
+	<mouseX>400</mouseX>
+	<mouseY>400</mouseY>
+	<fullScreen></fullScreen>
+	<fullScreenKeys></fullScreenKeys>
+</gameSettings>
+   
