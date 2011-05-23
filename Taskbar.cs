@@ -12,16 +12,28 @@ namespace BabycastlesRunner
         [DllImport("user32.dll")]
         private static extern int FindWindow(string className, string windowText);
         [DllImport("user32.dll")]
-        private static extern int ShowWindow(int hwnd, int command);
+        private static extern IntPtr FindWindowEx(IntPtr parentHwnd,IntPtr childAfterHwnd,IntPtr className,string windowText);
+        [DllImport("user32.dll")]
+        private static extern int ShowWindow(IntPtr hwnd, int command);
 
         private const int SW_HIDE = 0;
         private const int SW_SHOW = 1;
 
-        protected static int Handle
+        
+
+        protected static IntPtr Handle
         {
             get
             {
-                return FindWindow("Shell_TrayWnd", "");
+                return (IntPtr)FindWindow("Shell_TrayWnd", "");
+            }
+        }
+
+        protected static IntPtr hwndOrb
+        {
+            get
+            {
+                return (IntPtr)FindWindowEx(IntPtr.Zero, IntPtr.Zero, (IntPtr)0xC017, null);
             }
         }
 
@@ -33,11 +45,13 @@ namespace BabycastlesRunner
         public static void Show()
         {
             ShowWindow(Handle, SW_SHOW);
+            ShowWindow(hwndOrb, SW_SHOW);
         }
 
         public static void Hide()
         {
             ShowWindow(Handle, SW_HIDE);
+            ShowWindow(hwndOrb, SW_HIDE);
         }
     }
 }

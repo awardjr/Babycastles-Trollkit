@@ -56,7 +56,7 @@ namespace BabycastlesRunner
                     pointer.show();
 
                 }
-
+                pointer.hide();
 
                 if (closed)
                 {
