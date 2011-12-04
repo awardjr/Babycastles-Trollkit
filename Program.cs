@@ -12,8 +12,8 @@ namespace BabycastlesRunner
 {
     class Program
     {
-       
-      
+
+
 
         static void Main(string[] args)
         {
@@ -22,30 +22,30 @@ namespace BabycastlesRunner
             Boolean closed = true;
             Boolean stopRunner = false;
             MousePointer pointer = new MousePointer();
-            
+
             Parameters myParameters = new Parameters();
             myParameters.loadParameters("C:/Users/Latio/Documents/My Dropbox/Projects/Babycastles/BabycastlesRunner/BabycastlesRunner/test.xml");
 
             System.Diagnostics.Process game;
             System.Diagnostics.Process joyToKey;
 
-   
+
             myParameters.useJoyToKey = false;
             myParameters.hideMouse = true;
-         
+
             game = new System.Diagnostics.Process();
             joyToKey = new System.Diagnostics.Process();
 
-          
+
             while (!stopRunner)
             {
 
-                
+
                 if (Keyboard.IsKeyDown(Keys.Add))
                 {
                     game.Kill();
                     closed = true;
-                    
+
                 }
 
 
@@ -64,10 +64,10 @@ namespace BabycastlesRunner
 
                     if (myParameters.repositionMouse)
                         Cursor.Position = new Point(myParameters.mouseX, myParameters.mouseY);
-                     
+
                     //if (myParameters.hideMouse)
-                        pointer.hide();
-                        Cursor.Position = new Point(500000, 500000);
+                    pointer.hide();
+                    Cursor.Position = new Point(500000, 500000);
 
                     System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo(@myParameters.gamePath);
                     System.Diagnostics.ProcessStartInfo psiJoy = new System.Diagnostics.ProcessStartInfo(@myParameters.joyToKeyPath);
@@ -78,7 +78,7 @@ namespace BabycastlesRunner
                     {
                         psiJoy.RedirectStandardOutput = true;
                         psiJoy.WindowStyle = System.Diagnostics.ProcessWindowStyle.Minimized;
-                       
+
                         psiJoy.UseShellExecute = false;
 
                         joyToKey = System.Diagnostics.Process.Start(psiJoy);
@@ -93,12 +93,12 @@ namespace BabycastlesRunner
                 {
                     closed = true;
                 }
-               
+
             }
             Cursor.Show();
         }
 
-     
-     
+
+
     }
 }
