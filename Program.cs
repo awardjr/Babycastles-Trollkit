@@ -64,10 +64,9 @@ namespace BabycastlesRunner
 
                     if (myParameters.repositionMouse)
                         Cursor.Position = new Point(myParameters.mouseX, myParameters.mouseY);
-
+                     
                     //if (myParameters.hideMouse)
                         pointer.hide();
-
                         Cursor.Position = new Point(500000, 500000);
 
                     System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo(@myParameters.gamePath);
