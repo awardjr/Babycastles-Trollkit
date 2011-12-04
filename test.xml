@@ -6,8 +6,8 @@
 	<useJoyToKey>false</useJoyToKey>
 	<repositionMouse>true</repositionMouse>
 	<hideMouse>true</hideMouse>
-	<mouseX>400</mouseX>
-	<mouseY>400</mouseY>
+	<mouseX>2000</mouseX>
+	<mouseY>2000</mouseY>
 	<fullScreen></fullScreen>
 	<fullScreenKeys></fullScreenKeys>
 </gameSettings>

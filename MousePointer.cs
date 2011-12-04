@@ -19,6 +19,7 @@ namespace BabycastlesRunner
         public void hide()
         {
             ShowCursor(false);
+           
         }
 
         public void show()

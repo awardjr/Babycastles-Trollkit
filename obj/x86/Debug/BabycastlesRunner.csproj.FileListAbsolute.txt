@@ -3,3 +3,5 @@ C:\Users\Latio\Documents\My Dropbox\Projects\Babycastles\BabycastlesRunner\Babyc
 C:\Users\Latio\Documents\My Dropbox\Projects\Babycastles\BabycastlesRunner\BabycastlesRunner\bin\Debug\BabycastlesRunner.pdb
 C:\Users\Latio\Documents\My Dropbox\Projects\Babycastles\BabycastlesRunner\BabycastlesRunner\obj\x86\Debug\BabycastlesRunner.exe
 C:\Users\Latio\Documents\My Dropbox\Projects\Babycastles\BabycastlesRunner\BabycastlesRunner\obj\x86\Debug\BabycastlesRunner.pdb
+C:\Users\Latio\Dropbox\Projects\Babycastles\BabycastlesRunner\BabycastlesRunner\obj\x86\Debug\BabycastlesRunner.exe
+C:\Users\Latio\Dropbox\Projects\Babycastles\BabycastlesRunner\BabycastlesRunner\obj\x86\Debug\BabycastlesRunner.pdb

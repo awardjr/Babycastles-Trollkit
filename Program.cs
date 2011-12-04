@@ -29,8 +29,7 @@ namespace BabycastlesRunner
             System.Diagnostics.Process game;
             System.Diagnostics.Process joyToKey;
 
-        //    myParameters.gamePath = "C:\\Arcade\\nidhogg\\nte\\NidhoggTournamentEditionV6.exe";
-         //   myParameters.joyToKeyPath = "";
+   
             myParameters.useJoyToKey = false;
             myParameters.hideMouse = true;
          
@@ -40,8 +39,9 @@ namespace BabycastlesRunner
           
             while (!stopRunner)
             {
-              
-                if (Keyboard.IsKeyDown(Keys.A))
+
+                
+                if (Keyboard.IsKeyDown(Keys.Add))
                 {
                     game.Kill();
                     closed = true;
@@ -49,7 +49,7 @@ namespace BabycastlesRunner
                 }
 
 
-                if (Keyboard.IsKeyDown(Keys.Z))
+                if (Keyboard.IsKeyDown(Keys.Subtract))
                 {
                     stopRunner = true;
                     Taskbar.Show();
@@ -65,8 +65,10 @@ namespace BabycastlesRunner
                     if (myParameters.repositionMouse)
                         Cursor.Position = new Point(myParameters.mouseX, myParameters.mouseY);
 
-                   // if (myParameters.hideMouse)
+                    //if (myParameters.hideMouse)
                         pointer.hide();
+
+                        Cursor.Position = new Point(500000, 500000);
 
                     System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo(@myParameters.gamePath);
                     System.Diagnostics.ProcessStartInfo psiJoy = new System.Diagnostics.ProcessStartInfo(@myParameters.joyToKeyPath);
@@ -77,6 +79,7 @@ namespace BabycastlesRunner
                     {
                         psiJoy.RedirectStandardOutput = true;
                         psiJoy.WindowStyle = System.Diagnostics.ProcessWindowStyle.Minimized;
+                       
                         psiJoy.UseShellExecute = false;
 
                         joyToKey = System.Diagnostics.Process.Start(psiJoy);
@@ -93,6 +96,7 @@ namespace BabycastlesRunner
                 }
                
             }
+            Cursor.Show();
         }
 
      
