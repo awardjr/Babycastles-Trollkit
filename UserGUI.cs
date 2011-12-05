@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
+using System.Net;
 
 namespace BabycastlesRunner
 {
@@ -25,11 +26,8 @@ namespace BabycastlesRunner
 
         private void UserGUI_Load(object sender, EventArgs e)
         {
-            //can do some of this in Program.cs
-
             //TODO: synchronize game config list with the server
-
-            //create a folder if it does not exist
+            //eh, should just update the entire program along with xml config files on startup
 
             //load game configurations from folder
             string[] filePaths = Directory.GetFiles(@"..\..\Game Configurations\", "*.xml");
@@ -55,6 +53,7 @@ namespace BabycastlesRunner
 
             //TODO: if game does not exist, download the game, store download URL in game config
             //but also provide a download all option, for a full setup
+            //is storing the games on our server illegal?
         }
     }
 }
