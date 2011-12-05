@@ -42,8 +42,8 @@ namespace BabycastlesRunner
 
             //bind combo box
             gameComboBox.DataSource = gameConfigs;
-            //gameComboBox.DisplayMember = "GameName"; //optional, and almost must be a property
             gameComboBox.ValueMember = "GameName"; //must be a property, probably should use int id
+            //gameComboBox.DisplayMember = "GameName"; //optional, also must be a property
         }
 
         private void playButton_Click(object sender, EventArgs e)

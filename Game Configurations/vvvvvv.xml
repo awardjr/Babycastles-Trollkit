@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <gameSettings>
 	<version>1.0</version>
+		<gameName>VVVVVV</gameName>
 	<gamePath>C:\Arcade\Games\VVVVVV\VVVVVV.exe</gamePath>
 	<joyToKeyPath>""</joyToKeyPath>
 	<useJoyToKey>false</useJoyToKey>
