@@ -12,20 +12,22 @@ namespace BabycastlesRunner
     /// </summary>
    public  class GameConfiguration
     {
+        //public Int32 id;
+
         public Boolean hideMouse;
         public Boolean useJoyToKey;
         public Boolean repositionMouse;
         public Boolean fullScreen;
 
-        public int mouseX;
-        public int mouseY;
+        public Int32 mouseX;
+        public Int32 mouseY;
 
+        public String gamePath;
         public String joyToKeyPath;
 
         private String gameName; //had to make these properties to set it to Display/ValueMember
         public String GameName { get { return gameName; } /*set { gameName = value; }*/ }
-        private String gamePath; //upper case public members (fields?) and properties naming convention?
-        public String GamePath { get { return gamePath; } /*set { gamePath = value; }*/ }
+        //upper case public members (fields?) and properties naming convention?
 
         public GameConfiguration(String filePath)
         {

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<gameSettings>
+	<version>1.0</version>
+	<gameName>Al The Chemist</gameName>
+	<gamePath>..\..\Games\Al.exe</gamePath>
+	<useJoyToKey>false</useJoyToKey>
+	<joyToKeyPath>""</joyToKeyPath>
+	<repositionMouse>true</repositionMouse>
+	<hideMouse>true</hideMouse>
+	<mouseX>400</mouseX>
+	<mouseY>400</mouseY>
+	<fullScreen></fullScreen>
+	<fullScreenKeys></fullScreenKeys>
+</gameSettings>
+   

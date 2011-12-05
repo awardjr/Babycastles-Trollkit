@@ -14,20 +14,15 @@ namespace BabycastlesRunner
 
         }
 
-        public void begin(string pathToGameConfig)
+        public void begin(GameConfiguration gameConfig)
         {
             Cursor.Hide();
             Boolean closed = true;
             Boolean stopRunner = false;
             MousePointer pointer = new MousePointer();
 
-            GameConfiguration gameConfig = new GameConfiguration(pathToGameConfig);
-
             System.Diagnostics.Process game;
             System.Diagnostics.Process joyToKey;
-
-            gameConfig.useJoyToKey = false;
-            gameConfig.hideMouse = true;
 
             game = new System.Diagnostics.Process();
             joyToKey = new System.Diagnostics.Process();
@@ -62,7 +57,7 @@ namespace BabycastlesRunner
                     // if (myParameters.hideMouse)
                     pointer.hide();
 
-                    System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo(gameConfig.GamePath);
+                    System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo(gameConfig.gamePath);
                     System.Diagnostics.ProcessStartInfo psiJoy = new System.Diagnostics.ProcessStartInfo(gameConfig.joyToKeyPath);
                     psi.RedirectStandardOutput = false;
                     psi.WindowStyle = System.Diagnostics.ProcessWindowStyle.Maximized;
