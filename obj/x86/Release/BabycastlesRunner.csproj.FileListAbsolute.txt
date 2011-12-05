@@ -1,5 +1,0 @@
-C:\Users\Latio\Documents\My Dropbox\Projects\Babycastles\BabycastlesRunner\BabycastlesRunner\bin\Release\BabycastlesRunner.exe
-C:\Users\Latio\Documents\My Dropbox\Projects\Babycastles\BabycastlesRunner\BabycastlesRunner\bin\Release\BabycastlesRunner.pdb
-C:\Users\Latio\Documents\My Dropbox\Projects\Babycastles\BabycastlesRunner\BabycastlesRunner\obj\x86\Release\ResolveAssemblyReference.cache
-C:\Users\Latio\Documents\My Dropbox\Projects\Babycastles\BabycastlesRunner\BabycastlesRunner\obj\x86\Release\BabycastlesRunner.exe
-C:\Users\Latio\Documents\My Dropbox\Projects\Babycastles\BabycastlesRunner\BabycastlesRunner\obj\x86\Release\BabycastlesRunner.pdb
