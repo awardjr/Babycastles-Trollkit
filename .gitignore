@@ -1,12 +1,29 @@
 
-[Oo]bj
-[Bb]in
+#ignore thumbnails created by windows
+Thumbs.db
+#Ignore files build by Visual Studio
+*.obj
+#*.exe
+*.pdb
 *.user
-*.suo
-*.[Cc]ache
-*.bak
+*.aps
+*.pch
+*.vspscc
+*_i.c
+*_p.c
 *.ncb
-*.log 
-*.DS_Store
-[Tt]humbs.db 
-Ankh.NoLoad
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.cache
+*.ilk
+*.log
+[Bb]in
+[Dd]ebug*/
+*.lib
+*.sbr
+obj/
+[Rr]elease*/
+_ReSharper*/
+[Tt]est[Rr]esult*
