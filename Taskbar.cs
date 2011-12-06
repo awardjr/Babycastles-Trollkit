@@ -19,8 +19,6 @@ namespace BabycastlesRunner
         private const int SW_HIDE = 0;
         private const int SW_SHOW = 1;
 
-        
-
         protected static IntPtr Handle
         {
             get

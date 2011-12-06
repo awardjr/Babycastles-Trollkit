@@ -26,9 +26,6 @@ namespace BabycastlesRunner
 
         private void UserGUI_Load(object sender, EventArgs e)
         {
-            //TODO: synchronize game config list with the server
-            //eh, should just update the entire program along with xml config files on startup
-
             //load game configurations from folder
             //String path = Debugger.IsAttached ? @"..\..\Game Configurations\" : @"Game Configurations\"; //#IF DEBUG seems more correct
 
@@ -48,10 +45,14 @@ namespace BabycastlesRunner
 
         private void playButton_Click(object sender, EventArgs e)
         {
+            //lock the window
+            this.Hide();
+
             //run the selected game
             GameConfiguration gameConfig = gameConfigs.Single(g => g.GameName == (string)gameComboBox.SelectedValue);
             GameHandler gameHandler = new GameHandler(gameConfig);
-
+            this.Show();
+            
             //TODO: if game does not exist, download the game, store download URL in game config
             //but also provide a download all option, for a full setup
             //is storing the games on our server illegal?

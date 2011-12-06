@@ -107,6 +107,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Titlebar.cs" />
     <Compile Include="General.cs" />
     <Compile Include="GameHandler.cs" />
     <Compile Include="Keyboard.cs">

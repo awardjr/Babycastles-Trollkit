@@ -56,17 +56,12 @@ namespace BabycastlesRunner
 
         public void begin(GameConfiguration gameConfig)
         {
-            Cursor.Hide();
+            MousePointer pointer = new MousePointer();
             Boolean closed = true;
             Boolean stopRunner = false;
-            MousePointer pointer = new MousePointer();
 
-            System.Diagnostics.Process game;
-            System.Diagnostics.Process joyToKey;
-
-            game = new System.Diagnostics.Process();
-            joyToKey = new System.Diagnostics.Process();
-
+            Process game = new System.Diagnostics.Process();
+            Process joyToKey = new System.Diagnostics.Process();
 
             while (!stopRunner)
             {
@@ -90,8 +85,6 @@ namespace BabycastlesRunner
                     Taskbar.Show();
                     pointer.show();
                 }
-                
-                pointer.hide();
 
                 if (closed)
                 {
@@ -100,14 +93,19 @@ namespace BabycastlesRunner
                     if (gameConfig.repositionMouse)
                         Cursor.Position = new Point(gameConfig.mouseX, gameConfig.mouseY);
 
-                    // if (myParameters.hideMouse)
-                    pointer.hide();
+                    if (gameConfig.hideMouse)
+                    {
+                        Cursor.Hide();
+                        pointer.hide();
+                    }
 
                     System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo(gameConfig.gamePath);
                     System.Diagnostics.ProcessStartInfo psiJoy = new System.Diagnostics.ProcessStartInfo(gameConfig.joyToKeyPath);
                     psi.RedirectStandardOutput = false;
-                    psi.WindowStyle = System.Diagnostics.ProcessWindowStyle.Maximized;
+                    psi.WindowStyle = System.Diagnostics.ProcessWindowStyle.Maximized; //TODO: only maximizes fully if the taskbar is set to auto-hide
                     psi.UseShellExecute = true;
+                    //Titlebar.WindowsReStyle(); //fail
+
                     if (gameConfig.useJoyToKey)
                     {
                         psiJoy.RedirectStandardOutput = true;
@@ -116,6 +114,7 @@ namespace BabycastlesRunner
 
                         joyToKey = System.Diagnostics.Process.Start(psiJoy);
                     }
+
                     game = System.Diagnostics.Process.Start(psi);
 
                     closed = false;
