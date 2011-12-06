@@ -66,7 +66,6 @@ namespace BabycastlesRunner
             while (!stopRunner)
             {
                 //restart the game
-                
                 //if (Keyboard.IsKeyDown(Keys.A))
                 if (restartButtonIsPressed)
                 {
@@ -104,7 +103,6 @@ namespace BabycastlesRunner
                     psi.RedirectStandardOutput = false;
                     psi.WindowStyle = System.Diagnostics.ProcessWindowStyle.Maximized; //TODO: only maximizes fully if the taskbar is set to auto-hide
                     psi.UseShellExecute = true;
-                    //Titlebar.WindowsReStyle(); //fail
 
                     if (gameConfig.useJoyToKey)
                     {
@@ -116,6 +114,7 @@ namespace BabycastlesRunner
                     }
 
                     game = System.Diagnostics.Process.Start(psi);
+                    //Titlebar.Hide(); //fail
 
                     closed = false;
                 }

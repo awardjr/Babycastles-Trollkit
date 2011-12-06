@@ -9,28 +9,32 @@ namespace BabycastlesRunner
 {
     class Titlebar
     {
+        //Finds a window by class name
         [DllImport("USER32.DLL")]
         public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+
+        //Sets a window to be a child window of another window
+        [DllImport("USER32.DLL")]
+        public static extern IntPtr SetParent(IntPtr hWndChild, IntPtr hWndNewParent);
+
+        //Sets window attributes
+        [DllImport("USER32.DLL")]
+        public static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
+
+        //Gets window attributes
+        [DllImport("USER32.DLL")]
+        public static extern int GetWindowLong(IntPtr hWnd, int nIndex);
 
         [DllImport("user32.dll", EntryPoint = "FindWindow", SetLastError = true)]
         static extern IntPtr FindWindowByCaption(IntPtr ZeroOnly, string lpWindowName);
 
-        [DllImport("user32.dll")]
-        static extern IntPtr GetMenu(IntPtr hWnd);
+        //assorted constants needed
+        public static int GWL_STYLE = -16;
+        public static int WS_BORDER = 0x00800000; //window with border
+        public static int WS_DLGFRAME = 0x00400000; //window with double border but no title
+        public static int WS_CAPTION = WS_BORDER | WS_DLGFRAME; //window with a title bar
 
-        [DllImport("user32.dll")]
-        static extern int GetMenuItemCount(IntPtr hMenu);
-
-        [DllImport("user32.dll")]
-        static extern bool DrawMenuBar(IntPtr hWnd);
-
-        [DllImport("user32.dll")]
-        static extern bool RemoveMenu(IntPtr hMenu, uint uPosition, uint uFlags);
-
-        public static uint MF_BYPOSITION = 0x400;
-        public static uint MF_REMOVE = 0x1000;
-
-        public static void WindowsReStyle()
+        public static void Hide()
         {
             Process[] Procs = Process.GetProcesses();
             foreach (Process proc in Procs)
@@ -38,16 +42,9 @@ namespace BabycastlesRunner
 
                 if (proc.ProcessName.StartsWith("vvvvvv"))
                 {
-                    //get menu
-                    IntPtr HMENU = GetMenu(proc.MainWindowHandle);
-                    //get item count
-                    int count = GetMenuItemCount(HMENU);
-                    //loop & remove
-                    for (int i = 0; i < count; i++)
-                        RemoveMenu(HMENU, 0, (MF_BYPOSITION | MF_REMOVE));
-
-                    //force a redraw
-                    DrawMenuBar(proc.MainWindowHandle);
+                    IntPtr pFoundWindow = proc.MainWindowHandle;
+                    int style = GetWindowLong(pFoundWindow, GWL_STYLE);
+                    SetWindowLong(pFoundWindow, GWL_STYLE, (style & ~WS_CAPTION));
                 }
             }
         }
