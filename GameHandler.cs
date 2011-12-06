@@ -20,11 +20,13 @@ namespace BabycastlesRunner
             //TODO: destroy this afterwards!
         }
 
-        //TODO: should write a wrapper class for all of this keyboard crap...*cough* Arthur =).
-        //unless I just suck and Keyboard.cs was working after all?
+        //TODO: should write a wrapper class for all of this keyboard crap...*cough* Arthur =)
+        //unless Keyboard.cs was enough and I just suck?
+        //oh snaps, found a newer version, http://globalmousekeyhook.codeplex.com/
         private Boolean restartButtonIsPressed = false;
         private Boolean stopButtonIsPressed = false;
 
+        #region keyboard crap
         public void hookInputs()
         {
             HookManager.KeyPress += HookManager_KeyPress;
@@ -50,6 +52,7 @@ namespace BabycastlesRunner
                 e.Handled = true;
             }
         }
+        #endregion
 
         public void begin(GameConfiguration gameConfig)
         {

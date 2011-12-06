@@ -30,7 +30,9 @@ namespace BabycastlesRunner
             //eh, should just update the entire program along with xml config files on startup
 
             //load game configurations from folder
-            string[] filePaths = Directory.GetFiles(@"..\..\Game Configurations\", "*.xml");
+            //String path = Debugger.IsAttached ? @"..\..\Game Configurations\" : @"Game Configurations\"; //#IF DEBUG seems more correct
+
+            string[] filePaths = Directory.GetFiles(@"Game Configurations\", "*.xml");
             
             foreach (string filePath in filePaths)
             {
