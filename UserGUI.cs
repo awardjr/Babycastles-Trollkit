@@ -48,8 +48,7 @@ namespace BabycastlesRunner
         {
             //run the selected game
             GameConfiguration gameConfig = gameConfigs.Single(g => g.GameName == (string)gameComboBox.SelectedValue);
-            GameHandler gameHandler = new GameHandler();
-            gameHandler.begin(gameConfig);
+            GameHandler gameHandler = new GameHandler(gameConfig);
 
             //TODO: if game does not exist, download the game, store download URL in game config
             //but also provide a download all option, for a full setup

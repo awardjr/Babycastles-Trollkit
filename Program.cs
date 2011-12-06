@@ -5,6 +5,12 @@
 //add an autoupdater
 //need error handling!
 
+//BUG TODO:
+//input keys not being read!
+//hide the launcher (and all other windows?)?
+//canQuitApplication, if not add a close button? eh, conflicts with hiding title bar
+
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
