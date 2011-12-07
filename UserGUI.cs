@@ -49,19 +49,28 @@ namespace BabycastlesRunner
             
             //check if game exists
             if (!File.Exists(gameConfig.GamePath))
-            {                
-                //download the game
-                using (WebClient webClient = new WebClient())
-                {
-                    //String portableFolderPath = General.ProgramFilesx86Path() + @"\TrollKit\Portable Games\"; //permissions error :(
-                    String portableFolderPath = @"C:\Portable Games\";
-                    String filename = Path.GetFileName(gameConfig.DownloadUrl);
-                    String savePath = portableFolderPath + filename;
+            {
 
-                    Directory.CreateDirectory(Path.GetDirectoryName(savePath));
-                        
-                    byte[] data = webClient.DownloadData(gameConfig.DownloadUrl);
-                    System.IO.File.WriteAllBytes(savePath, data);
+                //download the game
+                try
+                {
+                    using (WebClient webClient = new WebClient())
+                    {
+                        //String portableFolderPath = General.ProgramFilesx86Path() + @"\TrollKit\Portable Games\"; //permissions error :(
+                        String portableFolderPath = @"C:\Portable Games\";
+                        String filename = Path.GetFileName(gameConfig.DownloadUrl);
+                        String savePath = portableFolderPath + filename;
+
+                        Directory.CreateDirectory(Path.GetDirectoryName(savePath));
+
+                        byte[] data = webClient.DownloadData(gameConfig.DownloadUrl);
+                        System.IO.File.WriteAllBytes(savePath, data);
+                    }
+                }
+                catch (Exception)
+                {
+                    //messagebox failed to download
+                    throw;
                 }
 
                 //if the game requires installation, place it in the downloads folder and run it when it's complete
@@ -75,7 +84,7 @@ namespace BabycastlesRunner
 
             //run the selected game
             this.Hide(); //should lock the window instead?
-            GameHandler gameHandler = new GameHandler(gameConfig);
+            GameHandler gameHandler = new GameHandler(gameConfig, arcadeModeCheckBox.Checked);
             this.Show();
             
             //TODO: if game does not exist, download the game, store download URL in game config

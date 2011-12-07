@@ -12,11 +12,42 @@ namespace BabycastlesRunner
 {
     class GameHandler
     {
-        public GameHandler(GameConfiguration gameConfig)
+        public GameHandler(GameConfiguration gameConfig, Boolean isArcadeMode)
         {
-            hookInputs();
-            begin(gameConfig);
-            unhookInputs();
+            if (isArcadeMode)
+            {
+                hookInputs();
+                beginInArcadeMode(gameConfig);
+                unhookInputs();
+            }
+            else
+                begin(gameConfig);
+        }
+
+        public void begin(GameConfiguration gameConfig) //TODO: duplicate code, could put in one function
+        {
+            Process game = new Process();
+            Process joyToKey = new Process();
+
+            //TODO: this is ugly, but i don't want to hard code the XML file either...
+            //String gamePath = gameConfig.IsPortable ? gameConfig.GamePath : @"C:\Portable Games\" + gameConfig.GamePath;
+
+            ProcessStartInfo psi = new ProcessStartInfo(gameConfig.GamePath);
+            ProcessStartInfo psiJoy = new ProcessStartInfo(gameConfig.JoyToKeyPath);
+
+            psi.RedirectStandardOutput = false;
+            psi.UseShellExecute = true;
+
+            if (gameConfig.UseJoyToKey)
+            {
+                psiJoy.RedirectStandardOutput = true;
+                psiJoy.WindowStyle = System.Diagnostics.ProcessWindowStyle.Minimized;
+                psiJoy.UseShellExecute = false;
+
+                joyToKey = System.Diagnostics.Process.Start(psiJoy);
+            }
+
+            game = System.Diagnostics.Process.Start(psi);
         }
 
         //TODO: should write a wrapper class for all of this keyboard crap...*cough* Arthur =)
@@ -53,7 +84,7 @@ namespace BabycastlesRunner
         }
         #endregion
 
-        public void begin(GameConfiguration gameConfig)
+        public void beginInArcadeMode(GameConfiguration gameConfig)
         {
             MousePointer pointer = new MousePointer();
             Boolean closed = true;

@@ -31,6 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.gameComboBox = new System.Windows.Forms.ComboBox();
             this.playButton = new System.Windows.Forms.Button();
+            this.arcadeModeCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -62,11 +63,22 @@
             this.playButton.UseVisualStyleBackColor = true;
             this.playButton.Click += new System.EventHandler(this.playButton_Click);
             // 
+            // arcadeModeCheckBox
+            // 
+            this.arcadeModeCheckBox.AutoSize = true;
+            this.arcadeModeCheckBox.Location = new System.Drawing.Point(211, 39);
+            this.arcadeModeCheckBox.Name = "arcadeModeCheckBox";
+            this.arcadeModeCheckBox.Size = new System.Drawing.Size(90, 17);
+            this.arcadeModeCheckBox.TabIndex = 3;
+            this.arcadeModeCheckBox.Text = "Arcade Mode";
+            this.arcadeModeCheckBox.UseVisualStyleBackColor = true;
+            // 
             // UserGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(307, 45);
+            this.ClientSize = new System.Drawing.Size(307, 64);
+            this.Controls.Add(this.arcadeModeCheckBox);
             this.Controls.Add(this.playButton);
             this.Controls.Add(this.gameComboBox);
             this.Controls.Add(this.label1);
@@ -83,5 +95,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox gameComboBox;
         private System.Windows.Forms.Button playButton;
+        private System.Windows.Forms.CheckBox arcadeModeCheckBox;
     }
 }
