@@ -10,20 +10,20 @@ namespace BabycastlesRunner
     /// <summary>
     /// Holds game configuration settings
     /// </summary>
-   public  class GameConfiguration
+    public class GameConfiguration
     {
-        //public Int32 id;
+        public Boolean HideMouse;
+        public Boolean UseJoyToKey;
+        public Boolean RepositionMouse;
+        public Boolean FullScreen;
 
-        public Boolean hideMouse;
-        public Boolean useJoyToKey;
-        public Boolean repositionMouse;
-        public Boolean fullScreen;
+        public Int32 MouseX;
+        public Int32 MouseY;
 
-        public Int32 mouseX;
-        public Int32 mouseY;
-
-        public String gamePath;
-        public String joyToKeyPath;
+        public String GamePath;
+        public String JoyToKeyPath;
+        public String DownloadUrl;
+        public Boolean IsPortable; //sometimes called standalone, as opposed to 
 
         private String gameName; //had to make these properties to set it to Display/ValueMember
         public String GameName { get { return gameName; } /*set { gameName = value; }*/ }
@@ -45,32 +45,38 @@ namespace BabycastlesRunner
                 reader.ReadToFollowing("gameName");
                 gameName = reader.ReadElementContentAsString();
 
+                reader.ReadToFollowing("downloadUrl");
+                DownloadUrl = reader.ReadElementContentAsString();
+
+                reader.ReadToFollowing("isPortable");
+                UseJoyToKey = reader.ReadElementContentAsBoolean();
+
                 reader.ReadToFollowing("gamePath");
-                gamePath = reader.ReadElementContentAsString();
+                GamePath = reader.ReadElementContentAsString();
                 
                 reader.ReadToFollowing("useJoyToKey");
-                useJoyToKey = reader.ReadElementContentAsBoolean();
+                UseJoyToKey = reader.ReadElementContentAsBoolean();
 
-                if (useJoyToKey)
+                if (UseJoyToKey)
                 {
                     reader.ReadToFollowing("joyToKeyPath");
-                    joyToKeyPath = reader.ReadElementContentAsString();
+                    JoyToKeyPath = reader.ReadElementContentAsString();
                 }
 
                 reader.ReadToFollowing("repositionMouse");
-                repositionMouse = reader.ReadElementContentAsBoolean();
+                RepositionMouse = reader.ReadElementContentAsBoolean();
 
-                if (repositionMouse)
+                if (RepositionMouse)
                 {
                     reader.ReadToFollowing("mouseX");
-                    mouseX = reader.ReadElementContentAsInt();
+                    MouseX = reader.ReadElementContentAsInt();
 
                     reader.ReadToFollowing("mouseY");
-                    mouseY = reader.ReadElementContentAsInt();
+                    MouseY = reader.ReadElementContentAsInt();
                 }
 
                 reader.ReadToFollowing("hideMouse");
-               // hideMouse = reader.ReadElementContentAsBoolean();
+                //hideMouse = reader.ReadElementContentAsBoolean();
             }
         }
     }

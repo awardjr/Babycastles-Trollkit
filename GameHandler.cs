@@ -17,7 +17,6 @@ namespace BabycastlesRunner
             hookInputs();
             begin(gameConfig);
             unhookInputs();
-            //TODO: destroy this afterwards!
         }
 
         //TODO: should write a wrapper class for all of this keyboard crap...*cough* Arthur =)
@@ -26,7 +25,7 @@ namespace BabycastlesRunner
         private Boolean restartButtonIsPressed = false;
         private Boolean stopButtonIsPressed = false;
 
-        #region keyboard crap
+        #region keyboard crap, don't look!
         public void hookInputs()
         {
             HookManager.KeyPress += HookManager_KeyPress;
@@ -89,22 +88,25 @@ namespace BabycastlesRunner
                 {
                     Taskbar.Hide();
 
-                    if (gameConfig.repositionMouse)
-                        Cursor.Position = new Point(gameConfig.mouseX, gameConfig.mouseY);
+                    if (gameConfig.RepositionMouse)
+                        Cursor.Position = new Point(gameConfig.MouseX, gameConfig.MouseY);
 
-                    if (gameConfig.hideMouse)
+                    if (gameConfig.HideMouse)
                     {
                         Cursor.Hide();
                         pointer.hide();
                     }
 
-                    System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo(gameConfig.gamePath);
-                    System.Diagnostics.ProcessStartInfo psiJoy = new System.Diagnostics.ProcessStartInfo(gameConfig.joyToKeyPath);
+                    //TODO: this is ugly, but i don't want to hard code the XML file either...
+                    //String gamePath = gameConfig.IsPortable ? gameConfig.GamePath : @"C:\Portable Games\" + gameConfig.GamePath;
+
+                    System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo(gameConfig.GamePath);
+                    System.Diagnostics.ProcessStartInfo psiJoy = new System.Diagnostics.ProcessStartInfo(gameConfig.JoyToKeyPath);
                     psi.RedirectStandardOutput = false;
                     psi.WindowStyle = System.Diagnostics.ProcessWindowStyle.Maximized; //TODO: only maximizes fully if the taskbar is set to auto-hide
                     psi.UseShellExecute = true;
 
-                    if (gameConfig.useJoyToKey)
+                    if (gameConfig.UseJoyToKey)
                     {
                         psiJoy.RedirectStandardOutput = true;
                         psiJoy.WindowStyle = System.Diagnostics.ProcessWindowStyle.Minimized;

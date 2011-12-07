@@ -50,6 +50,7 @@
             this.gameComboBox.Name = "gameComboBox";
             this.gameComboBox.Size = new System.Drawing.Size(121, 21);
             this.gameComboBox.TabIndex = 1;
+            this.gameComboBox.SelectedIndexChanged += new System.EventHandler(this.gameComboBox_SelectedIndexChanged);
             // 
             // playButton
             // 
@@ -70,7 +71,7 @@
             this.Controls.Add(this.gameComboBox);
             this.Controls.Add(this.label1);
             this.Name = "UserGUI";
-            this.Text = "User GUI";
+            this.Text = "Troll Kit";
             this.Load += new System.EventHandler(this.UserGUI_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
