@@ -27,9 +27,9 @@ namespace BabycastlesRunner
         private void UserGUI_Load(object sender, EventArgs e)
         {
             //load game configurations from folder
-            //String path = Debugger.IsAttached ? @"..\..\Game Configurations\" : @"Game Configurations\"; //#IF DEBUG seems more correct
+            String path = Debugger.IsAttached ? @"..\..\Game Configurations\" : @"Game Configurations\"; //#IF DEBUG seems more correct
 
-            string[] filePaths = Directory.GetFiles(@"Game Configurations\", "*.xml");
+            string[] filePaths = Directory.GetFiles(path, "*.xml");
             
             foreach (string filePath in filePaths)
             {
