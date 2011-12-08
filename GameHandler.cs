@@ -12,9 +12,9 @@ namespace BabycastlesRunner
 {
     class GameHandler
     {
-        public GameHandler(GameConfiguration gameConfig, Boolean isArcadeMode)
+        public GameHandler(GameConfiguration gameConfig, Boolean inArcadeMode)
         {
-            if (isArcadeMode)
+            if (inArcadeMode)
             {
                 hookInputs();
                 beginInArcadeMode(gameConfig);
@@ -26,9 +26,6 @@ namespace BabycastlesRunner
 
         public void begin(GameConfiguration gameConfig) //TODO: duplicate code, could put in one function
         {
-            Process game = new Process();
-            Process joyToKey = new Process();
-
             //TODO: this is ugly, but i don't want to hard code the XML file either...
             //String gamePath = gameConfig.IsPortable ? gameConfig.GamePath : @"C:\Portable Games\" + gameConfig.GamePath;
 
@@ -44,10 +41,10 @@ namespace BabycastlesRunner
                 psiJoy.WindowStyle = System.Diagnostics.ProcessWindowStyle.Minimized;
                 psiJoy.UseShellExecute = false;
 
-                joyToKey = System.Diagnostics.Process.Start(psiJoy);
+                Process joyToKey = Process.Start(psiJoy);
             }
 
-            game = System.Diagnostics.Process.Start(psi);
+            Process game = Process.Start(psi);
         }
 
         //TODO: should write a wrapper class for all of this keyboard crap...*cough* Arthur =)

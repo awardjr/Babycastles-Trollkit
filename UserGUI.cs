@@ -1,4 +1,6 @@
-﻿using System;
+﻿#define DEBUG
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -27,10 +29,14 @@ namespace BabycastlesRunner
         private void UserGUI_Load(object sender, EventArgs e)
         {
             //load game configurations from folder
-            String path = Debugger.IsAttached ? @"..\..\Game Configurations\" : @"Game Configurations\"; //#IF DEBUG seems more correct
+            #if (DEBUG)
+                String path = @"..\..\Game Configurations\";
+            #else 
+                String path = @"Game Configurations\";
+            #endif
 
             string[] filePaths = Directory.GetFiles(path, "*.xml");
-            
+
             foreach (string filePath in filePaths)
             {
                 GameConfiguration gameConfig = new GameConfiguration(filePath);
@@ -56,7 +62,7 @@ namespace BabycastlesRunner
                 {
                     using (WebClient webClient = new WebClient())
                     {
-                        //String portableFolderPath = General.ProgramFilesx86Path() + @"\TrollKit\Portable Games\"; //permissions error :(
+                        //String portableFolderPath = General.ProgramFilesx86Path() + @"\TrollKit\Portable Games\"; //permissions error =(
                         String portableFolderPath = @"C:\Portable Games\";
                         String filename = Path.GetFileName(gameConfig.DownloadUrl);
                         String savePath = portableFolderPath + filename;
@@ -65,12 +71,13 @@ namespace BabycastlesRunner
 
                         byte[] data = webClient.DownloadData(gameConfig.DownloadUrl);
                         System.IO.File.WriteAllBytes(savePath, data);
+                        gameComboBox_SelectedIndexChanged(null, null); //to set the button text to play
                     }
                 }
-                catch (Exception)
+                catch (Exception exception)
                 {
-                    //messagebox failed to download
-                    throw;
+                    MessageBox.Show(exception.Message + "\n\nTry downloading it yourself from " + gameConfig.DownloadUrl, 
+                        "Failed to download the game");
                 }
 
                 //if the game requires installation, place it in the downloads folder and run it when it's complete
@@ -94,9 +101,10 @@ namespace BabycastlesRunner
 
         private void gameComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //TODO: if game does not exist, change text to download, else, play
-            //GameConfiguration gameConfig = GameConfigs.Single(g => g.GameName == (string)gameComboBox.SelectedValue);
-            //playButton.Text = File.Exists(gameConfig.GamePath) ? "Play" : "Download";
+            //if game does not exist, change text to download, else, play
+            //GameConfiguration gameConfig = GameConfigs.Single(g => g.GameName == (string)gameComboBox.SelectedValue); //why is it returning GameConfiguration here?
+            GameConfiguration gameConfig = (GameConfiguration)gameComboBox.SelectedValue;
+            playButton.Text = File.Exists(gameConfig.GamePath) ? "Play" : "Download";
         }
     }
 }
