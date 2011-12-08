@@ -112,9 +112,6 @@
     <Compile Include="Titlebar.cs" />
     <Compile Include="General.cs" />
     <Compile Include="GameHandler.cs" />
-    <Compile Include="Keyboard.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="UserGUI.cs">
       <SubType>Form</SubType>
     </Compile>
