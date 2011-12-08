@@ -12,19 +12,19 @@ namespace BabycastlesRunner
 {
     class GameHandler
     {
-        public GameHandler(GameConfiguration gameConfig, Boolean inArcadeMode)
+        public GameHandler(ref GameConfiguration gameConfig, Boolean inArcadeMode)
         {
             if (inArcadeMode)
             {
                 hookInputs();
-                beginInArcadeMode(gameConfig);
+                beginInArcadeMode(ref gameConfig);
                 unhookInputs();
             }
             else
-                begin(gameConfig);
+                begin(ref gameConfig);
         }
 
-        public void begin(GameConfiguration gameConfig) //TODO: duplicate code, could put in one function
+        public void begin(ref GameConfiguration gameConfig) //TODO: duplicate code, could put in one function
         {
             //TODO: this is ugly, but i don't want to hard code the XML file either...
             //String gamePath = gameConfig.IsPortable ? gameConfig.GamePath : @"C:\Portable Games\" + gameConfig.GamePath;
@@ -81,7 +81,7 @@ namespace BabycastlesRunner
         }
         #endregion
 
-        public void beginInArcadeMode(GameConfiguration gameConfig)
+        public void beginInArcadeMode(ref GameConfiguration gameConfig)
         {
             MousePointer pointer = new MousePointer();
             Boolean closed = true;

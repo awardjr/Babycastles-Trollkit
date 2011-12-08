@@ -16,7 +16,6 @@ namespace BabycastlesRunner
         public readonly Boolean UseJoyToKey;
         public readonly Boolean RepositionMouse;
         public readonly Boolean FullScreen;
-
         public readonly Int32 MouseX;
         public readonly Int32 MouseY;
 

@@ -1,7 +1,6 @@
 ﻿//TODO: main list
-//need error handling!
+//need more error handling!
 //need to delete c:\portable games folder when uninstalling, or store games in ../portable games?
-//display author in user GUI somewhere
 
 
 using System;
