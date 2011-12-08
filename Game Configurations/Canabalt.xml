@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<gameSettings>
+  <version>1.0</version>
+  <gameName>Canabalt</gameName>
+  <author>Adam Atomic and Danny B.</author>
+  <downloadUrl>http://adamatomic.com/sw/f/Canabalt.swf</downloadUrl>
+  <isPortable>true</isPortable>
+  <isArchived>false</isArchived>
+  <gamePath>C:\Portable Games\Canabalt.swf</gamePath>
+  <joyToKeyPath>""</joyToKeyPath>
+  <useJoyToKey>false</useJoyToKey>
+  <repositionMouse>true</repositionMouse>
+  <hideMouse>true</hideMouse>
+  <mouseX>2000</mouseX>
+  <mouseY>2000</mouseY>
+  <fullScreen></fullScreen>
+  <fullScreenKeys></fullScreenKeys>
+</gameSettings>

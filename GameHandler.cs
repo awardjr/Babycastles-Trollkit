@@ -26,9 +26,6 @@ namespace BabycastlesRunner
 
         public void begin(ref GameConfiguration gameConfig) //TODO: duplicate code, could put in one function
         {
-            //TODO: this is ugly, but i don't want to hard code the XML file either...
-            //String gamePath = gameConfig.IsPortable ? gameConfig.GamePath : @"C:\Portable Games\" + gameConfig.GamePath;
-
             ProcessStartInfo psi = new ProcessStartInfo(gameConfig.GamePath);
             ProcessStartInfo psiJoy = new ProcessStartInfo(gameConfig.JoyToKeyPath);
 
@@ -124,9 +121,6 @@ namespace BabycastlesRunner
                         Cursor.Hide();
                         pointer.hide();
                     }
-
-                    //TODO: this is ugly, but i don't want to hard code the XML file either...
-                    //String gamePath = gameConfig.IsPortable ? gameConfig.GamePath : @"C:\Portable Games\" + gameConfig.GamePath;
 
                     System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo(gameConfig.GamePath);
                     System.Diagnostics.ProcessStartInfo psiJoy = new System.Diagnostics.ProcessStartInfo(gameConfig.JoyToKeyPath);

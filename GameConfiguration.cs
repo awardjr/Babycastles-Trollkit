@@ -53,6 +53,7 @@ namespace BabycastlesRunner
                 reader.ReadToFollowing("isArchived");
                 IsArchived = reader.ReadElementContentAsBoolean();
 
+                //TODO: if portable && not archived, C:\Portable Games\[GameName]
                 reader.ReadToFollowing("gamePath");
                 GamePath = reader.ReadElementContentAsString();
 

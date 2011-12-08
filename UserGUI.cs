@@ -69,15 +69,17 @@ namespace BabycastlesRunner
                 return;
             }
 
-            //if the game requires installation, place it in the downloads folder, run it, delete it
-            //installer path
+            //TODO: if the game requires installation, download it, direct the user to install it, run in the installer, delete the installer
 
-            //provide a clickable link to the game
-            MessageBox.Show("This game requires installation! Download it from " + gameConfig.DownloadUrl + " and install it in the default location", "Whoa");
-            
-            //TODO: if game does not exist, download the game, store download URL in game config
-            //but also provide a download all option, for a full setup
-            //is storing the games on our server illegal?
+            //if the game requires installation, direct the user to install the game
+            DialogResult dialogResult = MessageBox.Show("This game requires installation. Download the game, then install it in the default location. If it's an extractor, extract it to " + portableFolderPath + gameConfig.GameName + @"\." + "\n\nDo you want to download the game now?", "Whoa", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                Process.Start(gameConfig.DownloadUrl);
+            }
+
+            //TODO: provide a download all option, for a full setup
+            //TODO: is storing games on our server illegal?
         }
 
         private void gameComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -116,11 +118,11 @@ namespace BabycastlesRunner
 
         private void extractGame(ref GameConfiguration gameConfig)
         {
-            //TODO: duplicate code
             //String portableFolderPath = General.ProgramFilesx86Path() + @"\TrollKit\Portable Games\"; //permissions error =(
             String filename = Path.GetFileName(gameConfig.DownloadUrl);
             String archivePath = portableFolderPath + filename;
             String extractionPath = portableFolderPath + @"\" + gameConfig.GameName + @"\"; //in case the archive does not have a top level folder
+            //TODO: a better solution would be to check if the archive has one top level folder, then extract depending on that
             
             //extract the archive
             using (ZipFile zip = ZipFile.Read(archivePath))

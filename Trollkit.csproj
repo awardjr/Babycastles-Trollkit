@@ -159,10 +159,16 @@
     <None Include="BabycastlesRunner_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Game Configurations\bloody zombies.xml">
+    <Content Include="Game Configurations\Bloody Zombies.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Game Configurations\vvvvvv.xml">
+    <Content Include="Game Configurations\Canabalt.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Game Configurations\Passage.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Game Configurations\VVVVVV.xml">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>

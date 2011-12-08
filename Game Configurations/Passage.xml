@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<gameSettings>
+  <version>3</version>
+  <gameName>Passage</gameName>
+  <author>todo</author>
+  <downloadUrl>http://downloads.sourceforge.net/hcsoftware/Passage_v3_Windows.exe</downloadUrl>
+  <isPortable>false</isPortable>
+  <isArchived>false</isArchived>
+  <gamePath>C:\Portable Games\Passage\Passage.exe</gamePath>
+  <joyToKeyPath>""</joyToKeyPath>
+  <useJoyToKey>false</useJoyToKey>
+  <repositionMouse>true</repositionMouse>
+  <hideMouse>true</hideMouse>
+  <mouseX>2000</mouseX>
+  <mouseY>2000</mouseY>
+  <fullScreen></fullScreen>
+  <fullScreenKeys></fullScreenKeys>
+</gameSettings>
