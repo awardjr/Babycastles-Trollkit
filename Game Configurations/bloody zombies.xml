@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <gameSettings>
   <version>1.0</version>
-  <gameName>VVVVVV</gameName>
-  <author>todo</author>
-  <downloadUrl>http://lemming.ceri.se/mirror/terry/vvvvvv/vvvvvv_demo.exe</downloadUrl>
+  <gameName>Bloody Zombies</gameName>
+  <author>Petri Purho</author>
+  <downloadUrl>http://www.kokoromi.org/gamma256games/bloody_zombies.zip</downloadUrl>
   <isPortable>true</isPortable>
-  <isArchived>false</isArchived>
-  <gamePath>C:\Portable Games\vvvvvv_demo.exe</gamePath>
+  <isArchived>true</isArchived>
+  <gamePath>C:\Portable Games\bloody_gamma\bloody.exe</gamePath>
   <joyToKeyPath>""</joyToKeyPath>
   <useJoyToKey>false</useJoyToKey>
   <repositionMouse>true</repositionMouse>

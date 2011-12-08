@@ -1,14 +1,7 @@
-﻿//main TODO:
-//need an installer
-//have a game folder with a sample game in it
-//synchronize games and config files from a server
-//add an autoupdater
+﻿//TODO: main list
 //need error handling!
-
-//BUG TODO:
-//input keys not being read!
-//hide the launcher (and all other windows?)?
-//canQuitApplication, if not add a close button? eh, conflicts with hiding title bar
+//need to delete c:\portable games folder when uninstalling, or store games in ../portable games?
+//display author in user GUI somewhere
 
 
 using System;

@@ -12,29 +12,26 @@ namespace BabycastlesRunner
     /// </summary>
     public class GameConfiguration
     {
-        public Boolean HideMouse;
-        public Boolean UseJoyToKey;
-        public Boolean RepositionMouse;
-        public Boolean FullScreen;
+        public readonly Boolean HideMouse; //note: readonly files can only be declared here or in the constructor
+        public readonly Boolean UseJoyToKey;
+        public readonly Boolean RepositionMouse;
+        public readonly Boolean FullScreen;
 
-        public Int32 MouseX;
-        public Int32 MouseY;
-
-        public String GamePath;
-        public String JoyToKeyPath;
-        public String DownloadUrl;
-        public Boolean IsPortable; //sometimes called standalone, as opposed to 
+        public readonly Int32 MouseX;
+        public readonly Int32 MouseY;
 
         private String gameName; //had to make these properties to set it to Display/ValueMember
+        public readonly String Author;
+        public readonly String GamePath;
+        public readonly String JoyToKeyPath;
+        public readonly String DownloadUrl;
+        public readonly Boolean IsPortable; //sometimes called standalone, as opposed to a game that requires installation
+        public readonly Boolean IsArchived;
+
         public String GameName { get { return gameName; } /*set { gameName = value; }*/ }
         //upper case public members (fields?) and properties naming convention?
 
         public GameConfiguration(String filePath)
-        {
-            load(filePath);
-        }
-
-        public void load(String filePath)
         {
             StreamReader streamReader = new StreamReader(filePath);
             string parameterXml = streamReader.ReadToEnd();
@@ -45,15 +42,21 @@ namespace BabycastlesRunner
                 reader.ReadToFollowing("gameName");
                 gameName = reader.ReadElementContentAsString();
 
+                reader.ReadToFollowing("author");
+                Author = reader.ReadElementContentAsString();
+
                 reader.ReadToFollowing("downloadUrl");
                 DownloadUrl = reader.ReadElementContentAsString();
 
                 reader.ReadToFollowing("isPortable");
-                UseJoyToKey = reader.ReadElementContentAsBoolean();
+                IsPortable = reader.ReadElementContentAsBoolean();
+
+                reader.ReadToFollowing("isArchived");
+                IsArchived = reader.ReadElementContentAsBoolean();
 
                 reader.ReadToFollowing("gamePath");
                 GamePath = reader.ReadElementContentAsString();
-                
+
                 reader.ReadToFollowing("useJoyToKey");
                 UseJoyToKey = reader.ReadElementContentAsBoolean();
 
