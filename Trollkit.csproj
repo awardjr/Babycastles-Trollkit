@@ -14,7 +14,7 @@
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>true</IsWebBootstrapper>
-    <PublishUrl>ftp://rahilpat:stomp2Knee!%40rahilpatel.com/public_html/trollkit/</PublishUrl>
+    <PublishUrl>ftp://rahilpatel.com/public_html/trollkit/</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -27,7 +27,7 @@
     <InstallUrl>http://rahilpatel.com/trollkit/</InstallUrl>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>0.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -173,7 +173,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <PublishFile Include="Game Configurations\vvvvvv.xml">
+    <PublishFile Include="Game Configurations\VVVVVV.xml">
       <Visible>False</Visible>
       <PublishState>Include</PublishState>
       <IncludeHash>True</IncludeHash>
