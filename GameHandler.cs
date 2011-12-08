@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
-using Gma.UserActivityMonitor;
 using System.Diagnostics;
-//using Gma.UserActivityMonitor //global/low level input hook library, http://www.codeproject.com/KB/cs/globalhook.aspx?msg=3505023#xx3505023xx
+using MouseKeyboardActivityMonitor; //global/low level input hook library, http://globalmousekeyhook.codeplex.com/
+using MouseKeyboardActivityMonitor.WinApi;
 
 namespace BabycastlesRunner
 {
@@ -45,25 +45,31 @@ namespace BabycastlesRunner
         }
 
         //TODO: should write a wrapper class for all of this keyboard crap...*cough* Arthur =)
-        //unless Keyboard.cs was enough and I just suck?
-        //oh snaps, found a newer version, http://globalmousekeyhook.codeplex.com/
+        //GlobalKeyboard.start() and .end()
         private Boolean restartButtonIsPressed = false;
         private Boolean stopButtonIsPressed = false;
 
         #region keyboard crap, don't look!
+        private KeyboardHookListener keyboardHookManager; //TODO: should be readonly
+
         public void hookInputs()
         {
-            HookManager.KeyPress += HookManager_KeyPress;
+            keyboardHookManager = new KeyboardHookListener(new GlobalHooker());
+            keyboardHookManager.Enabled = true;
+            keyboardHookManager.KeyPress += HookManager_KeyPress;
+
         }
 
         public void unhookInputs()
         {
-            HookManager.KeyPress -= HookManager_KeyPress;
+            keyboardHookManager.KeyPress -= HookManager_KeyPress;
+            keyboardHookManager.Enabled = false;
+            //m_KeyboardHookManager.Dispose(); //invalid hook handle error
         }
 
         private void HookManager_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 'a' || e.KeyChar == 'A')
+            if (e.KeyChar == 'a' || e.KeyChar == 'A') //TODO: use escape and F8?
             {
                 Debug.WriteLine("key press caught by global class");
                 restartButtonIsPressed = true;
@@ -90,7 +96,6 @@ namespace BabycastlesRunner
             while (!stopRunner)
             {
                 //restart the game
-                //if (Keyboard.IsKeyDown(Keys.A))
                 if (restartButtonIsPressed)
                 {
                     restartButtonIsPressed = false;
@@ -99,11 +104,9 @@ namespace BabycastlesRunner
                 }
 
                 //stop the auto-handler
-                //if (Keyboard.IsKeyDown(Keys.Z))
                 if (stopButtonIsPressed)
                 {
                     stopButtonIsPressed = false;
-                    //Debug.WriteLine("key press caught by simple class");
                     stopRunner = true;
                     Taskbar.Show();
                     pointer.show();

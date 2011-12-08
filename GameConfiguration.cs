@@ -19,7 +19,7 @@ namespace BabycastlesRunner
         public readonly Int32 MouseX;
         public readonly Int32 MouseY;
 
-        private String gameName; //had to make these properties to set it to Display/ValueMember
+        //public readonly String GameName; //had to make these properties to set it to Display/ValueMember
         public readonly String Author;
         public readonly String GamePath;
         public readonly String JoyToKeyPath;
@@ -27,8 +27,8 @@ namespace BabycastlesRunner
         public readonly Boolean IsPortable; //sometimes called standalone, as opposed to a game that requires installation
         public readonly Boolean IsArchived;
 
+        private String gameName;
         public String GameName { get { return gameName; } /*set { gameName = value; }*/ }
-        //upper case public members (fields?) and properties naming convention?
 
         public GameConfiguration(String filePath)
         {

@@ -112,6 +112,7 @@ namespace BabycastlesRunner
             {
                 MessageBox.Show(exception.Message + "\n\nTry downloading it yourself from " + gameConfig.DownloadUrl,
                     "Failed to download the game");
+                //TODO: much later, should log failed downloads and send them to to our server, to update broken links
                 return false;
             }
         }
