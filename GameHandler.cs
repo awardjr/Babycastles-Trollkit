@@ -16,9 +16,7 @@ namespace BabycastlesRunner
         {
             if (inArcadeMode)
             {
-                hookInputs();
                 beginInArcadeMode(ref gameConfig);
-                unhookInputs();
             }
             else
                 begin(ref gameConfig);
@@ -44,46 +42,6 @@ namespace BabycastlesRunner
             Process game = Process.Start(psi);
         }
 
-        //TODO: should write a wrapper class for all of this keyboard crap...*cough* Arthur =)
-        //GlobalKeyboard.start() and .end()
-        private Boolean restartButtonIsPressed = false;
-        private Boolean stopButtonIsPressed = false;
-
-        #region keyboard crap, don't look!
-        private KeyboardHookListener keyboardHookManager; //TODO: should be readonly
-
-        public void hookInputs()
-        {
-            keyboardHookManager = new KeyboardHookListener(new GlobalHooker());
-            keyboardHookManager.Enabled = true;
-            keyboardHookManager.KeyPress += HookManager_KeyPress;
-
-        }
-
-        public void unhookInputs()
-        {
-            keyboardHookManager.KeyPress -= HookManager_KeyPress;
-            keyboardHookManager.Enabled = false;
-            //m_KeyboardHookManager.Dispose(); //invalid hook handle error
-        }
-
-        private void HookManager_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 'a' || e.KeyChar == 'A') //TODO: use escape and F8?
-            {
-                Debug.WriteLine("key press caught by global class");
-                restartButtonIsPressed = true;
-                e.Handled = true;
-            }
-
-            if (e.KeyChar == 'z' || e.KeyChar == 'Z')
-            {
-                stopButtonIsPressed = true;
-                e.Handled = true;
-            }
-        }
-        #endregion
-
         public void beginInArcadeMode(ref GameConfiguration gameConfig)
         {
             MousePointer pointer = new MousePointer();
@@ -93,23 +51,24 @@ namespace BabycastlesRunner
             Process game = new System.Diagnostics.Process();
             Process joyToKey = new System.Diagnostics.Process();
 
+            GlobalMouseKeyboard globalMouseKeyboard = new GlobalMouseKeyboard();
+
             while (!stopRunner)
             {
                 //restart the game
-                if (restartButtonIsPressed)
+                if (globalMouseKeyboard.AIsPressed)
                 {
-                    restartButtonIsPressed = false;
                     game.Kill();
                     closed = true;
                 }
 
                 //stop the auto-handler
-                if (stopButtonIsPressed)
+                if (globalMouseKeyboard.ZIsPressed)
                 {
-                    stopButtonIsPressed = false;
                     stopRunner = true;
                     Taskbar.Show();
                     pointer.show();
+                    globalMouseKeyboard.Dispose();
                 }
 
                 if (closed)
