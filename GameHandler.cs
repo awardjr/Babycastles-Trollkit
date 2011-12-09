@@ -48,8 +48,8 @@ namespace BabycastlesRunner
             Boolean closed = true;
             Boolean stopRunner = false;
 
-            Process game = new System.Diagnostics.Process();
-            Process joyToKey = new System.Diagnostics.Process();
+            Process game = new Process();
+            Process joyToKey = new Process();
 
             GlobalMouseKeyboard globalMouseKeyboard = new GlobalMouseKeyboard();
 
@@ -84,22 +84,22 @@ namespace BabycastlesRunner
                         pointer.hide();
                     }
 
-                    System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo(gameConfig.GamePath);
-                    System.Diagnostics.ProcessStartInfo psiJoy = new System.Diagnostics.ProcessStartInfo(gameConfig.JoyToKeyPath);
+                    System.Diagnostics.ProcessStartInfo psi = new ProcessStartInfo(gameConfig.GamePath);
+                    System.Diagnostics.ProcessStartInfo psiJoy = new ProcessStartInfo(gameConfig.JoyToKeyPath);
                     psi.RedirectStandardOutput = false;
-                    psi.WindowStyle = System.Diagnostics.ProcessWindowStyle.Maximized; //TODO: only maximizes fully if the taskbar is set to auto-hide
+                    psi.WindowStyle = ProcessWindowStyle.Maximized; //TODO: only maximizes fully if the taskbar is set to auto-hide
                     psi.UseShellExecute = true;
 
                     if (gameConfig.UseJoyToKey)
                     {
                         psiJoy.RedirectStandardOutput = true;
-                        psiJoy.WindowStyle = System.Diagnostics.ProcessWindowStyle.Minimized;
+                        psiJoy.WindowStyle = ProcessWindowStyle.Minimized;
                         psiJoy.UseShellExecute = false;
 
-                        joyToKey = System.Diagnostics.Process.Start(psiJoy);
+                        joyToKey = Process.Start(psiJoy);
                     }
 
-                    game = System.Diagnostics.Process.Start(psi);
+                    game = Process.Start(psi);
                     //Titlebar.Hide(); //fail
 
                     closed = false;

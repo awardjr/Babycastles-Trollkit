@@ -12,7 +12,8 @@ namespace BabycastlesRunner
         [DllImport("user32.dll")]
         private static extern int FindWindow(string className, string windowText);
         [DllImport("user32.dll")]
-        private static extern IntPtr FindWindowEx(IntPtr parentHwnd,IntPtr childAfterHwnd,IntPtr className,string windowText);
+        private static extern IntPtr FindWindowEx(IntPtr parentHwnd, IntPtr childAfterHwnd, IntPtr className,
+                                                  string windowText);
         [DllImport("user32.dll")]
         private static extern int ShowWindow(IntPtr hwnd, int command);
 

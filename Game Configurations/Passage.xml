@@ -9,10 +9,8 @@
   <gamePath>C:\Portable Games\Passage\Passage.exe</gamePath>
   <joyToKeyPath>""</joyToKeyPath>
   <useJoyToKey>false</useJoyToKey>
-  <repositionMouse>true</repositionMouse>
   <hideMouse>true</hideMouse>
+  <repositionMouse>true</repositionMouse>
   <mouseX>2000</mouseX>
   <mouseY>2000</mouseY>
-  <fullScreen></fullScreen>
-  <fullScreenKeys></fullScreenKeys>
 </gameSettings>

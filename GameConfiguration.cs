@@ -12,23 +12,24 @@ namespace BabycastlesRunner
     /// </summary>
     public class GameConfiguration
     {
+        //public readonly String GameName; //had to make these properties to set it to Display/ValueMember, TODO: use ListDataItem instead
+        public readonly String Author;
+        public readonly String DownloadUrl;
+        public readonly Boolean IsPortable; //sometimes called standalone, as opposed to a game that requires installation
+        public readonly Boolean IsArchived;
+        public readonly String GamePath;
+        public readonly String JoyToKeyPath;
         public readonly Boolean HideMouse; //note: readonly files can only be declared here or in the constructor
         public readonly Boolean UseJoyToKey;
         public readonly Boolean RepositionMouse;
         public readonly Boolean FullScreen;
         public readonly Int32 MouseX;
         public readonly Int32 MouseY;
-
-        //public readonly String GameName; //had to make these properties to set it to Display/ValueMember
-        public readonly String Author;
-        public readonly String GamePath;
-        public readonly String JoyToKeyPath;
-        public readonly String DownloadUrl;
-        public readonly Boolean IsPortable; //sometimes called standalone, as opposed to a game that requires installation
-        public readonly Boolean IsArchived;
+        //FullScreen?
+        //FullScreenKeys?
 
         private String gameName;
-        public String GameName { get { return gameName; } /*set { gameName = value; }*/ }
+        public String GameName { get { return gameName; } }
 
         public GameConfiguration(String filePath)
         {
@@ -66,6 +67,9 @@ namespace BabycastlesRunner
                     JoyToKeyPath = reader.ReadElementContentAsString();
                 }
 
+                reader.ReadToFollowing("hideMouse");
+                HideMouse = reader.ReadElementContentAsBoolean();
+
                 reader.ReadToFollowing("repositionMouse");
                 RepositionMouse = reader.ReadElementContentAsBoolean();
 
@@ -77,9 +81,6 @@ namespace BabycastlesRunner
                     reader.ReadToFollowing("mouseY");
                     MouseY = reader.ReadElementContentAsInt();
                 }
-
-                reader.ReadToFollowing("hideMouse");
-                //hideMouse = reader.ReadElementContentAsBoolean();
             }
         }
     }
