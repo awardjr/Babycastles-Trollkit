@@ -39,7 +39,7 @@ namespace BabycastlesRunner
             //F2IsPressed = false; //this worked for KeyPress somehow
             //F4IsPressed = false;
 
-            if (e.KeyCode == Keys.F2)
+            if (e.KeyCode == Keys.F2) //TODO: control + R, control + S or E
             {
                 F2IsPressed = true;
                 e.Handled = true;

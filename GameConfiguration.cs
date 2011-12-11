@@ -66,18 +66,6 @@ namespace BabycastlesRunner
 
                 reader.ReadToFollowing("hideMouse");
                 HideMouse = reader.ReadElementContentAsBoolean();
-
-                reader.ReadToFollowing("repositionMouse");
-                RepositionMouse = reader.ReadElementContentAsBoolean();
-
-                if (RepositionMouse)
-                {
-                    reader.ReadToFollowing("mouseX");
-                    MouseX = reader.ReadElementContentAsInt();
-
-                    reader.ReadToFollowing("mouseY");
-                    MouseY = reader.ReadElementContentAsInt();
-                }
             }
         }
     }

@@ -37,11 +37,6 @@ namespace BabycastlesRunner
             }
         }
 
-        private Taskbar()
-        {
-            // hide ctor
-        }
-
         public static void Show()
         {
             ShowWindow(Handle, SW_SHOW);

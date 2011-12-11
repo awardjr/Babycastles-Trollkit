@@ -10,7 +10,4 @@
   <joyToKeyPath>""</joyToKeyPath>
   <useJoyToKey>false</useJoyToKey>
   <hideMouse>true</hideMouse>
-  <repositionMouse>true</repositionMouse>
-  <mouseX>2000</mouseX>
-  <mouseY>2000</mouseY>
 </gameSettings>

@@ -67,7 +67,8 @@ namespace BabycastlesRunner
                     //end arcade mode
                     stopRunner = true;
                     Taskbar.Show();
-                    pointer.show();
+                    //Cursor.Show();
+                    //pointer.show();
                     globalMouseKeyboard.Dispose();
                 }
 
@@ -75,14 +76,13 @@ namespace BabycastlesRunner
                 {
                     //Taskbar.Hide();
 
-                    //if (gameConfig.HideMouse)
-                    //{
-                    //    Cursor.Hide(); //fail
-                    //    pointer.hide(); //fail
-                    //}
-
-                    //if (gameConfig.RepositionMouse) //work around
-                    //Cursor.Position = new Point(gameConfig.MouseX, gameConfig.MouseY);
+                    if (gameConfig.HideMouse)
+                    {
+                        //Cursor.Hide(); //fail
+                        //pointer.hide(); //fail
+                        Cursor.Position = new Point(2000, 2000); //work around
+                        //another work around, set the cursor graphic to a transparent one, http://forums.whirlpool.net.au/archive/1172326
+                    }
 
                     //if (gameConfig.UseJoyToKey)
                     //{
@@ -100,7 +100,7 @@ namespace BabycastlesRunner
                     game = Process.Start(psi);
                     //Titlebar.Hide(); //fail
 
-                    FullScreen.test(game); //fail, try again after fixing the restart problem
+                    //FullScreen.test(game); //fail
 
                     closed = false;
                 }
