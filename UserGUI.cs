@@ -1,6 +1,4 @@
-﻿#define DEBUG
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -32,8 +30,10 @@ namespace BabycastlesRunner
         {
             //load game configurations from folder
             #if (DEBUG)
+                Console.WriteLine("debug");
                 String path = @"..\..\Game Configurations\";
-            #else 
+            #else
+                Console.WriteLine("release");
                 String path = @"Game Configurations\";
             #endif
 
