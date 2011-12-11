@@ -112,7 +112,7 @@ namespace BabycastlesRunner
             {
                 MessageBox.Show(exception.Message + "\n\nTry downloading it yourself from " + gameConfig.DownloadUrl,
                     "Failed to download the game");
-                //TODO: much later, should log failed downloads and send them to to our server, to update broken links
+                //TODO: later, should log failed downloads and send them to to our server, to update broken links
                 return false;
             }
         }
@@ -122,8 +122,8 @@ namespace BabycastlesRunner
             //String portableFolderPath = General.ProgramFilesx86Path() + @"\TrollKit\Portable Games\"; //permissions error =(
             String filename = Path.GetFileName(gameConfig.DownloadUrl);
             String archivePath = portableFolderPath + filename;
-            String extractionPath = portableFolderPath + @"\" + gameConfig.GameName + @"\"; //in case the archive does not have a top level folder
-            //TODO: a better solution would be to check if the archive has one top level folder, then extract depending on that
+            String extractionPath = portableFolderPath + @"\" + gameConfig.GameName + @"\"; //add a folder in case the archive does not have a top level folder
+            //TODO: later, a better solution would be to check if the archive has one top level folder, then extract depending on that
             
             //extract the archive
             using (ZipFile zip = ZipFile.Read(archivePath))

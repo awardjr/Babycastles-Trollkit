@@ -5,7 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 using System.Diagnostics;
-using MouseKeyboardActivityMonitor; //global/low level input hook library, http://globalmousekeyhook.codeplex.com/
+using MouseKeyboardActivityMonitor;
 using MouseKeyboardActivityMonitor.WinApi;
 
 namespace BabycastlesRunner
@@ -15,9 +15,7 @@ namespace BabycastlesRunner
         public GameHandler(ref GameConfiguration gameConfig, Boolean inArcadeMode)
         {
             if (inArcadeMode)
-            {
                 beginInArcadeMode(ref gameConfig);
-            }
             else
                 begin(ref gameConfig);
         }
@@ -25,7 +23,7 @@ namespace BabycastlesRunner
         public void begin(ref GameConfiguration gameConfig) //TODO: duplicate code, could put in one function
         {
             ProcessStartInfo psi = new ProcessStartInfo(gameConfig.GamePath);
-            ProcessStartInfo psiJoy = new ProcessStartInfo(gameConfig.JoyToKeyPath);
+            ProcessStartInfo psiJoy = new ProcessStartInfo(gameConfig.JoyToKeyPath); //learn this
 
             psi.RedirectStandardOutput = false;
             psi.UseShellExecute = true;
@@ -39,7 +37,7 @@ namespace BabycastlesRunner
                 Process joyToKey = Process.Start(psiJoy);
             }
 
-            Process game = Process.Start(psi);
+            Process game = Process.Start(psi); //make a function runs the game and returns the game process
         }
 
         public void beginInArcadeMode(ref GameConfiguration gameConfig)
@@ -56,14 +54,14 @@ namespace BabycastlesRunner
             while (!stopRunner)
             {
                 //restart the game
-                if (globalMouseKeyboard.AIsPressed)
+                if (globalMouseKeyboard.F2IsPressed)
                 {
                     game.Kill();
                     closed = true;
                 }
 
                 //stop the auto-handler
-                if (globalMouseKeyboard.ZIsPressed)
+                if (globalMouseKeyboard.F4IsPressed)
                 {
                     stopRunner = true;
                     Taskbar.Show();

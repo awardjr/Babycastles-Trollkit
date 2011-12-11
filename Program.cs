@@ -1,5 +1,5 @@
 ﻿//TODO: main list
-//need more error handling!
+//need more error handling! Especially with Game Handler
 //need to delete c:\portable games folder when uninstalling, or store games in ../portable games?
 
 

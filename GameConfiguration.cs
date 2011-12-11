@@ -12,7 +12,7 @@ namespace BabycastlesRunner
     /// </summary>
     public class GameConfiguration
     {
-        //public readonly String GameName; //had to make these properties to set it to Display/ValueMember, TODO: use ListDataItem instead
+        public String GameName { get; private set; } //had to make these properties to set it to Display/ValueMember, TODO: use ListDataItem instead
         public readonly String Author;
         public readonly String DownloadUrl;
         public readonly Boolean IsPortable; //sometimes called standalone, as opposed to a game that requires installation
@@ -28,9 +28,6 @@ namespace BabycastlesRunner
         //FullScreen?
         //FullScreenKeys?
 
-        private String gameName;
-        public String GameName { get { return gameName; } }
-
         public GameConfiguration(String filePath)
         {
             StreamReader streamReader = new StreamReader(filePath);
@@ -40,7 +37,7 @@ namespace BabycastlesRunner
             using (XmlReader reader = XmlReader.Create(new StringReader(parameterXml)))
             {
                 reader.ReadToFollowing("gameName");
-                gameName = reader.ReadElementContentAsString();
+                GameName = reader.ReadElementContentAsString();
 
                 reader.ReadToFollowing("author");
                 Author = reader.ReadElementContentAsString();

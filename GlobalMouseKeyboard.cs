@@ -2,20 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using MouseKeyboardActivityMonitor;
+using MouseKeyboardActivityMonitor; //http://globalmousekeyhook.codeplex.com/
 using MouseKeyboardActivityMonitor.WinApi;
 using System.Windows.Forms;
 
 namespace BabycastlesRunner
 {
-    public class GlobalMouseKeyboard //TODO: should probably make this static instead...
+    class GlobalMouseKeyboard //TODO: should probably make this static instead...
     {
         private readonly KeyboardHookListener keyboardHookManager;
 
-        private Boolean aIsPressed;
-        public Boolean AIsPressed { get { return aIsPressed; } }
-        private Boolean zIsPressed;
-        public Boolean ZIsPressed { get { return zIsPressed; } }
+        public Boolean F2IsPressed { get; private set; }
+        public Boolean F4IsPressed { get; private set; }
 
         public GlobalMouseKeyboard()
         {
@@ -26,28 +24,30 @@ namespace BabycastlesRunner
 
         private void hookInputs()
         {
-            keyboardHookManager.KeyPress += hookManager_KeyPress;
+            //keyboardHookManager.KeyPress += hookManager_KeyPress; //non-character keys are not captured by KeyPress
+            keyboardHookManager.KeyUp += hookManager_KeyUp;
         }
 
         private void unhookInputs()
         {
-            keyboardHookManager.KeyPress -= hookManager_KeyPress;
+            //keyboardHookManager.KeyPress -= hookManager_KeyPress;
+            keyboardHookManager.KeyUp -= hookManager_KeyUp;
         }
 
-        private void hookManager_KeyPress(object sender, KeyPressEventArgs e)
+        private void hookManager_KeyUp(object sender, KeyEventArgs e)
         {
-            aIsPressed = false; //TODO: why is this working?
-            zIsPressed = false;
+            F2IsPressed = false; //TODO: why is this working?
+            F4IsPressed = false;
 
-            if (e.KeyChar == 'a' || e.KeyChar == 'A') //TODO: use escape and F8?
+            if (e.KeyCode == Keys.F2)
             {
-                aIsPressed = true;
+                F2IsPressed = true;
                 e.Handled = true;
             }
 
-            if (e.KeyChar == 'z' || e.KeyChar == 'Z')
+            if (e.KeyCode == Keys.F4)
             {
-                zIsPressed = true;
+                F4IsPressed = true;
                 e.Handled = true;
             }
         }
