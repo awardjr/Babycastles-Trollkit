@@ -21,7 +21,7 @@ namespace BabycastlesRunner
         private const int SW_HIDE = 0;
         private const int SW_SHOW = 1;
 
-        protected static IntPtr Handle
+        private static IntPtr Handle
         {
             get
             {
@@ -29,7 +29,7 @@ namespace BabycastlesRunner
             }
         }
 
-        protected static IntPtr hwndOrb
+        private static IntPtr hwndOrb
         {
             get
             {

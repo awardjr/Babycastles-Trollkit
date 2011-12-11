@@ -109,6 +109,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FullScreen.cs" />
     <Compile Include="GlobalMouseKeyboard.cs" />
     <Compile Include="Titlebar.cs" />
     <Compile Include="General.cs" />

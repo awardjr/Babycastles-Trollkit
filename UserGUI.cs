@@ -98,7 +98,7 @@ namespace BabycastlesRunner
 
             Directory.CreateDirectory(Path.GetDirectoryName(savePath));
 
-            //TODO: do this asynchronously and display a progress bar
+            //TODO: do this asynchronously and display a progress bar and a cancel button
             try
             {
                 using (WebClient webClient = new WebClient())

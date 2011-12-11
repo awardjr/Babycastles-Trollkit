@@ -22,22 +22,22 @@ namespace BabycastlesRunner
 
         public void begin(ref GameConfiguration gameConfig) //TODO: duplicate code, could put in one function
         {
-            ProcessStartInfo psi = new ProcessStartInfo(gameConfig.GamePath);
-            ProcessStartInfo psiJoy = new ProcessStartInfo(gameConfig.JoyToKeyPath); //learn this
-
-            psi.RedirectStandardOutput = false;
-            psi.UseShellExecute = true;
-
-            if (gameConfig.UseJoyToKey)
+            //run Joy2Key
+            if (gameConfig.UseJoyToKey) //TODO: need to test this, come back to this later
             {
-                psiJoy.RedirectStandardOutput = true;
-                psiJoy.WindowStyle = System.Diagnostics.ProcessWindowStyle.Minimized;
-                psiJoy.UseShellExecute = false;
-
-                Process joyToKey = Process.Start(psiJoy);
+                ProcessStartInfo joy2KeyPsi = new ProcessStartInfo(gameConfig.JoyToKeyPath);
+                joy2KeyPsi.UseShellExecute = false;
+                joy2KeyPsi.RedirectStandardOutput = true;
+                joy2KeyPsi.WindowStyle = System.Diagnostics.ProcessWindowStyle.Minimized;
+                Process.Start(joy2KeyPsi);
             }
 
-            Process game = Process.Start(psi); //make a function runs the game and returns the game process
+            //run game
+            //startGame(ref gameConfig);
+            ProcessStartInfo gamePsi = new ProcessStartInfo(gameConfig.GamePath);
+            gamePsi.RedirectStandardOutput = false;
+            gamePsi.UseShellExecute = true;
+            Process.Start(gamePsi);
         }
 
         public void beginInArcadeMode(ref GameConfiguration gameConfig)
@@ -53,16 +53,18 @@ namespace BabycastlesRunner
 
             while (!stopRunner)
             {
-                //restart the game
+                
                 if (globalMouseKeyboard.F2IsPressed)
                 {
+                    //restart the game
                     game.Kill();
                     closed = true;
+                    globalMouseKeyboard.F2IsPressed = false;
                 }
-
-                //stop the auto-handler
+                
                 if (globalMouseKeyboard.F4IsPressed)
                 {
+                    //end arcade mode
                     stopRunner = true;
                     Taskbar.Show();
                     pointer.show();
@@ -71,44 +73,54 @@ namespace BabycastlesRunner
 
                 if (closed)
                 {
-                    Taskbar.Hide();
+                    //Taskbar.Hide();
 
-                    if (gameConfig.RepositionMouse)
-                        Cursor.Position = new Point(gameConfig.MouseX, gameConfig.MouseY);
+                    //if (gameConfig.HideMouse)
+                    //{
+                    //    Cursor.Hide(); //fail
+                    //    pointer.hide(); //fail
+                    //}
 
-                    if (gameConfig.HideMouse)
-                    {
-                        Cursor.Hide();
-                        pointer.hide();
-                    }
+                    //if (gameConfig.RepositionMouse) //work around
+                    //Cursor.Position = new Point(gameConfig.MouseX, gameConfig.MouseY);
 
-                    System.Diagnostics.ProcessStartInfo psi = new ProcessStartInfo(gameConfig.GamePath);
-                    System.Diagnostics.ProcessStartInfo psiJoy = new ProcessStartInfo(gameConfig.JoyToKeyPath);
-                    psi.RedirectStandardOutput = false;
-                    psi.WindowStyle = ProcessWindowStyle.Maximized; //TODO: only maximizes fully if the taskbar is set to auto-hide
+                    //if (gameConfig.UseJoyToKey)
+                    //{
+                    //    ProcessStartInfo psiJoy = new ProcessStartInfo(gameConfig.JoyToKeyPath);
+                    //    psiJoy.UseShellExecute = false;
+                    //    psiJoy.RedirectStandardOutput = true;
+                    //    psiJoy.WindowStyle = ProcessWindowStyle.Minimized;
+                    //    joyToKey = Process.Start(psiJoy);
+                    //}
+
+                    ProcessStartInfo psi = new ProcessStartInfo(gameConfig.GamePath);
                     psi.UseShellExecute = true;
-
-                    if (gameConfig.UseJoyToKey)
-                    {
-                        psiJoy.RedirectStandardOutput = true;
-                        psiJoy.WindowStyle = ProcessWindowStyle.Minimized;
-                        psiJoy.UseShellExecute = false;
-
-                        joyToKey = Process.Start(psiJoy);
-                    }
-
+                    psi.RedirectStandardOutput = false;
+                    //psi.WindowStyle = ProcessWindowStyle.Maximized; //TODO: only maximizes fully if the taskbar is set to auto-hide
                     game = Process.Start(psi);
                     //Titlebar.Hide(); //fail
+
+                    FullScreen.test(game); //fail, try again after fixing the restart problem
 
                     closed = false;
                 }
 
-                game.WaitForExit(100);
+                //game.WaitForExit(100); //?
+
                 if (game.HasExited)
                 {
                     closed = true;
                 }
             }
+        }
+
+        private Process startGame(ref GameConfiguration gameConfig)
+        {
+            ProcessStartInfo gamePsi = new ProcessStartInfo(gameConfig.GamePath);
+            gamePsi.RedirectStandardOutput = false;
+            gamePsi.UseShellExecute = true;
+
+            return Process.Start(gamePsi);
         }
     }
 }

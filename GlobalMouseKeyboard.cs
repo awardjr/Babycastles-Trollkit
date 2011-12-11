@@ -12,8 +12,8 @@ namespace BabycastlesRunner
     {
         private readonly KeyboardHookListener keyboardHookManager;
 
-        public Boolean F2IsPressed { get; private set; }
-        public Boolean F4IsPressed { get; private set; }
+        public Boolean F2IsPressed { get; set; } //should be readonly / private set;
+        public Boolean F4IsPressed { get; set; }
 
         public GlobalMouseKeyboard()
         {
@@ -36,8 +36,8 @@ namespace BabycastlesRunner
 
         private void hookManager_KeyUp(object sender, KeyEventArgs e)
         {
-            F2IsPressed = false; //TODO: why is this working?
-            F4IsPressed = false;
+            //F2IsPressed = false; //this worked for KeyPress somehow
+            //F4IsPressed = false;
 
             if (e.KeyCode == Keys.F2)
             {
