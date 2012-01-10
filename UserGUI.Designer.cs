@@ -1,4 +1,4 @@
-﻿namespace BabycastlesRunner
+﻿namespace Trollkit
 {
     partial class UserGUI
     {
@@ -66,11 +66,11 @@
             // arcadeModeCheckBox
             // 
             this.arcadeModeCheckBox.AutoSize = true;
-            this.arcadeModeCheckBox.Location = new System.Drawing.Point(211, 39);
+            this.arcadeModeCheckBox.Location = new System.Drawing.Point(87, 39);
             this.arcadeModeCheckBox.Name = "arcadeModeCheckBox";
-            this.arcadeModeCheckBox.Size = new System.Drawing.Size(90, 17);
+            this.arcadeModeCheckBox.Size = new System.Drawing.Size(208, 17);
             this.arcadeModeCheckBox.TabIndex = 3;
-            this.arcadeModeCheckBox.Text = "Arcade Mode";
+            this.arcadeModeCheckBox.Text = "Arcade Mode (F2 to restart, F4 to stop)";
             this.arcadeModeCheckBox.UseVisualStyleBackColor = true;
             // 
             // UserGUI

@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
 
-namespace BabycastlesRunner
+namespace Trollkit
 {
-
     class Taskbar
     {
         [DllImport("user32.dll")]

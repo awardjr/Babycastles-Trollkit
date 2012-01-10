@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace BabycastlesRunner
+namespace Trollkit
 {
     static class Program
     {

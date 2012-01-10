@@ -8,7 +8,7 @@ using System.Diagnostics;
 using MouseKeyboardActivityMonitor;
 using MouseKeyboardActivityMonitor.WinApi;
 
-namespace BabycastlesRunner
+namespace Trollkit
 {
     class GameHandler
     {
@@ -53,7 +53,6 @@ namespace BabycastlesRunner
 
             while (!stopRunner)
             {
-                
                 if (globalMouseKeyboard.F2IsPressed)
                 {
                     //restart the game
@@ -61,10 +60,11 @@ namespace BabycastlesRunner
                     closed = true;
                     globalMouseKeyboard.F2IsPressed = false;
                 }
-                
+
                 if (globalMouseKeyboard.F4IsPressed)
                 {
                     //end arcade mode
+                    game.Kill();
                     stopRunner = true;
                     Taskbar.Show();
                     //Cursor.Show();
@@ -74,8 +74,6 @@ namespace BabycastlesRunner
 
                 if (closed)
                 {
-                    //Taskbar.Hide();
-
                     if (gameConfig.HideMouse)
                     {
                         //Cursor.Hide(); //fail
@@ -96,11 +94,13 @@ namespace BabycastlesRunner
                     ProcessStartInfo psi = new ProcessStartInfo(gameConfig.GamePath);
                     psi.UseShellExecute = true;
                     psi.RedirectStandardOutput = false;
-                    //psi.WindowStyle = ProcessWindowStyle.Maximized; //TODO: only maximizes fully if the taskbar is set to auto-hide
+                    //TODO: if full screen, or center window
+                    Taskbar.Hide();
+                    psi.WindowStyle = ProcessWindowStyle.Maximized; //TODO: only maximizes fully if the taskbar is set to auto-hide
                     game = Process.Start(psi);
-                    //Titlebar.Hide(); //fail
 
-                    //FullScreen.test(game); //fail
+                    //Titlebar.Hide(); //fail
+                    //FullScreen.set(game.MainWindowHandle); //fail
 
                     closed = false;
                 }
@@ -114,6 +114,7 @@ namespace BabycastlesRunner
             }
         }
 
+        //TODO
         private Process startGame(ref GameConfiguration gameConfig)
         {
             ProcessStartInfo gamePsi = new ProcessStartInfo(gameConfig.GamePath);

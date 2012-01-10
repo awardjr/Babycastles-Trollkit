@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace BabycastlesRunner
+namespace Trollkit
 {
     /// <summary>
     /// Contains some general classes and functions

@@ -6,7 +6,7 @@ using MouseKeyboardActivityMonitor; //http://globalmousekeyhook.codeplex.com/
 using MouseKeyboardActivityMonitor.WinApi;
 using System.Windows.Forms;
 
-namespace BabycastlesRunner
+namespace Trollkit
 {
     class GlobalMouseKeyboard //TODO: should probably make this static instead...
     {

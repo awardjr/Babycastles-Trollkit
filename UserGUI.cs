@@ -11,7 +11,7 @@ using System.Diagnostics;
 using System.Net;
 using Ionic.Zip;
 
-namespace BabycastlesRunner
+namespace Trollkit
 {
     /// <summary>
     /// The main window
@@ -30,10 +30,8 @@ namespace BabycastlesRunner
         {
             //load game configurations from folder
             #if (DEBUG)
-                Console.WriteLine("debug");
                 String path = @"..\..\Game Configurations\";
             #else
-                Console.WriteLine("release");
                 String path = @"Game Configurations\";
             #endif
 
@@ -79,7 +77,6 @@ namespace BabycastlesRunner
             }
 
             //TODO: provide a download all option, for a full setup
-            //TODO: is storing games on our server illegal?
         }
 
         private void gameComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -124,7 +121,7 @@ namespace BabycastlesRunner
             String archivePath = portableFolderPath + filename;
             String extractionPath = portableFolderPath + @"\" + gameConfig.GameName + @"\"; //add a folder in case the archive does not have a top level folder
             //TODO: later, a better solution would be to check if the archive has one top level folder, then extract depending on that
-            
+
             //extract the archive
             using (ZipFile zip = ZipFile.Read(archivePath))
             {

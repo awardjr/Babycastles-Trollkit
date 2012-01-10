@@ -10,4 +10,5 @@
   <joyToKeyPath>""</joyToKeyPath>
   <useJoyToKey>false</useJoyToKey>
   <hideMouse>true</hideMouse>
+  <fullScreen>true</fullScreen>
 </gameSettings>

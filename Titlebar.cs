@@ -5,7 +5,7 @@ using System.Text;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
 
-namespace BabycastlesRunner
+namespace Trollkit
 {
     class Titlebar
     {
