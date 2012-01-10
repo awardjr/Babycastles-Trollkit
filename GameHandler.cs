@@ -42,13 +42,10 @@ namespace Trollkit
 
         public void beginInArcadeMode(ref GameConfiguration gameConfig)
         {
-            MousePointer pointer = new MousePointer();
             Boolean closed = true;
             Boolean stopRunner = false;
-
             Process game = new Process();
             Process joyToKey = new Process();
-
             GlobalMouseKeyboard globalMouseKeyboard = new GlobalMouseKeyboard();
 
             while (!stopRunner)
@@ -66,9 +63,6 @@ namespace Trollkit
                     //end arcade mode
                     game.Kill();
                     stopRunner = true;
-                    Taskbar.Show();
-                    //Cursor.Show();
-                    //pointer.show();
                     globalMouseKeyboard.Dispose();
                 }
 
@@ -76,8 +70,6 @@ namespace Trollkit
                 {
                     if (gameConfig.HideMouse)
                     {
-                        //Cursor.Hide(); //fail
-                        //pointer.hide(); //fail
                         Cursor.Position = new Point(2000, 2000); //work around
                         //another work around, set the cursor graphic to a transparent one, http://forums.whirlpool.net.au/archive/1172326
                     }
@@ -94,18 +86,14 @@ namespace Trollkit
                     ProcessStartInfo psi = new ProcessStartInfo(gameConfig.GamePath);
                     psi.UseShellExecute = true;
                     psi.RedirectStandardOutput = false;
-                    //TODO: if full screen, or center window
-                    Taskbar.Hide();
-                    psi.WindowStyle = ProcessWindowStyle.Maximized; //TODO: only maximizes fully if the taskbar is set to auto-hide
+                    if (gameConfig.FullScreen)
+                        psi.WindowStyle = ProcessWindowStyle.Maximized; //TODO: only maximizes fully if the taskbar is set to auto-hide
                     game = Process.Start(psi);
-
-                    //Titlebar.Hide(); //fail
-                    //FullScreen.set(game.MainWindowHandle); //fail
 
                     closed = false;
                 }
 
-                //game.WaitForExit(100); //?
+                game.WaitForExit(100); //? to reduce cpu usage?
 
                 if (game.HasExited)
                 {

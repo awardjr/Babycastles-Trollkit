@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 
-namespace BabycastlesRunner
+namespace Trollkit
 {
     public abstract class Keyboard
     {

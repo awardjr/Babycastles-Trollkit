@@ -113,9 +113,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FullScreen.cs" />
+    <Compile Include="Test\FullScreen.cs" />
     <Compile Include="GlobalMouseKeyboard.cs" />
-    <Compile Include="Titlebar.cs" />
+    <Compile Include="Old\Keyboard.cs" />
+    <Compile Include="Test\Titlebar.cs" />
     <Compile Include="General.cs" />
     <Compile Include="GameHandler.cs" />
     <Compile Include="UserGUI.cs">
@@ -124,11 +125,11 @@
     <Compile Include="UserGUI.Designer.cs">
       <DependentUpon>UserGUI.cs</DependentUpon>
     </Compile>
-    <Compile Include="MousePointer.cs" />
+    <Compile Include="Test\MousePointer.cs" />
     <Compile Include="GameConfiguration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Taskbar.cs" />
+    <Compile Include="Test\Taskbar.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="UserGUI.resx">
@@ -159,6 +160,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="BabycastlesRunner_TemporaryKey.pfx" />
+    <None Include="Old\template.ahk" />
+    <None Include="Old\vars.cfg" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game Configurations\Bloody Zombies.xml">
@@ -173,6 +176,8 @@
     <Content Include="Game Configurations\VVVVVV.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Old\TemplateGenerator.cpp" />
+    <Content Include="Old\TemplateGenerator.h" />
   </ItemGroup>
   <ItemGroup>
     <PublishFile Include="Game Configurations\VVVVVV.xml">
