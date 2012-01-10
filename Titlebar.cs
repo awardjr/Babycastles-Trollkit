@@ -7,6 +7,7 @@ using System.Diagnostics;
 
 namespace Trollkit
 {
+    //TODO: this file is not currently being used
     class Titlebar
     {
         //Finds a window by class name
