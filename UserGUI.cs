@@ -10,6 +10,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Net;
 using Ionic.Zip;
+using Microsoft.Win32;
 
 namespace Trollkit
 {
@@ -44,14 +45,33 @@ namespace Trollkit
             gameComboBox.ValueMember = "GameName"; //must be a property, probably should use int id
             //gameComboBox.DisplayMember = "GameName"; //optional, also must be a property, TODO: format to GameName by Author
             gameComboBox.DataSource = GameConfigs; //must set DataSource last!
+
+            //bind autostart checkbox
+            autostartCheckBox.Checked = (String)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Troll Kit", "AutostartLastGame", false) == "True"; //doesn't cast to bool
+
+            //autostart last game played
+            if (autostartCheckBox.Checked
+                && Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Troll Kit", "LastGamePlayed", null) != null)
+            {
+                //select last game
+                String lastGamePlayed = (String)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Troll Kit", "LastGamePlayed", null);
+                gameComboBox.SelectedItem = GameConfigs.Single(g => g.GameName == lastGamePlayed);
+
+                //play it
+                playButton_Click(null, null);
+            }
         }
 
         private void playButton_Click(object sender, EventArgs e) //rename button to something else?
         {
-            GameConfiguration gameConfig = GameConfigs.Single(g => g.GameName == (string)gameComboBox.SelectedValue);
+            GameConfiguration gameConfig = GameConfigs.Single(g => g.GameName == (String)gameComboBox.SelectedValue);
 
             if (File.Exists(gameConfig.GamePath))
             {
+                //set registry key for last game played
+                Registry.SetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Troll Kit", "LastGamePlayed", gameConfig.GameName);
+                //for x64 adds to HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Troll Kit
+
                 //run the selected game
                 this.Hide(); //should lock the window instead?
                 GameHandler gameHandler = new GameHandler(ref gameConfig, arcadeModeCheckBox.Checked);
@@ -84,6 +104,28 @@ namespace Trollkit
             //if game does not exist, change text to download, else, play
             GameConfiguration gameConfig = GameConfigs.Single(g => g.GameName == (string)gameComboBox.SelectedValue);
             playButton.Text = File.Exists(gameConfig.GamePath) ? "Play" : "Download";
+        }
+
+        private void autostartCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (autostartCheckBox.Checked)
+            {
+                //add application shortcut to startup folder
+                #if (!DEBUG)
+                ClickOnce.AppShortcut.AutoStart(true);
+                #endif
+
+                Registry.SetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Troll Kit", "AutostartLastGame", true);
+            }
+            else
+            {
+                //add application shortcut to startup folder
+                #if (!DEBUG)
+                ClickOnce.AppShortcut.AutoStart(false);
+                #endif
+
+                Registry.SetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Troll Kit", "AutostartLastGame", true);
+            }
         }
 
         /// <returns>true upon success</returns>

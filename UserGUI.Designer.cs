@@ -32,6 +32,7 @@
             this.gameComboBox = new System.Windows.Forms.ComboBox();
             this.playButton = new System.Windows.Forms.Button();
             this.arcadeModeCheckBox = new System.Windows.Forms.CheckBox();
+            this.autostartCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -73,11 +74,23 @@
             this.arcadeModeCheckBox.Text = "Arcade Mode (F2 to restart, F4 to stop)";
             this.arcadeModeCheckBox.UseVisualStyleBackColor = true;
             // 
+            // autostartCheckBox
+            // 
+            this.autostartCheckBox.AutoSize = true;
+            this.autostartCheckBox.Location = new System.Drawing.Point(87, 62);
+            this.autostartCheckBox.Name = "autostartCheckBox";
+            this.autostartCheckBox.Size = new System.Drawing.Size(172, 17);
+            this.autostartCheckBox.TabIndex = 4;
+            this.autostartCheckBox.Text = "Autostart with last game played";
+            this.autostartCheckBox.UseVisualStyleBackColor = true;
+            this.autostartCheckBox.CheckedChanged += new System.EventHandler(this.autostartCheckBox_CheckedChanged);
+            // 
             // UserGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(307, 64);
+            this.ClientSize = new System.Drawing.Size(307, 82);
+            this.Controls.Add(this.autostartCheckBox);
             this.Controls.Add(this.arcadeModeCheckBox);
             this.Controls.Add(this.playButton);
             this.Controls.Add(this.gameComboBox);
@@ -96,5 +109,6 @@
         private System.Windows.Forms.ComboBox gameComboBox;
         private System.Windows.Forms.Button playButton;
         private System.Windows.Forms.CheckBox arcadeModeCheckBox;
+        private System.Windows.Forms.CheckBox autostartCheckBox;
     }
 }
