@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 
 namespace Trollkit
 {
+    //this works, but when you maxmize the window, it doesn't cover the task bar area
     class Taskbar
     {
         [DllImport("user32.dll")]

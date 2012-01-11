@@ -8,6 +8,7 @@ using System.Diagnostics;
 
 namespace Trollkit
 {
+    //this failed
     class FullScreen
     {
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)] //is charset needed?

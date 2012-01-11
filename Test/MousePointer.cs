@@ -6,8 +6,8 @@ using System.Runtime.InteropServices;
 
 namespace Trollkit
 {
+    //this failed
     //point.show/hide did not work either
-
     class MousePointer
     {
         [DllImport("user32.dll")]
@@ -18,13 +18,13 @@ namespace Trollkit
             
         }
 
-        public void hide()
+        public static void hide()
         {
             ShowCursor(false);
            
         }
 
-        public void show()
+        public static void show()
         {
             ShowCursor(true);
         }
