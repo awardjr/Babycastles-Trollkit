@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
 
 namespace Trollkit
 {
@@ -48,6 +49,19 @@ namespace Trollkit
             }
 
             return Environment.GetEnvironmentVariable("ProgramFiles");
+        }
+
+        /// <summary>
+        /// Gets the handle, duh. Throws an exception if the handle is not found
+        /// </summary>
+        public static IntPtr getHandleByProcessName(String processName)
+        {
+            Process[] processes = Process.GetProcessesByName(processName);
+            foreach (Process p in processes)
+                return p.MainWindowHandle;
+
+            //return IntPtr.Zero;
+            throw new SystemException("could not find the handle");
         }
     }
 }

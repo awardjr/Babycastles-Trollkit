@@ -41,14 +41,5 @@ namespace Trollkit
                 //Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error()); //fail
             }
         }
-
-        public static IntPtr getHandle()
-        {
-            Process[] processes = Process.GetProcessesByName("vvvvvv_demo");
-            foreach (Process p in processes)
-                return p.MainWindowHandle;
-
-            throw new SystemException("could not find a handle");
-        }
     }
 }
