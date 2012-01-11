@@ -18,6 +18,9 @@ namespace Trollkit
         [STAThread]
         static void Main(string[] args)
         {
+            //add application shortcut to startup folder
+            ClickOnce.AppShortcut.AutoStart(true);
+
             //start the GUI
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

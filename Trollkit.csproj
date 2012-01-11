@@ -31,7 +31,7 @@
     <PublisherName>Babycastles</PublisherName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>12</ApplicationRevision>
+    <ApplicationRevision>14</ApplicationRevision>
     <ApplicationVersion>0.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -101,6 +101,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
@@ -113,6 +114,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClickOnce\AppShortcut.cs" />
+    <Compile Include="ClickOnce\ClickOnceHelper.cs" />
+    <Compile Include="ClickOnce\UrlShortcut.cs" />
     <Compile Include="Test\FullScreen.cs" />
     <Compile Include="GlobalMouseKeyboard.cs" />
     <Compile Include="Old\Keyboard.cs" />
