@@ -115,7 +115,7 @@
   <ItemGroup>
     <Compile Include="Test\FullScreen.cs" />
     <Compile Include="GlobalMouseKeyboard.cs" />
-    <Compile Include="Old2\Keyboard.cs" />
+    <Compile Include="Old\Keyboard.cs" />
     <Compile Include="Test\Titlebar.cs" />
     <Compile Include="General.cs" />
     <Compile Include="GameHandler.cs" />
@@ -160,8 +160,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="BabycastlesRunner_TemporaryKey.pfx" />
-    <None Include="Old2\template.ahk" />
-    <None Include="Old2\vars.cfg" />
+    <None Include="Old\template.ahk" />
+    <None Include="Old\vars.cfg" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game Configurations\Bloody Zombies.xml">
@@ -176,8 +176,8 @@
     <Content Include="Game Configurations\VVVVVV.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Old2\TemplateGenerator.cpp" />
-    <Content Include="Old2\TemplateGenerator.h" />
+    <Content Include="Old\TemplateGenerator.cpp" />
+    <Content Include="Old\TemplateGenerator.h" />
   </ItemGroup>
   <ItemGroup>
     <PublishFile Include="Game Configurations\VVVVVV.xml">
