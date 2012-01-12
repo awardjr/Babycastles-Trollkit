@@ -57,7 +57,8 @@ namespace Trollkit
                 String lastGamePlayed = (String)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Troll Kit", "LastGamePlayed", null);
                 gameComboBox.SelectedItem = GameConfigs.Single(g => g.GameName == lastGamePlayed);
 
-                //play it
+                //play it in arcade mode
+                arcadeModeCheckBox.Checked = true;
                 playButton_Click(null, null);
             }
         }
