@@ -119,12 +119,12 @@ namespace Trollkit
             }
             else
             {
-                //add application shortcut to startup folder
+                //remove application shortcut from startup folder
                 #if (!DEBUG)
                 ClickOnce.AppShortcut.AutoStart(false);
                 #endif
 
-                Registry.SetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Troll Kit", "AutostartLastGame", true);
+                Registry.SetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Troll Kit", "AutostartLastGame", false);
             }
         }
 
