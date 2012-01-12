@@ -164,6 +164,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="BabycastlesRunner_TemporaryKey.pfx" />
+    <None Include="JoyToKey\JoyToKey.ini" />
+    <None Include="JoyToKey\VVVVVV.cfg" />
     <None Include="Old\template.ahk" />
     <None Include="Old\vars.cfg" />
   </ItemGroup>
@@ -180,6 +182,8 @@
     <Content Include="Game Configurations\VVVVVV.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="JoyToKey\JoyToKey.exe" />
+    <Content Include="JoyToKey\Readme.txt" />
     <Content Include="Old\TemplateGenerator.cpp" />
     <Content Include="Old\TemplateGenerator.h" />
   </ItemGroup>
