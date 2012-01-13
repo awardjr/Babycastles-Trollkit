@@ -7,8 +7,7 @@
   <isPortable>true</isPortable>
   <isArchived>true</isArchived>
   <gamePath>C:\Portable Games\Bloody Zombies\bloody_gamma\bloody.exe</gamePath>
-  <joyToKeyPath>""</joyToKeyPath>
-  <useJoyToKey>false</useJoyToKey>
+  <usesJoyToKey>false</usesJoyToKey>
   <hideMouse>true</hideMouse>
   <fullScreen>false</fullScreen>
 </gameSettings>

@@ -20,7 +20,7 @@ namespace Trollkit
         public readonly String GamePath;
         public readonly String JoyToKeyPath;
         public readonly Boolean HideMouse;
-        public readonly Boolean UseJoyToKey;
+        public readonly Boolean UsesJoyToKey;
         public readonly Boolean RepositionMouse;
         public readonly Boolean FullScreen;
 
@@ -53,14 +53,8 @@ namespace Trollkit
                 reader.ReadToFollowing("gamePath");
                 GamePath = reader.ReadElementContentAsString();
 
-                reader.ReadToFollowing("useJoyToKey");
-                UseJoyToKey = reader.ReadElementContentAsBoolean();
-
-                if (UseJoyToKey)
-                {
-                    reader.ReadToFollowing("joyToKeyPath");
-                    JoyToKeyPath = reader.ReadElementContentAsString();
-                }
+                reader.ReadToFollowing("usesJoyToKey");
+                UsesJoyToKey = reader.ReadElementContentAsBoolean();
 
                 reader.ReadToFollowing("hideMouse");
                 HideMouse = reader.ReadElementContentAsBoolean();

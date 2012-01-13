@@ -23,7 +23,7 @@ namespace Trollkit
         public void begin(ref GameConfiguration gameConfig) //TODO: duplicate code, could put in one function
         {
             //run Joy2Key
-            if (gameConfig.UseJoyToKey) //TODO: need to test this, come back to this later
+            if (gameConfig.UsesJoyToKey) //TODO: need to test this, come back to this later
             {
                 ProcessStartInfo joy2KeyPsi = new ProcessStartInfo(gameConfig.JoyToKeyPath);
                 joy2KeyPsi.UseShellExecute = false;

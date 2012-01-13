@@ -7,8 +7,7 @@
   <isPortable>true</isPortable>
   <isArchived>false</isArchived>
   <gamePath>C:\Portable Games\vvvvvv_demo.exe</gamePath>
-  <joyToKeyPath>""</joyToKeyPath>
-  <useJoyToKey>false</useJoyToKey>
+  <usesJoyToKey>true</usesJoyToKey>
   <hideMouse>true</hideMouse>
   <fullScreen>true</fullScreen>
 </gameSettings>

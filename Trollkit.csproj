@@ -31,7 +31,7 @@
     <PublisherName>Babycastles</PublisherName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>17</ApplicationRevision>
+    <ApplicationRevision>20</ApplicationRevision>
     <ApplicationVersion>0.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -164,7 +164,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="BabycastlesRunner_TemporaryKey.pfx" />
+    <None Include="JoyToKey\GIRP.cfg" />
     <None Include="JoyToKey\JoyToKey.ini" />
+    <None Include="JoyToKey\QWOP.cfg" />
     <None Include="JoyToKey\VVVVVV.cfg" />
     <None Include="Old\template.ahk" />
     <None Include="Old\vars.cfg" />
