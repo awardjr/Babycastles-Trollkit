@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<gameSettings>
+  <version>1.0</version>
+  <gameName>GIRP</gameName>
+  <author>Bennett Foddy</author>
+  <downloadUrl>http://youcantdownloadthisgame.com</downloadUrl>
+  <isPortable>false</isPortable>
+  <isArchived>false</isArchived>
+  <gamePath>C:\Portable Games\GIRP.swf</gamePath>
+  <joyToKeyPath>""</joyToKeyPath>
+  <useJoyToKey>false</useJoyToKey>
+  <hideMouse>true</hideMouse>
+  <fullScreen>true</fullScreen>
+</gameSettings>

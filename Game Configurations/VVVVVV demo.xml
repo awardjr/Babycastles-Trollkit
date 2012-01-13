@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <gameSettings>
   <version>1.0</version>
-  <gameName>VVVVVV</gameName>
+  <gameName>VVVVVV demo</gameName>
   <author>todo</author>
   <downloadUrl>http://lemming.ceri.se/mirror/terry/vvvvvv/vvvvvv_demo.exe</downloadUrl>
   <isPortable>true</isPortable>

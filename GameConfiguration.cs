@@ -38,7 +38,9 @@ namespace Trollkit
                 reader.ReadToFollowing("author");
                 Author = reader.ReadElementContentAsString();
 
-                reader.ReadToFollowing("downloadUrl");
+                //version - if version is new, ask to update (would break autostart arcade mode!)
+
+                reader.ReadToFollowing("downloadUrl"); //TODO: handle games that cannot be downloaded
                 DownloadUrl = reader.ReadElementContentAsString();
 
                 reader.ReadToFollowing("isPortable");

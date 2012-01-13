@@ -31,7 +31,7 @@
     <PublisherName>Babycastles</PublisherName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>16</ApplicationRevision>
+    <ApplicationRevision>17</ApplicationRevision>
     <ApplicationVersion>0.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -176,10 +176,16 @@
     <Content Include="Game Configurations\Canabalt.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Game Configurations\GIRP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Game Configurations\QWOP.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Game Configurations\Passage.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Game Configurations\VVVVVV.xml">
+    <Content Include="Game Configurations\VVVVVV demo.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="JoyToKey\JoyToKey.exe" />
@@ -188,14 +194,34 @@
     <Content Include="Old\TemplateGenerator.h" />
   </ItemGroup>
   <ItemGroup>
-    <PublishFile Include="Game Configurations\VVVVVV.xml">
+    <PublishFile Include="Game Configurations\GIRP.xml">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="Game Configurations\QWOP.xml">
+      <Visible>False</Visible>
       <PublishState>Include</PublishState>
       <IncludeHash>True</IncludeHash>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="Game Configurations\VVVVVV demo.xml">
+      <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>
