@@ -31,7 +31,7 @@
     <PublisherName>Babycastles</PublisherName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>20</ApplicationRevision>
+    <ApplicationRevision>24</ApplicationRevision>
     <ApplicationVersion>0.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -164,10 +164,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="BabycastlesRunner_TemporaryKey.pfx" />
-    <None Include="JoyToKey\GIRP.cfg" />
-    <None Include="JoyToKey\JoyToKey.ini" />
-    <None Include="JoyToKey\QWOP.cfg" />
-    <None Include="JoyToKey\VVVVVV.cfg" />
+    <Content Include="JoyToKey\GIRP.cfg" />
+    <Content Include="JoyToKey\JoyToKey.ini" />
+    <Content Include="JoyToKey\QWOP.cfg" />
+    <Content Include="JoyToKey\VVVVVV demo.cfg" />
     <None Include="Old\template.ahk" />
     <None Include="Old\vars.cfg" />
   </ItemGroup>
@@ -198,32 +198,32 @@
   <ItemGroup>
     <PublishFile Include="Game Configurations\GIRP.xml">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="Game Configurations\QWOP.xml">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="Game Configurations\VVVVVV demo.xml">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>

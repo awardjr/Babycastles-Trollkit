@@ -1,6 +1,7 @@
 ﻿//TODO: main list
-//need more error handling! Especially with Game Handler
-//need to delete c:\portable games folder when uninstalling, or store games in ../portable games?
+//add more error handling! Especially with Game Handler
+//delete c:\portable games folder when uninstalling, or store games in ../portable games?
+//change start menu troll kit support shortcut to the github repository
 
 
 using System;

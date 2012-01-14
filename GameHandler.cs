@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Diagnostics;
 using MouseKeyboardActivityMonitor;
 using MouseKeyboardActivityMonitor.WinApi;
+using System.ComponentModel;
 
 namespace Trollkit
 {
@@ -20,33 +21,26 @@ namespace Trollkit
                 begin(ref gameConfig);
         }
 
-        public void begin(ref GameConfiguration gameConfig) //TODO: duplicate code, could put in one function
+        private void begin(ref GameConfiguration gameConfig)
         {
-            //run Joy2Key
-            if (gameConfig.UsesJoyToKey) //TODO: need to test this, come back to this later
-            {
-                ProcessStartInfo joy2KeyPsi = new ProcessStartInfo(gameConfig.JoyToKeyPath);
-                joy2KeyPsi.UseShellExecute = false;
-                joy2KeyPsi.RedirectStandardOutput = true;
-                joy2KeyPsi.WindowStyle = System.Diagnostics.ProcessWindowStyle.Minimized;
-                Process.Start(joy2KeyPsi);
-            }
+            //run JoyToKey
+            runJoyToKey(ref gameConfig);
 
             //run game
-            //startGame(ref gameConfig);
-            ProcessStartInfo gamePsi = new ProcessStartInfo(gameConfig.GamePath);
-            gamePsi.RedirectStandardOutput = false;
-            gamePsi.UseShellExecute = true;
-            Process.Start(gamePsi);
+            Process.Start(gameConfig.GamePath);
+
+            //TODO: need to close JoyToKey after game exits, in begin and beginInArcadeMode
         }
 
-        public void beginInArcadeMode(ref GameConfiguration gameConfig)
+        private void beginInArcadeMode(ref GameConfiguration gameConfig)
         {
             Boolean closed = true;
             Boolean stopRunner = false;
             Process game = new Process();
             Process joyToKey = new Process();
             GlobalMouseKeyboard globalMouseKeyboard = new GlobalMouseKeyboard();
+
+            runJoyToKey(ref gameConfig);
 
             while (!stopRunner)
             {
@@ -69,23 +63,10 @@ namespace Trollkit
                 if (closed)
                 {
                     if (gameConfig.HideMouse)
-                    {
                         Cursor.Position = new Point(2000, 2000); //work around
                         //another work around, set the cursor graphic to a transparent one, http://forums.whirlpool.net.au/archive/1172326
-                    }
-
-                    //if (gameConfig.UseJoyToKey)
-                    //{
-                    //    ProcessStartInfo psiJoy = new ProcessStartInfo(gameConfig.JoyToKeyPath);
-                    //    psiJoy.UseShellExecute = false;
-                    //    psiJoy.RedirectStandardOutput = true;
-                    //    psiJoy.WindowStyle = ProcessWindowStyle.Minimized;
-                    //    joyToKey = Process.Start(psiJoy);
-                    //}
 
                     ProcessStartInfo psi = new ProcessStartInfo(gameConfig.GamePath);
-                    psi.UseShellExecute = true;
-                    psi.RedirectStandardOutput = false;
                     if (gameConfig.FullScreen)
                         psi.WindowStyle = ProcessWindowStyle.Maximized; //TODO: only maximizes fully if the taskbar is set to auto-hide
                     game = Process.Start(psi);
@@ -102,14 +83,27 @@ namespace Trollkit
             }
         }
 
-        //TODO
-        private Process startGame(ref GameConfiguration gameConfig)
+        private void runJoyToKey(ref GameConfiguration gameConfig)
         {
-            ProcessStartInfo gamePsi = new ProcessStartInfo(gameConfig.GamePath);
-            gamePsi.RedirectStandardOutput = false;
-            gamePsi.UseShellExecute = true;
+            //close JoyToKey
+            //TODO: should open a different config file instead of restarting the application
+            General.tryKillProcess("JoyToKey");
 
-            return Process.Start(gamePsi);
+            if (gameConfig.UsesJoyToKey)
+            {
+                //run JoyToKey
+                #if (DEBUG)
+                String joyToKeyFileName = @"..\..\JoyToKey\JoyToKey.exe";
+                String joyToKeyPath = @"..\..\JoyToKey\";
+                #else
+                String joyToKeyFileName = @"JoyToKey\JoyToKey.exe";
+                String joyToKeyPath = @"JoyToKey\";
+                #endif
+                ProcessStartInfo joyToKeyPsi = new ProcessStartInfo(joyToKeyFileName, '"' + gameConfig.GameName + ".cfg" + '"');
+                joyToKeyPsi.WorkingDirectory = joyToKeyPath;
+                joyToKeyPsi.WindowStyle = ProcessWindowStyle.Minimized; //TODO: not working
+                Process.Start(joyToKeyPsi);
+            }
         }
     }
 }

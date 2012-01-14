@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Diagnostics;
+using System.ComponentModel;
 
 namespace Trollkit
 {
@@ -62,6 +63,31 @@ namespace Trollkit
 
             //return IntPtr.Zero;
             throw new SystemException("could not find the handle");
+        }
+
+        /// <summary>
+        /// Tries to kill the process
+        /// </summary>
+        public static void tryKillProcess(String processName)
+        {
+            foreach (Process p in Process.GetProcessesByName(processName))
+            {
+                try
+                {
+                    p.Kill();
+                    p.WaitForExit(); // possibly with a timeout
+                }
+                catch (Win32Exception win32Exception)
+                {
+                    //process was terminating or can't be terminated - deal with it
+                }
+                catch (InvalidOperationException invalidOperationException)
+                {
+                    //process has already exited - might be able to let this one go
+                }
+
+                //TODO: catch others? return isSuccessful?
+            }
         }
     }
 }
