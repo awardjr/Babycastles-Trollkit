@@ -1,3 +1,6 @@
+#NEW LOCATION!
+Moved to https://github.com/Rahil627/Babycastles-Troll-Kit.
+
 #WHAT?
 The legendary Trollkit is a project initiated by [Babycastles](http://babycastles.com/) to facilitate the process of transforming a PC into an independent video game arcade machine.
 
