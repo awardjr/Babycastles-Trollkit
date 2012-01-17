@@ -49,6 +49,21 @@ namespace Trollkit
             //bind autostart checkbox
             autostartCheckBox.Checked = (String)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Troll Kit", "AutostartLastGame", false) == "True"; //doesn't cast to bool
 
+            //install JoyToKey if it does not exist //TODO: need to test this for release
+            if (!File.Exists(General.ApplicationFolderPath + @"JoyToKey\JoyToKey.exe"))
+            {
+                #if (DEBUG)
+                String archivePath = @"..\..\JoyToKey.zip";
+                #else
+                String archivePath = @"JoyToKey.zip";
+                #endif
+
+                using (ZipFile zip = ZipFile.Read(archivePath))
+                {
+                    zip.ExtractAll(General.ApplicationFolderPath, ExtractExistingFileAction.DoNotOverwrite);
+                }
+            }
+
             //autostart last game played
             if (autostartCheckBox.Checked
                 && Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Troll Kit", "LastGamePlayed", null) != null)
@@ -166,7 +181,7 @@ namespace Trollkit
             //extract the archive
             using (ZipFile zip = ZipFile.Read(archivePath))
             {
-                zip.ExtractAll(extractionPath); //creates the folder if it does not exist?
+                zip.ExtractAll(extractionPath, ExtractExistingFileAction.DoNotOverwrite);
             }
 
             //delete the archive file
