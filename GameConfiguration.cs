@@ -51,7 +51,7 @@ namespace Trollkit
 
                 //TODO: if portable && not archived, C:\Portable Games\[GameName]
                 reader.ReadToFollowing("gamePath");
-                GamePath = reader.ReadElementContentAsString();
+                GamePath = General.ApplicationFolderPath + @"Portable Games\" + reader.ReadElementContentAsString(); //TODO: kinda shady
 
                 reader.ReadToFollowing("usesJoyToKey");
                 UsesJoyToKey = reader.ReadElementContentAsBoolean();

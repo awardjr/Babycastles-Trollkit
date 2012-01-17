@@ -6,7 +6,7 @@
   <downloadUrl>http://downloads.sourceforge.net/hcsoftware/Passage_v3_Windows.exe</downloadUrl>
   <isPortable>false</isPortable>
   <isArchived>false</isArchived>
-  <gamePath>C:\Portable Games\Passage\Passage.exe</gamePath>
+  <gamePath>Passage\Passage.exe</gamePath>
   <usesJoyToKey>false</usesJoyToKey>
   <hideMouse>true</hideMouse>
   <fullScreen>false</fullScreen>

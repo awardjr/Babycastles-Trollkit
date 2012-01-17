@@ -6,7 +6,7 @@
   <downloadUrl>http://youcantdownloadthisgame.com</downloadUrl>
   <isPortable>false</isPortable>
   <isArchived>false</isArchived>
-  <gamePath>C:\Portable Games\QWOP.swf</gamePath>
+  <gamePath>QWOP.swf</gamePath>
   <usesJoyToKey>false</usesJoyToKey>
   <hideMouse>true</hideMouse>
   <fullScreen>false</fullScreen>

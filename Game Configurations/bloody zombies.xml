@@ -6,7 +6,7 @@
   <downloadUrl>http://www.kokoromi.org/gamma256games/bloody_zombies.zip</downloadUrl>
   <isPortable>true</isPortable>
   <isArchived>true</isArchived>
-  <gamePath>C:\Portable Games\Bloody Zombies\bloody_gamma\bloody.exe</gamePath>
+  <gamePath>Bloody Zombies\bloody_gamma\bloody.exe</gamePath>
   <usesJoyToKey>false</usesJoyToKey>
   <hideMouse>true</hideMouse>
   <fullScreen>false</fullScreen>

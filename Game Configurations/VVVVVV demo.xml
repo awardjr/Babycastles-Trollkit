@@ -6,7 +6,7 @@
   <downloadUrl>http://lemming.ceri.se/mirror/terry/vvvvvv/vvvvvv_demo.exe</downloadUrl>
   <isPortable>true</isPortable>
   <isArchived>false</isArchived>
-  <gamePath>C:\Portable Games\vvvvvv_demo.exe</gamePath>
+  <gamePath>vvvvvv_demo.exe</gamePath>
   <usesJoyToKey>false</usesJoyToKey>
   <hideMouse>true</hideMouse>
   <fullScreen>true</fullScreen>

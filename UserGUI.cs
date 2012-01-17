@@ -20,8 +20,7 @@ namespace Trollkit
     public partial class UserGUI : Form
     {
         private List<GameConfiguration> GameConfigs = new List<GameConfiguration>();
-        private const String portableFolderPath = @"C:\Portable Games\";
-        //private const String portableFolderPath = General.ProgramFilesx86Path() + @"\Troll Kit\Portable Games\";
+        private String portableGamesFolderPath = General.ApplicationFolderPath + @"Portable Games\";
 
         public UserGUI()
         {
@@ -92,7 +91,7 @@ namespace Trollkit
             //TODO: if the game requires installation, download it, direct the user to install it, run in the installer, delete the installer
 
             //if the game requires installation, direct the user to install the game
-            DialogResult dialogResult = MessageBox.Show("This game requires installation. Download the game, then install it in the default location. If it's an extractor, extract it to " + portableFolderPath + gameConfig.GameName + @"\." + "\n\nDo you want to download the game now?", "Whoa", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("This game requires installation. Download the game, then install it in the default location. If it's an extractor, extract it to " + portableGamesFolderPath + gameConfig.GameName + @"\." + "\n\nDo you want to download the game now?", "Whoa", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 Process.Start(gameConfig.DownloadUrl);
@@ -133,9 +132,8 @@ namespace Trollkit
         /// <returns>true upon success</returns>
         private Boolean downloadGame(ref GameConfiguration gameConfig)
         {
-            //String portableFolderPath = General.ProgramFilesx86Path() + @"\TrollKit\Portable Games\"; //permissions error =(
             String filename = Path.GetFileName(gameConfig.DownloadUrl);
-            String savePath = portableFolderPath + filename;
+            String savePath = portableGamesFolderPath + filename;
 
             Directory.CreateDirectory(Path.GetDirectoryName(savePath));
 
@@ -160,10 +158,9 @@ namespace Trollkit
 
         private void extractGame(ref GameConfiguration gameConfig)
         {
-            //String portableFolderPath = General.ProgramFilesx86Path() + @"\TrollKit\Portable Games\"; //permissions error =(
             String filename = Path.GetFileName(gameConfig.DownloadUrl);
-            String archivePath = portableFolderPath + filename;
-            String extractionPath = portableFolderPath + @"\" + gameConfig.GameName + @"\"; //add a folder in case the archive does not have a top level folder
+            String archivePath = portableGamesFolderPath + filename;
+            String extractionPath = portableGamesFolderPath + @"\" + gameConfig.GameName + @"\"; //add a folder in case the archive does not have a top level folder
             //TODO: later, a better solution would be to check if the archive has one top level folder, then extract depending on that
 
             //extract the archive
@@ -174,6 +171,11 @@ namespace Trollkit
 
             //delete the archive file
             File.Delete(archivePath);
+        }
+
+        private void onFormClosing(object sender, FormClosingEventArgs e)
+        {
+            General.tryKillProcess("JoyToKey"); //TODO: eh, not needed
         }
     }
 }

@@ -29,7 +29,7 @@ namespace Trollkit
             //run game
             Process.Start(gameConfig.GamePath);
 
-            //TODO: need to close JoyToKey after game exits, in begin and beginInArcadeMode
+            //TODO: need to close JoyToKey after game exits
         }
 
         private void beginInArcadeMode(ref GameConfiguration gameConfig)
@@ -58,6 +58,7 @@ namespace Trollkit
                     game.Kill();
                     stopRunner = true;
                     globalMouseKeyboard.Dispose();
+                    General.tryKillProcess("JoyToKey");
                 }
 
                 if (closed)
@@ -92,21 +93,12 @@ namespace Trollkit
             if (gameConfig.UsesJoyToKey)
             {
                 //run JoyToKey
-                #if (DEBUG)
-                String joyToKeyFileName = @"..\..\JoyToKey\JoyToKey.exe";
-                String joyToKeyPath = @"..\..\JoyToKey\";
-                #else
-                String joyToKeyFileName = @"JoyToKey\JoyToKey.exe";
-                String joyToKeyPath = @"JoyToKey\";
-                #endif
+                String joyToKeyFolderPath = General.ApplicationFolderPath + @"JoyToKey\";
+                String joyToKeyFilePath = joyToKeyFolderPath + "JoyToKey.exe";
 
-                //String joyToKeyFileName = @"JoyToKey\JoyToKey.exe";
-                //String joyToKeyPath = @"JoyToKey\";
-
-                ProcessStartInfo joyToKeyPsi = new ProcessStartInfo(joyToKeyFileName, '"' + gameConfig.GameName + ".cfg" + '"');
-                joyToKeyPsi.WorkingDirectory = joyToKeyPath;
+                ProcessStartInfo joyToKeyPsi = new ProcessStartInfo(joyToKeyFilePath, '"' + gameConfig.GameName + ".cfg" + '"');
+                joyToKeyPsi.WorkingDirectory = joyToKeyFolderPath;
                 joyToKeyPsi.WindowStyle = ProcessWindowStyle.Minimized; //TODO: not working
-                System.Windows.Forms.MessageBox.Show(joyToKeyPsi.FileName); //TODO: STOPPED HERE
                 Process.Start(joyToKeyPsi);
             }
         }

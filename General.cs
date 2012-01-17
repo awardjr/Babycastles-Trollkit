@@ -41,15 +41,26 @@ namespace Trollkit
         /// <summary>
         /// Returns the path to program files x86 regardless of the windows architecture
         /// </summary>
-        public static string ProgramFilesx86Path()
+        public static String ProgramFilesx86Path
         {
-            if (8 == IntPtr.Size
-                || (!String.IsNullOrEmpty(Environment.GetEnvironmentVariable("PROCESSOR_ARCHITEW6432"))))
+            get
             {
-                return Environment.GetEnvironmentVariable("ProgramFiles(x86)");
-            }
+                if (8 == IntPtr.Size
+                    || (!String.IsNullOrEmpty(Environment.GetEnvironmentVariable("PROCESSOR_ARCHITEW6432"))))
+                {
+                    return Environment.GetEnvironmentVariable("ProgramFiles(x86)") + "\\";
+                }
 
-            return Environment.GetEnvironmentVariable("ProgramFiles");
+                return Environment.GetEnvironmentVariable("ProgramFiles") + "\\";
+            }
+        }
+
+        /// <summary>
+        /// Returns Program Files\Troll Kit\
+        /// </summary>
+        public static String ApplicationFolderPath
+        {
+            get { return General.ProgramFilesx86Path + @"Troll Kit\"; }
         }
 
         /// <summary>
