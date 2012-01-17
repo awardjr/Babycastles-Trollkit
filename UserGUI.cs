@@ -21,6 +21,7 @@ namespace Trollkit
     {
         private List<GameConfiguration> GameConfigs = new List<GameConfiguration>();
         private const String portableFolderPath = @"C:\Portable Games\";
+        //private const String portableFolderPath = General.ProgramFilesx86Path() + @"\Troll Kit\Portable Games\";
 
         public UserGUI()
         {

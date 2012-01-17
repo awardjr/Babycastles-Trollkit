@@ -99,6 +99,10 @@ namespace Trollkit
                 String joyToKeyFileName = @"JoyToKey\JoyToKey.exe";
                 String joyToKeyPath = @"JoyToKey\";
                 #endif
+
+                //String joyToKeyFileName = @"JoyToKey\JoyToKey.exe";
+                //String joyToKeyPath = @"JoyToKey\";
+
                 ProcessStartInfo joyToKeyPsi = new ProcessStartInfo(joyToKeyFileName, '"' + gameConfig.GameName + ".cfg" + '"');
                 joyToKeyPsi.WorkingDirectory = joyToKeyPath;
                 joyToKeyPsi.WindowStyle = ProcessWindowStyle.Minimized; //TODO: not working
