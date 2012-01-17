@@ -170,6 +170,7 @@
     <Content Include="JoyToKey\VVVVVV demo.cfg" />
     <None Include="Old\template.ahk" />
     <None Include="Old\vars.cfg" />
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game Configurations\Bloody Zombies.xml">
