@@ -49,7 +49,7 @@ namespace Trollkit
             //bind autostart checkbox
             autostartCheckBox.Checked = (String)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Troll Kit", "AutostartLastGame", false) == "True"; //doesn't cast to bool
 
-            //install JoyToKey if it does not exist //TODO: need to test this for release
+            //install JoyToKey if it does not exist //TODO: need to test this for release //TODO: should probably do this before running JoyToKey
             if (!File.Exists(General.ApplicationFolderPath + @"JoyToKey\JoyToKey.exe"))
             {
                 #if (DEBUG)
