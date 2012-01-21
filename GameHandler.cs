@@ -99,6 +99,7 @@ namespace Trollkit
                 ProcessStartInfo joyToKeyPsi = new ProcessStartInfo(joyToKeyFilePath, '"' + gameConfig.GameName + ".cfg" + '"');
                 joyToKeyPsi.WorkingDirectory = joyToKeyFolderPath;
                 joyToKeyPsi.WindowStyle = ProcessWindowStyle.Minimized; //TODO: not working
+                //MinimizeWindow.minimize("JoyToKey"); //fail
                 Process.Start(joyToKeyPsi);
             }
         }

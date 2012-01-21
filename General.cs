@@ -64,16 +64,12 @@ namespace Trollkit
         }
 
         /// <summary>
-        /// Gets the handle, duh. Throws an exception if the handle is not found
+        /// Gets the handle, duh. Throws an exception if the handle is not found.
         /// </summary>
         public static IntPtr getHandleByProcessName(String processName)
         {
             Process[] processes = Process.GetProcessesByName(processName);
-            foreach (Process p in processes)
-                return p.MainWindowHandle;
-
-            //return IntPtr.Zero;
-            throw new SystemException("could not find the handle");
+            return processes[0].MainWindowHandle;
         }
 
         /// <summary>
