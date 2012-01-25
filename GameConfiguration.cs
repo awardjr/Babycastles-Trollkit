@@ -18,9 +18,7 @@ namespace Trollkit
         public readonly Boolean IsPortable; //sometimes called standalone, as opposed to a game that requires installation
         public readonly Boolean IsArchived;
         public readonly String GamePath;
-        public readonly String JoyToKeyPath;
         public readonly Boolean HideMouse;
-        public readonly Boolean UsesJoyToKey;
         public readonly Boolean RepositionMouse;
         public readonly Boolean FullScreen;
 
@@ -52,9 +50,6 @@ namespace Trollkit
                 //TODO: if portable && not archived, C:\Portable Games\[GameName]
                 reader.ReadToFollowing("gamePath");
                 GamePath = General.ApplicationFolderPath + @"Portable Games\" + reader.ReadElementContentAsString(); //TODO: kinda shady
-
-                reader.ReadToFollowing("usesJoyToKey");
-                UsesJoyToKey = reader.ReadElementContentAsBoolean();
 
                 reader.ReadToFollowing("hideMouse");
                 HideMouse = reader.ReadElementContentAsBoolean();

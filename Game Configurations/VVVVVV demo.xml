@@ -7,7 +7,6 @@
   <isPortable>true</isPortable>
   <isArchived>false</isArchived>
   <gamePath>vvvvvv_demo.exe</gamePath>
-  <usesJoyToKey>false</usesJoyToKey>
   <hideMouse>true</hideMouse>
   <fullScreen>true</fullScreen>
 </gameSettings>

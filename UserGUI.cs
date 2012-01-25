@@ -19,7 +19,8 @@ namespace Trollkit
     /// </summary>
     public partial class UserGUI : Form
     {
-        private List<GameConfiguration> GameConfigs = new List<GameConfiguration>();
+        private List<GameConfiguration> gameConfigs = new List<GameConfiguration>();
+        private List<General.ListItemData<String>> joyToKeyConfigs = new List<General.ListItemData<String>>();
         private String portableGamesFolderPath = General.ApplicationFolderPath + @"Portable Games\";
 
         public UserGUI()
@@ -29,26 +30,6 @@ namespace Trollkit
 
         private void UserGUI_Load(object sender, EventArgs e)
         {
-            //load game configurations from folder
-            #if (DEBUG)
-                String path = @"..\..\Game Configurations\";
-            #else
-                String path = @"Game Configurations\";
-            #endif
-
-            string[] filePaths = Directory.GetFiles(path, "*.xml");
-
-            foreach (string filePath in filePaths)
-                GameConfigs.Add(new GameConfiguration(filePath));
-
-            //bind combo box
-            gameComboBox.ValueMember = "GameName"; //must be a property, probably should use int id
-            //gameComboBox.DisplayMember = "GameName"; //optional, also must be a property, TODO: format to GameName by Author
-            gameComboBox.DataSource = GameConfigs; //must set DataSource last!
-
-            //bind autostart checkbox
-            autostartCheckBox.Checked = (String)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Troll Kit", "AutostartLastGame", false) == "True"; //doesn't cast to bool
-
             //install JoyToKey if it does not exist //TODO: need to test this for release //TODO: should probably do this before running JoyToKey
             if (!File.Exists(General.ApplicationFolderPath + @"JoyToKey\JoyToKey.exe"))
             {
@@ -60,9 +41,46 @@ namespace Trollkit
 
                 using (ZipFile zip = ZipFile.Read(archivePath))
                 {
-                    zip.ExtractAll(General.ApplicationFolderPath, ExtractExistingFileAction.DoNotOverwrite);
+                    zip.ExtractAll(General.ApplicationFolderPath, ExtractExistingFileAction.DoNotOverwrite); //the archive contains the folder JoyToKey
                 }
             }
+
+            //load game configurations from folder
+            #if (DEBUG)
+                String path = @"..\..\Game Configurations\";
+            #else
+                String path = @"Game Configurations\";
+            #endif
+
+            string[] filePaths = Directory.GetFiles(path, "*.xml");
+
+            foreach (string filePath in filePaths)
+                gameConfigs.Add(new GameConfiguration(filePath));
+
+            //bind game combo box
+            gameComboBox.ValueMember = "GameName"; //must be a property, probably should use int id
+            //gameComboBox.DisplayMember = "GameName"; //optional, also must be a property, TODO: format to GameName by Author
+            gameComboBox.DataSource = gameConfigs; //must set DataSource last!
+
+            //bind JoyToKey combo box
+
+            //load JoyToKey configurations from the default folder //TODO: should have an upload button, copies to default folder
+
+            String joyToKeyFolderPath = General.ApplicationFolderPath + @"JoyToKey\";
+            string[] joyToKeyConfigFilePaths = Directory.GetFiles(joyToKeyFolderPath, "*.cfg");
+
+            //add None as a default
+            joyToKeyConfigs.Add(General.ListItemData.Create<String>(String.Empty, "None"));
+
+            foreach (string filePath in joyToKeyConfigFilePaths)
+                joyToKeyConfigs.Add(General.ListItemData.Create<String>(filePath, Path.GetFileNameWithoutExtension(filePath))); //TODO: learn this
+
+            joyToKeyComboBox.ValueMember = "Value";
+            joyToKeyComboBox.DisplayMember = "Text";
+            joyToKeyComboBox.DataSource = joyToKeyConfigs;
+
+            //bind autostart checkbox
+            autostartCheckBox.Checked = (String)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Troll Kit", "AutostartLastGame", false) == "True"; //doesn't cast to bool
 
             //autostart last game played
             if (autostartCheckBox.Checked
@@ -70,7 +88,7 @@ namespace Trollkit
             {
                 //select last game
                 String lastGamePlayed = (String)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Troll Kit", "LastGamePlayed", null);
-                gameComboBox.SelectedItem = GameConfigs.Single(g => g.GameName == lastGamePlayed);
+                gameComboBox.SelectedItem = gameConfigs.Single(g => g.GameName == lastGamePlayed);
 
                 //play it in arcade mode
                 arcadeModeCheckBox.Checked = true;
@@ -80,7 +98,7 @@ namespace Trollkit
 
         private void playButton_Click(object sender, EventArgs e) //rename button to something else?
         {
-            GameConfiguration gameConfig = GameConfigs.Single(g => g.GameName == (String)gameComboBox.SelectedValue);
+            GameConfiguration gameConfig = gameConfigs.Single(g => g.GameName == (String)gameComboBox.SelectedValue);
 
             if (File.Exists(gameConfig.GamePath))
             {
@@ -90,7 +108,7 @@ namespace Trollkit
 
                 //run the selected game
                 this.Hide(); //should lock the window instead?
-                GameHandler gameHandler = new GameHandler(ref gameConfig, arcadeModeCheckBox.Checked);
+                GameHandler gameHandler = new GameHandler(ref gameConfig, (String)joyToKeyComboBox.SelectedValue, arcadeModeCheckBox.Checked, fullScreenCheckBox.Checked, hideMouseCheckBox.Checked);
                 this.Show();
                 return;
             }
@@ -118,7 +136,7 @@ namespace Trollkit
         private void gameComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             //if game does not exist, change text to download, else, play
-            GameConfiguration gameConfig = GameConfigs.Single(g => g.GameName == (string)gameComboBox.SelectedValue);
+            GameConfiguration gameConfig = gameConfigs.Single(g => g.GameName == (string)gameComboBox.SelectedValue);
             playButton.Text = File.Exists(gameConfig.GamePath) ? "Play" : "Download";
         }
 

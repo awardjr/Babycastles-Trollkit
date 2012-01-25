@@ -7,7 +7,6 @@
   <isPortable>true</isPortable>
   <isArchived>false</isArchived>
   <gamePath>Canabalt.swf</gamePath>
-  <usesJoyToKey>false</usesJoyToKey>
   <hideMouse>true</hideMouse>
   <fullScreen>false</fullScreen>
 </gameSettings>

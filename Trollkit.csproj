@@ -177,12 +177,6 @@
     <Content Include="Game Configurations\Canabalt.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Game Configurations\GIRP.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Game Configurations\QWOP.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Game Configurations\Passage.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -194,16 +188,6 @@
   </ItemGroup>
   <ItemGroup>
     <PublishFile Include="Game Configurations\GIRP.xml">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
-      <FileType>File</FileType>
-    </PublishFile>
-    <PublishFile Include="Game Configurations\QWOP.xml">
       <Visible>False</Visible>
       <Group>
       </Group>

@@ -7,7 +7,6 @@
   <isPortable>false</isPortable>
   <isArchived>false</isArchived>
   <gamePath>Passage\Passage.exe</gamePath>
-  <usesJoyToKey>false</usesJoyToKey>
   <hideMouse>true</hideMouse>
   <fullScreen>false</fullScreen>
 </gameSettings>

@@ -6,20 +6,25 @@
 //try to hide title bar or at least the minimize and maximize buttons
 //rename to "Troll Kit", remember to update the readme and wiki on Arthur's version
 //change from ClickOnce to Windows Installer, it's becoming a nuissance
-//move hide mouse, full screen, use joy to key from XML to the GUI as checkboxes
 //add a download bar
 //passworded download for retail games?
 //send error log to a server to detect the status of the program. Send computer ID too.
 //remove minimize/maxmize butons
 //re-center window for non full screen games
 //add start menu shortcut for JoyToKey
+//Kunal says Syed should get a demoscene program to show trippy graphics, keygen style, when you launch trollkit
 
 //TOTAL REDESIGN
-//have two drop down menus: games, JoyToKey configs
 //upon startup, check for games and JoyToKey configs and bind the drop down menus
-//be able to manually add games and JoyToKey configs from other locations, important for installed games in different locations
-//should be an option for no JoyToKey (checkbox to enable/disable JoyToKey)
 //if JoyToKey config file name is same as game name, choose that in the drop down menu when the game is selected
+
+//later:
+//be able to manually add games and JoyToKey configs from other locations, important for installed games in different locations
+//still have game configurations for autoselecting options?
+
+//TODO: not code related
+//test on the next exhibition
+//find other volunteers or friendly open source game programmers
 
 using System;
 using System.Collections.Generic;
