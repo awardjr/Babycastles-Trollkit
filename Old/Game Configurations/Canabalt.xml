@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<gameSettings>
+  <version>1.0</version>
+  <gameName>Canabalt</gameName>
+  <author>Adam Atomic and Danny B.</author>
+  <downloadUrl>http://adamatomic.com/sw/f/Canabalt.swf</downloadUrl>
+  <isPortable>true</isPortable>
+  <isArchived>false</isArchived>
+  <gamePath>Canabalt.swf</gamePath>
+  <hideMouse>true</hideMouse>
+  <fullScreen>false</fullScreen>
+</gameSettings>

@@ -31,7 +31,7 @@
     <PublisherName>Babycastles</PublisherName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>29</ApplicationRevision>
+    <ApplicationRevision>30</ApplicationRevision>
     <ApplicationVersion>0.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -171,18 +171,10 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Game Configurations\Bloody Zombies.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Game Configurations\Canabalt.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Game Configurations\Passage.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Game Configurations\VVVVVV demo.xml">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Old\Game Configurations\Bloody Zombies.xml" />
+    <Content Include="Old\Game Configurations\Canabalt.xml" />
+    <Content Include="Old\Game Configurations\Passage.xml" />
+    <Content Include="Old\Game Configurations\VVVVVV demo.xml" />
     <Content Include="Old\TemplateGenerator.cpp" />
     <Content Include="Old\TemplateGenerator.h" />
   </ItemGroup>
@@ -197,7 +189,37 @@
       <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
-    <PublishFile Include="Game Configurations\VVVVVV demo.xml">
+    <PublishFile Include="Old\Game Configurations\Bloody Zombies.xml">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="Old\Game Configurations\Canabalt.xml">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="Old\Game Configurations\Passage.xml">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="Old\Game Configurations\VVVVVV demo.xml">
       <Visible>False</Visible>
       <Group>
       </Group>

@@ -7,7 +7,6 @@
 //rename to "Troll Kit", remember to update the readme and wiki on Arthur's version
 //change from ClickOnce to Windows Installer, it's becoming a nuissance
 //add a download bar
-//passworded download for retail games?
 //send error log to a server to detect the status of the program. Send computer ID too.
 //remove minimize/maxmize butons
 //re-center window for non full screen games
@@ -17,6 +16,7 @@
 //TOTAL REDESIGN
 //upon startup, check for games and JoyToKey configs and bind the drop down menus
 //if JoyToKey config file name is same as game name, choose that in the drop down menu when the game is selected
+//seperate game list and download list
 
 //later:
 //be able to manually add games and JoyToKey configs from other locations, important for installed games in different locations
@@ -31,16 +31,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace Trollkit
-{
-    static class Program
-    {
+namespace Trollkit {
+    static class Program {
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main(string[] args)
-        {
+        static void Main(string[] args) {
             //start the GUI
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

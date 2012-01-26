@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<gameSettings>
+  <version>3</version>
+  <gameName>Passage</gameName>
+  <author>todo</author>
+  <downloadUrl>http://downloads.sourceforge.net/hcsoftware/Passage_v3_Windows.exe</downloadUrl>
+  <isPortable>false</isPortable>
+  <isArchived>false</isArchived>
+  <gamePath>Passage\Passage.exe</gamePath>
+  <hideMouse>true</hideMouse>
+  <fullScreen>false</fullScreen>
+</gameSettings>

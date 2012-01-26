@@ -6,11 +6,9 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Diagnostics;
 
-namespace Trollkit
-{
+namespace Trollkit {
     //this failed
-    class FullScreen
-    {
+    class FullScreen {
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)] //is charset needed?
         public static extern int SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int x, int y, int cx, int cy, UInt32 uFlags);
 
@@ -20,8 +18,7 @@ namespace Trollkit
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         internal static extern bool MoveWindow(IntPtr hWnd, int X, int Y, int nWidth, int nHeight, bool bRepaint);
 
-        public static void set(IntPtr handle)
-        {
+        public static void set(IntPtr handle) {
             //TODO: don't know what's wrong. The handle seems fine.
             int isSuccessful = SetWindowPos(handle, HWND_TOPMOST, 0, 0, Screen.PrimaryScreen.Bounds.Right,
                                               Screen.PrimaryScreen.Bounds.Bottom, SWP_SHOWWINDOW);

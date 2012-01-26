@@ -5,11 +5,9 @@ using System.Text;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
 
-namespace Trollkit
-{
+namespace Trollkit {
     //this failed
-    class Titlebar
-    {
+    class Titlebar {
         //Finds a window by class name
         //[DllImport("USER32.DLL")]
         //public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
@@ -35,8 +33,7 @@ namespace Trollkit
         public static int WS_DLGFRAME = 0x00400000; //window with double border but no title
         public static int WS_CAPTION = WS_BORDER | WS_DLGFRAME; //window with a title bar
 
-        public static void Hide(IntPtr handle)
-        {
+        public static void Hide(IntPtr handle) {
             int style = GetWindowLong(handle, GWL_STYLE);
             SetWindowLong(handle, GWL_STYLE, (style & ~WS_CAPTION));
         }

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<gameSettings>
+  <version>1.0</version>
+  <gameName>Bloody Zombies</gameName>
+  <author>Petri Purho</author>
+  <downloadUrl>http://www.kokoromi.org/gamma256games/bloody_zombies.zip</downloadUrl>
+  <isPortable>true</isPortable>
+  <isArchived>true</isArchived>
+  <gamePath>Bloody Zombies\bloody_gamma\bloody.exe</gamePath>
+  <hideMouse>true</hideMouse>
+  <fullScreen>false</fullScreen>
+</gameSettings>
