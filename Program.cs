@@ -14,8 +14,7 @@
 //Kunal says Syed should get a demoscene program to show trippy graphics, keygen style, when you launch trollkit
 
 //TOTAL REDESIGN
-//upon startup, check for games and JoyToKey configs and bind the drop down menus
-//if JoyToKey config file name is same as game name, choose that in the drop down menu when the game is selected
+//if JoyToKey config file name is same as game name (or executable name?), choose that in the drop down menu when the game is selected
 //seperate game list and download list
 
 //later:

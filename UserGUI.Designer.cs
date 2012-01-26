@@ -73,9 +73,9 @@
             this.arcadeModeCheckBox.AutoSize = true;
             this.arcadeModeCheckBox.Location = new System.Drawing.Point(72, 69);
             this.arcadeModeCheckBox.Name = "arcadeModeCheckBox";
-            this.arcadeModeCheckBox.Size = new System.Drawing.Size(208, 17);
+            this.arcadeModeCheckBox.Size = new System.Drawing.Size(207, 17);
             this.arcadeModeCheckBox.TabIndex = 3;
-            this.arcadeModeCheckBox.Text = "Arcade Mode (F2 to restart, F4 to stop)";
+            this.arcadeModeCheckBox.Text = "Arcade mode (F2 to restart, F4 to stop)";
             this.arcadeModeCheckBox.UseVisualStyleBackColor = true;
             // 
             // autostartCheckBox
@@ -83,9 +83,9 @@
             this.autostartCheckBox.AutoSize = true;
             this.autostartCheckBox.Location = new System.Drawing.Point(72, 92);
             this.autostartCheckBox.Name = "autostartCheckBox";
-            this.autostartCheckBox.Size = new System.Drawing.Size(165, 17);
+            this.autostartCheckBox.Size = new System.Drawing.Size(230, 17);
             this.autostartCheckBox.TabIndex = 4;
-            this.autostartCheckBox.Text = "Autostart with current settings";
+            this.autostartCheckBox.Text = "Autostart in arcade mode using last settings";
             this.autostartCheckBox.UseVisualStyleBackColor = true;
             this.autostartCheckBox.CheckedChanged += new System.EventHandler(this.autostartCheckBox_CheckedChanged);
             // 

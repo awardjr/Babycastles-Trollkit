@@ -80,7 +80,7 @@ namespace Trollkit {
             string[] joyToKeyConfigFilePaths = Directory.GetFiles(joyToKeyFolderPath, "*.cfg");
 
             //add None as a default
-            joyToKeyConfigs.Add(General.ListItemData.Create<String>(String.Empty, "None"));
+            joyToKeyConfigs.Add(General.ListItemData.Create<String>(String.Empty, "None")); //TODO: String.Empty is kinda confusing
 
             foreach (string filePath in joyToKeyConfigFilePaths)
                 joyToKeyConfigs.Add(General.ListItemData.Create<String>(filePath, Path.GetFileNameWithoutExtension(filePath))); //TODO: learn this
@@ -89,37 +89,35 @@ namespace Trollkit {
             joyToKeyComboBox.ValueMember = "Value";
             joyToKeyComboBox.DisplayMember = "Text";
             joyToKeyComboBox.DataSource = joyToKeyConfigs;
+            joyToKeyComboBox.SelectedItem = (String)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Troll Kit", "JoyToKeyConfigPath", String.Empty);
 
-            //bind autostart checkbox
-            autostartCheckBox.Checked = (String)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Troll Kit", "AutostartLastGame", false) == "True"; //doesn't cast to bool
+            //bind checkboxes
+            autostartCheckBox.Checked = (String)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Troll Kit", "AutostartLastGame", "False") == "True"; //doesn't cast to bool
+            fullScreenCheckBox.Checked = (String)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Troll Kit", "FullScreen", "False") == "True";
+            hideMouseCheckBox.Checked = (String)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Troll Kit", "HideMouse", "False") == "True";
 
             //autostart last game played
             if (autostartCheckBox.Checked
                 && Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Troll Kit", "LastGamePlayed", null) != null) {
                 //select last game
                 String lastGamePlayed = (String)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Troll Kit", "LastGamePlayed", null);
-                gameComboBox.SelectedItem = gameConfigs.Single(g => g.Title == lastGamePlayed);
-
-                //play it in arcade mode
+                gameComboBox.SelectedItem = gameConfigs.Single(g => g.Path == lastGamePlayed); //TODO: use path or title?
+                
+                //play in arcade mode
                 arcadeModeCheckBox.Checked = true;
                 playButton_Click(null, null);
             }
-
-            //bind fullScreen check box
-            autostartCheckBox.Checked = (String)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Troll Kit", "FullScreen", false) == "True";
-
-            //bind hideMouse check box
-            autostartCheckBox.Checked = (String)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Troll Kit", "HideMouse", false) == "True";
         }
 
         private void playButton_Click(object sender, EventArgs e) //rename button to something else?
         {
-            GameConfiguration gameConfig = gameConfigs.Single(g => g.Title == (String)gameComboBox.SelectedValue);
+            GameConfiguration gameConfig = gameConfigs.Single(g => g.Title == (String)gameComboBox.SelectedValue); //TODO: should store path into value
 
             if (File.Exists(gameConfig.Path)) {
                 //set registry key for last game played
                 Registry.SetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Troll Kit", "LastGamePlayed", gameConfig.Path); //TODO: should just use a XML file instead, application config
                 //for x64 adds to HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Troll Kit
+                Registry.SetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Troll Kit", "JoyToKeyConfigPath", (String)joyToKeyComboBox.SelectedValue);
                 Registry.SetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Troll Kit", "FullScreen", fullScreenCheckBox.Checked);
                 Registry.SetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Troll Kit", "HideMouse", hideMouseCheckBox.Checked);
 
