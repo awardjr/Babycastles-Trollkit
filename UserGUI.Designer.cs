@@ -37,6 +37,8 @@
             this.joyToKeyComboBox = new System.Windows.Forms.ComboBox();
             this.hideMouseCheckBox = new System.Windows.Forms.CheckBox();
             this.fullScreenCheckBox = new System.Windows.Forms.CheckBox();
+            this.browseGameButton = new System.Windows.Forms.Button();
+            this.browseJoyToKeyButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -126,11 +128,33 @@
             this.fullScreenCheckBox.Text = "Full screen";
             this.fullScreenCheckBox.UseVisualStyleBackColor = true;
             // 
+            // browseGameButton
+            // 
+            this.browseGameButton.Location = new System.Drawing.Point(222, 10);
+            this.browseGameButton.Name = "browseGameButton";
+            this.browseGameButton.Size = new System.Drawing.Size(75, 23);
+            this.browseGameButton.TabIndex = 8;
+            this.browseGameButton.Text = "Browse...";
+            this.browseGameButton.UseVisualStyleBackColor = true;
+            this.browseGameButton.Click += new System.EventHandler(this.browseGameButton_Click);
+            // 
+            // browseJoyToKeyButton
+            // 
+            this.browseJoyToKeyButton.Location = new System.Drawing.Point(222, 39);
+            this.browseJoyToKeyButton.Name = "browseJoyToKeyButton";
+            this.browseJoyToKeyButton.Size = new System.Drawing.Size(75, 23);
+            this.browseJoyToKeyButton.TabIndex = 9;
+            this.browseJoyToKeyButton.Text = "Browse...";
+            this.browseJoyToKeyButton.UseVisualStyleBackColor = true;
+            this.browseJoyToKeyButton.Click += new System.EventHandler(this.browseJoyToKeyButton_Click);
+            // 
             // UserGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(301, 194);
+            this.ClientSize = new System.Drawing.Size(333, 194);
+            this.Controls.Add(this.browseJoyToKeyButton);
+            this.Controls.Add(this.browseGameButton);
             this.Controls.Add(this.fullScreenCheckBox);
             this.Controls.Add(this.hideMouseCheckBox);
             this.Controls.Add(this.joyToKeyComboBox);
@@ -160,5 +184,7 @@
         private System.Windows.Forms.ComboBox joyToKeyComboBox;
         private System.Windows.Forms.CheckBox hideMouseCheckBox;
         private System.Windows.Forms.CheckBox fullScreenCheckBox;
+        private System.Windows.Forms.Button browseGameButton;
+        private System.Windows.Forms.Button browseJoyToKeyButton;
     }
 }
