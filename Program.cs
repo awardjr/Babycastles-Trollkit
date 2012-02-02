@@ -4,7 +4,6 @@
 //delete c:\portable games folder when uninstalling, or store games in ../portable games?
 //change start menu troll kit support shortcut to the github repository
 //try to hide title bar or at least the minimize and maximize buttons
-//rename to "Troll Kit", remember to update the readme and wiki on Arthur's version
 //change from ClickOnce to Windows Installer, it's becoming a nuissance
 //add a download bar
 //send error log to a server to detect the status of the program. Send computer ID too.

@@ -31,7 +31,7 @@
     <PublisherName>Babycastles</PublisherName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>35</ApplicationRevision>
+    <ApplicationRevision>36</ApplicationRevision>
     <ApplicationVersion>0.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -114,9 +114,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClickOnce\AppShortcut.cs" />
-    <Compile Include="ClickOnce\ClickOnceHelper.cs" />
-    <Compile Include="ClickOnce\UrlShortcut.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="Old\ClickOnce\AppShortcut.cs" />
+    <Compile Include="Old\ClickOnce\ClickOnceHelper.cs" />
+    <Compile Include="Old\ClickOnce\UrlShortcut.cs" />
     <Compile Include="Test\MinimizeWindow.cs" />
     <Compile Include="Test\FullScreen.cs" />
     <Compile Include="GlobalMouseKeyboard.cs" />

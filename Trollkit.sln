@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trollkit", "Trollkit.csproj", "{4D36E9AF-CD22-4D63-A82F-B1837EC4BEF2}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Installer", "..\Setup\Setup.vdproj", "{84FD7000-190B-42FC-88B5-D0052F672B72}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,12 @@ Global
 		{4D36E9AF-CD22-4D63-A82F-B1837EC4BEF2}.Release|Mixed Platforms.Build.0 = Release|x86
 		{4D36E9AF-CD22-4D63-A82F-B1837EC4BEF2}.Release|x86.ActiveCfg = Release|x86
 		{4D36E9AF-CD22-4D63-A82F-B1837EC4BEF2}.Release|x86.Build.0 = Release|x86
+		{84FD7000-190B-42FC-88B5-D0052F672B72}.Debug|Any CPU.ActiveCfg = Debug
+		{84FD7000-190B-42FC-88B5-D0052F672B72}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{84FD7000-190B-42FC-88B5-D0052F672B72}.Debug|x86.ActiveCfg = Debug
+		{84FD7000-190B-42FC-88B5-D0052F672B72}.Release|Any CPU.ActiveCfg = Release
+		{84FD7000-190B-42FC-88B5-D0052F672B72}.Release|Mixed Platforms.ActiveCfg = Release
+		{84FD7000-190B-42FC-88B5-D0052F672B72}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
