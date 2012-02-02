@@ -11,6 +11,7 @@
 //re-center window for non full screen games
 //add start menu shortcut for JoyToKey
 //Kunal says Syed should get a demoscene program to show trippy graphics, keygen style, when you launch trollkit
+//rename to "Troll Kit"
 
 //TOTAL REDESIGN
 //be able to manually add games and JoyToKey configs from other locations, important for installed games in different locations

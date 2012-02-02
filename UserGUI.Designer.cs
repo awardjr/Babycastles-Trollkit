@@ -165,7 +165,7 @@
             this.Controls.Add(this.gameComboBox);
             this.Controls.Add(this.label1);
             this.Name = "UserGUI";
-            this.Text = "Troll Kit";
+            this.Text = "Trollkit";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.onFormClosing);
             this.Load += new System.EventHandler(this.UserGUI_Load);
             this.ResumeLayout(false);

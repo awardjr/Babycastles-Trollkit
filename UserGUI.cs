@@ -27,6 +27,8 @@ namespace Trollkit {
         }
 
         private void UserGUI_Load(object sender, EventArgs e) {
+            #region old, install JoyToKey if it does not exist
+            /*
             //install JoyToKey if it does not exist
             if (!File.Exists(General.ApplicationFolderPath + @"JoyToKey\JoyToKey.exe")) {
                 #if (DEBUG)
@@ -39,30 +41,38 @@ namespace Trollkit {
                     zip.ExtractAll(General.ApplicationFolderPath, ExtractExistingFileAction.DoNotOverwrite); //the archive contains the folder JoyToKey
                 }
             }
+            */
+            #endregion
+            //TODO: make sure JoyToKey is installed with the installer
 
             //create a config file if it does not exist
-            //string ConfigFilePath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\app.config";
-            String configFilePath = General.ApplicationFolderPath + "configuration.xml";
+            
             if (!File.Exists(configFilePath)) {
                 XmlDocument configDoc = new XmlDocument();
-                XmlNode xmlNode = configDoc.CreateNode(XmlNodeType.XmlDeclaration, "", "");
+                //configDoc.Load(configFilePath);
+                configDoc.LoadXml("<?xml version=\"1.0\" encoding=\"UTF-8\" ?><configuration></configuration>");
 
-                //create <Root> Node
-                XmlElement rootElement = configDoc.CreateElement("configuration");
-                configDoc.AppendChild(rootElement);
-                /*
-                //create <InstallationId> Node
-                XmlElement installationElement = configDoc.CreateElement("InstallationId");
-                XmlText installationIdText = configDoc.CreateTextNode(Guid.Empty.ToString());
-                installationElement.AppendChild(installationIdText);
-                configDoc.ChildNodes.Item(0).AppendChild(installationElement);
-                
-                //another way
-                //doc.LoadXml("<item><name>wrench</name></item>");
-                */
                 // Save xml document to the specified folder path.
-                configDoc.Save(configFilePath); //cannot write xml file, but was able to copy joyToKey.exe ...
+                Directory.CreateDirectory(Path.GetDirectoryName(configFilePath));
+                configDoc.Save(configFilePath);
             }
+
+            /*
+            XmlDocument configDoc = new XmlDocument();
+            //configDoc.Load(configFilePath);
+                
+            //XmlNode xmlNode = configDoc.CreateNode(XmlNodeType.XmlDeclaration, "", "");
+
+            //create <Root> Node
+            //XmlElement rootElement = configDoc.CreateElement("configuration");
+            //configDoc.AppendChild(rootElement);
+                
+            //create <InstallationId> Node
+            XmlElement installationElement = configDoc.CreateElement("InstallationId");
+            XmlText installationIdText = configDoc.CreateTextNode(Guid.Empty.ToString());
+            installationElement.AppendChild(installationIdText);
+            configDoc.ChildNodes.Item(0).AppendChild(installationElement);
+            */
 
             #region old code, load game config and bind game combo box
             /*
@@ -116,7 +126,7 @@ namespace Trollkit {
             joyToKeyComboBox.SelectedItem = (String)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Trollkit", "PathOfLastJoyToKeyConfigUsed", String.Empty);
 
             //bind checkboxes
-            autostartCheckBox.Checked = (String)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Trollkit", "AutostartLastGame", "False") == "True"; //doesn't cast to bool
+            autostartCheckBox.Checked = AutoStart.isOn; //(String)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Trollkit", "AutostartLastGame", "False") == "True"; //doesn't cast to bool
             fullScreenCheckBox.Checked = (String)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Trollkit", "FullScreen", "False") == "True"; //save last settings vs only when autostart is on
             hideMouseCheckBox.Checked = (String)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Trollkit", "HideMouse", "False") == "True";
 
@@ -192,14 +202,15 @@ namespace Trollkit {
         }
 
         private void autostartCheckBox_CheckedChanged(object sender, EventArgs e) {
+            AutoStart.isOn = autostartCheckBox.Checked;
+            #region old code
+            /*
             if (autostartCheckBox.Checked) {
                 //add application shortcut to startup folder
                 #region old ClickOnce code
-                /*
-                #if (!DEBUG)
-                ClickOnce.AppShortcut.AutoStart(true);
-                #endif
-                */
+                //#if (!DEBUG)
+                //ClickOnce.AppShortcut.AutoStart(true);
+                //#endif
                 #endregion
 
                 Registry.SetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Trollkit", "AutostartLastGame", true);
@@ -214,6 +225,8 @@ namespace Trollkit {
 
                 Registry.SetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Trollkit", "AutostartLastGame", false);
             }
+            */
+            #endregion
         }
 
         #region downloadGame

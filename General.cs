@@ -10,15 +10,21 @@ namespace Trollkit {
     /// Contains some general classes and functions
     /// </summary>
     class General {
-        public static class ListItemData {
-            public static ListItemData<T> Create<T>(T value, string text) {
-                return new ListItemData<T> {
-                    Value = value,
-                    Text = text
-                };
-            }
+        /// <summary>
+        /// Returns Program Files\Trollkit\
+        /// </summary>
+        public static String ApplicationFolderPath {
+            get { return General.ProgramFilesx86Path + @"Trollkit\"; }
         }
 
+        /// <summary>
+        /// Returns C:\ProgramData\Babycastles\Trollkit\configuration.xml
+        /// </summary>
+        public static String ConfigurationFilePath {
+            get { return Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\Babycastles\Trollkit\configuration.xml"; }
+        }
+
+        //TODO: the following should be in a seperate namespace
         /// <summary>
         /// A convenient data structure to use with comboboxes
         /// </summary>
@@ -28,6 +34,15 @@ namespace Trollkit {
 
             public override string ToString() {
                 return Text;
+            }
+        }
+
+        public static class ListItemData {
+            public static ListItemData<T> Create<T>(T value, string text) {
+                return new ListItemData<T> {
+                    Value = value,
+                    Text = text
+                };
             }
         }
 
@@ -43,13 +58,6 @@ namespace Trollkit {
 
                 return Environment.GetEnvironmentVariable("ProgramFiles") + "\\";
             }
-        }
-
-        /// <summary>
-        /// Returns Program Files\Troll Kit\
-        /// </summary>
-        public static String ApplicationFolderPath {
-            get { return General.ProgramFilesx86Path + @"Troll Kit\"; }
         }
 
         /// <summary>

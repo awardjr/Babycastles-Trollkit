@@ -93,6 +93,9 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AMS.Profile">
+      <HintPath>Libraries\AMS.Profile.dll</HintPath>
+    </Reference>
     <Reference Include="Ionic.Zip">
       <HintPath>Libraries\Ionic.Zip.dll</HintPath>
     </Reference>
@@ -114,7 +117,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Autostart.cs" />
     <Compile Include="Old\ClickOnce\AppShortcut.cs" />
     <Compile Include="Old\ClickOnce\ClickOnceHelper.cs" />
     <Compile Include="Old\ClickOnce\UrlShortcut.cs" />
@@ -166,12 +169,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="BabycastlesRunner_TemporaryKey.pfx" />
-    <None Include="JoyToKey.zip" />
     <None Include="Old\template.ahk" />
     <None Include="Old\vars.cfg" />
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="configuration.xml" />
+    <Content Include="JoyToKey\JoyToKey.exe" />
+    <Content Include="JoyToKey\Readme.txt" />
     <Content Include="Old\Game Configurations\Bloody Zombies.xml" />
     <Content Include="Old\Game Configurations\Canabalt.xml" />
     <Content Include="Old\Game Configurations\Passage.xml" />
