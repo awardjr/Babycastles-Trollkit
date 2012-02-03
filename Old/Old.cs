@@ -71,5 +71,10 @@ namespace Trollkit.Old {
             installationElement.AppendChild(installationIdText);
             configDoc.ChildNodes.Item(0).AppendChild(installationElement);
             */
+
+            //fullScreenCheckBox.Checked = (String)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Trollkit", "FullScreen", "False") == "True"; //save last settings vs only when autostart is on
+            //hideMouseCheckBox.Checked = (String)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Trollkit", "HideMouse", "False") == "True";
+        //(String)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Trollkit", "AutostartLastGame", "False") == "True"; //doesn't cast to bool
+        //(String)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Trollkit", "PathOfLastJoyToKeyConfigUsed", String.Empty);
     }
 }

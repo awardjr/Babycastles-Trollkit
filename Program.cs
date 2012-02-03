@@ -4,7 +4,6 @@
 //delete c:\portable games folder when uninstalling, or store games in ../portable games?
 //change start menu troll kit support shortcut to the github repository
 //try to hide title bar or at least the minimize and maximize buttons
-//change from ClickOnce to Windows Installer, it's becoming a nuissance
 //add a download bar
 //send error log to a server to detect the status of the program. Send computer ID too.
 //remove minimize/maxmize butons
@@ -16,7 +15,7 @@
 //TOTAL REDESIGN
 //be able to manually add games and JoyToKey configs from other locations, important for installed games in different locations
 //seperate game list and download list
-//test first run of program (without registry keys)
+//test first run of program
 //test test test!
 
 //later:
@@ -26,6 +25,11 @@
 //TODO: not code related
 //test on the next exhibition
 //find other volunteers or friendly open source game programmers
+
+//TODO: current
+//cannot find file or assembly Rahil for the installed version. Try the release version
+//code project XML vs LINQ to XML
+//DESIGN: should have an add/edit/remove window for games and JoyToKey
 
 using System;
 using System.Collections.Generic;

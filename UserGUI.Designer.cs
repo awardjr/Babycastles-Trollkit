@@ -38,7 +38,7 @@
             this.hideMouseCheckBox = new System.Windows.Forms.CheckBox();
             this.fullScreenCheckBox = new System.Windows.Forms.CheckBox();
             this.browseGameButton = new System.Windows.Forms.Button();
-            this.browseJoyToKeyButton = new System.Windows.Forms.Button();
+            this.runJoyToKeyButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -138,22 +138,22 @@
             this.browseGameButton.UseVisualStyleBackColor = true;
             this.browseGameButton.Click += new System.EventHandler(this.browseGameButton_Click);
             // 
-            // browseJoyToKeyButton
+            // runJoyToKeyButton
             // 
-            this.browseJoyToKeyButton.Location = new System.Drawing.Point(222, 39);
-            this.browseJoyToKeyButton.Name = "browseJoyToKeyButton";
-            this.browseJoyToKeyButton.Size = new System.Drawing.Size(75, 23);
-            this.browseJoyToKeyButton.TabIndex = 9;
-            this.browseJoyToKeyButton.Text = "Browse...";
-            this.browseJoyToKeyButton.UseVisualStyleBackColor = true;
-            this.browseJoyToKeyButton.Click += new System.EventHandler(this.browseJoyToKeyButton_Click);
+            this.runJoyToKeyButton.Location = new System.Drawing.Point(222, 40);
+            this.runJoyToKeyButton.Name = "runJoyToKeyButton";
+            this.runJoyToKeyButton.Size = new System.Drawing.Size(75, 23);
+            this.runJoyToKeyButton.TabIndex = 9;
+            this.runJoyToKeyButton.Text = "Run";
+            this.runJoyToKeyButton.UseVisualStyleBackColor = true;
+            this.runJoyToKeyButton.Click += new System.EventHandler(this.runJoyToKeyButton_Click);
             // 
             // UserGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(333, 194);
-            this.Controls.Add(this.browseJoyToKeyButton);
+            this.Controls.Add(this.runJoyToKeyButton);
             this.Controls.Add(this.browseGameButton);
             this.Controls.Add(this.fullScreenCheckBox);
             this.Controls.Add(this.hideMouseCheckBox);
@@ -185,6 +185,6 @@
         private System.Windows.Forms.CheckBox hideMouseCheckBox;
         private System.Windows.Forms.CheckBox fullScreenCheckBox;
         private System.Windows.Forms.Button browseGameButton;
-        private System.Windows.Forms.Button browseJoyToKeyButton;
+        private System.Windows.Forms.Button runJoyToKeyButton;
     }
 }

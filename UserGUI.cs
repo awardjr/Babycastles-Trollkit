@@ -86,18 +86,25 @@ namespace Trollkit {
             joyToKeyComboBox.ValueMember = "Value";
             joyToKeyComboBox.DisplayMember = "Text";
             joyToKeyComboBox.DataSource = joyToKeyConfigs;
-            joyToKeyComboBox.SelectedItem = (String)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Trollkit", "PathOfLastJoyToKeyConfigUsed", String.Empty);
+            //joyToKeyComboBox.SelectedItem = pathOfLastGamePlayed;
 
-            //bind checkboxes
-            autostartCheckBox.Checked = AutoStart.isOn; //(String)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Trollkit", "AutostartLastGame", "False") == "True"; //doesn't cast to bool
-            fullScreenCheckBox.Checked = (String)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Trollkit", "FullScreen", "False") == "True"; //save last settings vs only when autostart is on
-            hideMouseCheckBox.Checked = (String)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Trollkit", "HideMouse", "False") == "True";
+            //bind from config file
+            String pathOfLastGamePlayed;
+
+            AMS.Profile.Xml profile = new AMS.Profile.Xml(Global.ConfigurationFilePath);
+            using (profile.Buffer()) {
+                pathOfLastGamePlayed = profile.GetValue("Settings", "PathOfLastGamePlayed", String.Empty);
+                joyToKeyComboBox.SelectedItem = profile.GetValue("Settings", "PathOfLastJoyToKeyConfigUsed", String.Empty);
+                fullScreenCheckBox.Checked = profile.GetValue("Settings", "FullScreen", false);
+                hideMouseCheckBox.Checked = profile.GetValue("Settings", "HideMouse", false);
+            }
+
+            autostartCheckBox.Checked = AutoStart.isOn; 
 
             //autostart last game played
-            if (autostartCheckBox.Checked
-                && Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Trollkit", "PathOfLastGamePlayed", null) != null) {
+            if (autostartCheckBox.Checked && pathOfLastGamePlayed != String.Empty) {
                 //select last game
-                    String lastGamePlayed = (String)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Trollkit", "PathOfLastGamePlayed", null);
+                String lastGamePlayed = pathOfLastGamePlayed;
                 gameComboBox.SelectedItem = gameConfigs.Single(g => g.Path == lastGamePlayed); //TODO: use path or title?
                 
                 //play in arcade mode
@@ -227,25 +234,26 @@ namespace Trollkit {
         }
 
         private void browseGameButton_Click(object sender, EventArgs e) {
-            Stream myStream = null;
             OpenFileDialog openFileDialog = new OpenFileDialog();
-
             openFileDialog.InitialDirectory = "c:\\";
             openFileDialog.Filter = "Game executables (*.exe)|*.exe|All files (*.*)|*.*";
-            openFileDialog.FilterIndex = 2;
             openFileDialog.RestoreDirectory = true;
             openFileDialog.Multiselect = false;
 
             if (openFileDialog.ShowDialog() == DialogResult.OK) {
-                //openFileDialog.FileName //test nothing selected and press ok
-
                 //add file path to config file
-                //TODO: STOPPED HERE, to create the config file
+                AMS.Profile.Xml profile = new AMS.Profile.Xml(Global.ConfigurationFilePath);
+                using (profile.Buffer()) {
+                    profile.SetValue("GamePaths", "GamePath", openFileDialog.FileName);
+                }
+
+                //rebind games combobox
+                //select new game
             }
         }
 
-        private void browseJoyToKeyButton_Click(object sender, EventArgs e) {
-
+        private void runJoyToKeyButton_Click(object sender, EventArgs e) {
+            Process.Start(Global.ApplicationFolderPath + @"\JoyToKey\JoyToKey.exe");
         }
     }
 }
