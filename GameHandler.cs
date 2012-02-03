@@ -48,7 +48,7 @@ namespace Trollkit {
                     game.Kill();
                     stopRunner = true;
                     globalMouseKeyboard.Dispose();
-                    General.tryKillProcess("JoyToKey");
+                    Rahil.Shared.tryKillProcess("JoyToKey");
                 }
 
                 if (closed) {
@@ -80,11 +80,11 @@ namespace Trollkit {
         private void runJoyToKey(ref GameConfiguration gameConfig, String joyToKeyConfigPath) {
             //close JoyToKey
             //TODO: should open a different config file instead of restarting the application
-            General.tryKillProcess("JoyToKey");
+            Rahil.Shared.tryKillProcess("JoyToKey");
 
             if (joyToKeyConfigPath != String.Empty) {
                 //run JoyToKey
-                String joyToKeyFolderPath = General.ApplicationFolderPath + @"JoyToKey\";
+                String joyToKeyFolderPath = Global.ApplicationFolderPath + @"JoyToKey\";
                 String joyToKeyFilePath = joyToKeyFolderPath + "JoyToKey.exe";
 
                 ProcessStartInfo joyToKeyPsi = new ProcessStartInfo(joyToKeyFilePath, '"' + Path.GetFileNameWithoutExtension(joyToKeyConfigPath) + '"');

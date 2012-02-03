@@ -19,42 +19,23 @@ namespace Trollkit {
     /// </summary>
     public partial class UserGUI : Form {
         private List<GameConfiguration> gameConfigs = new List<GameConfiguration>();
-        private List<General.ListItemData<String>> joyToKeyConfigs = new List<General.ListItemData<String>>();
-        private String portableGamesFolderPath = General.ApplicationFolderPath + @"Portable Games\";
+        private List<Rahil.ListItemData<String>> joyToKeyConfigs = new List<Rahil.ListItemData<String>>();
+        private String portableGamesFolderPath = Global.ApplicationFolderPath + @"Portable Games\";
 
         public UserGUI() {
             InitializeComponent();
         }
 
         private void UserGUI_Load(object sender, EventArgs e) {
-            #region old, install JoyToKey if it does not exist
-            /*
-            //install JoyToKey if it does not exist
-            if (!File.Exists(General.ApplicationFolderPath + @"JoyToKey\JoyToKey.exe")) {
-                #if (DEBUG)
-                String archivePath = @"..\..\JoyToKey.zip";
-                #else
-                String archivePath = @"JoyToKey.zip";
-                #endif
-
-                using (ZipFile zip = ZipFile.Read(archivePath)) {
-                    zip.ExtractAll(General.ApplicationFolderPath, ExtractExistingFileAction.DoNotOverwrite); //the archive contains the folder JoyToKey
-                }
-            }
-            */
-            #endregion
-            //TODO: make sure JoyToKey is installed with the installer
-
             //create a config file if it does not exist
-            
-            if (!File.Exists(configFilePath)) {
+            if (!File.Exists(Global.ConfigurationFilePath)) {
                 XmlDocument configDoc = new XmlDocument();
                 //configDoc.Load(configFilePath);
                 configDoc.LoadXml("<?xml version=\"1.0\" encoding=\"UTF-8\" ?><configuration></configuration>");
 
                 // Save xml document to the specified folder path.
-                Directory.CreateDirectory(Path.GetDirectoryName(configFilePath));
-                configDoc.Save(configFilePath);
+                Directory.CreateDirectory(Path.GetDirectoryName(Global.ConfigurationFilePath));
+                configDoc.Save(Global.ConfigurationFilePath);
             }
 
             /*
@@ -110,14 +91,14 @@ namespace Trollkit {
             gameComboBox.DataSource = gameConfigs;
 
             //load JoyToKey configurations from the default folder //TODO: should have an upload button, copies to default folder
-            String joyToKeyFolderPath = General.ApplicationFolderPath + @"JoyToKey\";
+            String joyToKeyFolderPath = Global.ApplicationFolderPath + @"JoyToKey\";
             string[] joyToKeyConfigFilePaths = Directory.GetFiles(joyToKeyFolderPath, "*.cfg");
 
             //add None as a default
-            joyToKeyConfigs.Add(General.ListItemData.Create<String>(String.Empty, "None")); //TODO: String.Empty is kinda confusing
+            joyToKeyConfigs.Add(Rahil.ListItemData.Create<String>(String.Empty, "None")); //TODO: String.Empty is kinda confusing
 
             foreach (string filePath in joyToKeyConfigFilePaths)
-                joyToKeyConfigs.Add(General.ListItemData.Create<String>(filePath, Path.GetFileNameWithoutExtension(filePath))); //TODO: learn this
+                joyToKeyConfigs.Add(Rahil.ListItemData.Create<String>(filePath, Path.GetFileNameWithoutExtension(filePath))); //TODO: learn this
             
             //bind JoyToKey combo box
             joyToKeyComboBox.ValueMember = "Value";
@@ -282,7 +263,7 @@ namespace Trollkit {
         #endregion
 
         private void onFormClosing(object sender, FormClosingEventArgs e) {
-            General.tryKillProcess("JoyToKey"); //TODO: eh, not needed
+            Rahil.Shared.tryKillProcess("JoyToKey"); //TODO: eh, not needed
         }
 
         private void browseGameButton_Click(object sender, EventArgs e) {

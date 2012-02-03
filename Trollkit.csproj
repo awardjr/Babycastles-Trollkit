@@ -87,10 +87,16 @@
     <ManifestKeyFile>BabycastlesRunner_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
+    <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AMS.Profile">
@@ -104,7 +110,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
@@ -118,15 +123,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Autostart.cs" />
-    <Compile Include="Old\ClickOnce\AppShortcut.cs" />
-    <Compile Include="Old\ClickOnce\ClickOnceHelper.cs" />
-    <Compile Include="Old\ClickOnce\UrlShortcut.cs" />
+    <Compile Include="General.cs" />
+    <Compile Include="Old\Old.cs" />
     <Compile Include="Test\MinimizeWindow.cs" />
     <Compile Include="Test\FullScreen.cs" />
     <Compile Include="GlobalMouseKeyboard.cs" />
     <Compile Include="Old\Keyboard.cs" />
     <Compile Include="Test\Titlebar.cs" />
-    <Compile Include="General.cs" />
+    <Compile Include="Global.cs" />
     <Compile Include="GameHandler.cs" />
     <Compile Include="UserGUI.cs">
       <SubType>Form</SubType>
@@ -171,70 +175,27 @@
     <None Include="BabycastlesRunner_TemporaryKey.pfx" />
     <None Include="Old\template.ahk" />
     <None Include="Old\vars.cfg" />
+    <None Include="Properties\app.manifest" />
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="configuration.xml" />
     <Content Include="JoyToKey\JoyToKey.exe" />
     <Content Include="JoyToKey\Readme.txt" />
     <Content Include="Old\Game Configurations\Bloody Zombies.xml" />
     <Content Include="Old\Game Configurations\Canabalt.xml" />
-    <Content Include="Old\Game Configurations\Passage.xml" />
+    <Content Include="Old\Game Configurations\Passage.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Old\Game Configurations\VVVVVV demo.xml" />
     <Content Include="Old\TemplateGenerator.cpp" />
     <Content Include="Old\TemplateGenerator.h" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <PublishFile Include="Game Configurations\GIRP.xml">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
-      <FileType>File</FileType>
-    </PublishFile>
-    <PublishFile Include="Old\Game Configurations\Bloody Zombies.xml">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
-      <FileType>File</FileType>
-    </PublishFile>
-    <PublishFile Include="Old\Game Configurations\Canabalt.xml">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
-      <FileType>File</FileType>
-    </PublishFile>
-    <PublishFile Include="Old\Game Configurations\Passage.xml">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
-      <FileType>File</FileType>
-    </PublishFile>
-    <PublishFile Include="Old\Game Configurations\VVVVVV demo.xml">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
-      <FileType>File</FileType>
-    </PublishFile>
+    <ProjectReference Include="..\..\C#\Libraries\Rahil\Rahil\Rahil.csproj">
+      <Project>{0673EDAC-718C-4B25-A94A-E4821EBECAB9}</Project>
+      <Name>Rahil</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
