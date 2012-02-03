@@ -14,7 +14,8 @@ namespace Trollkit {
         /// Returns Program Files\Trollkit\
         /// </summary>
         public static String ApplicationFolderPath {
-            get { return Rahil.Shared.ProgramFilesx86Path + @"Trollkit\"; }
+            get { return System.IO.Path.GetDirectoryName(
+                    System.Reflection.Assembly.GetExecutingAssembly().Location); }
         }
 
         /// <summary>

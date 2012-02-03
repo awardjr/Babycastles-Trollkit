@@ -20,7 +20,7 @@ namespace Trollkit {
     public partial class UserGUI : Form {
         private List<GameConfiguration> gameConfigs = new List<GameConfiguration>();
         private List<Rahil.ListItemData<String>> joyToKeyConfigs = new List<Rahil.ListItemData<String>>();
-        private String portableGamesFolderPath = Global.ApplicationFolderPath + @"Portable Games\";
+        private String portableGamesFolderPath = Global.ApplicationFolderPath + @"\Portable Games\";
 
         public UserGUI() {
             InitializeComponent();
@@ -30,30 +30,12 @@ namespace Trollkit {
             //create a config file if it does not exist
             if (!File.Exists(Global.ConfigurationFilePath)) {
                 XmlDocument configDoc = new XmlDocument();
-                //configDoc.Load(configFilePath);
                 configDoc.LoadXml("<?xml version=\"1.0\" encoding=\"UTF-8\" ?><configuration></configuration>");
 
                 // Save xml document to the specified folder path.
                 Directory.CreateDirectory(Path.GetDirectoryName(Global.ConfigurationFilePath));
                 configDoc.Save(Global.ConfigurationFilePath);
             }
-
-            /*
-            XmlDocument configDoc = new XmlDocument();
-            //configDoc.Load(configFilePath);
-                
-            //XmlNode xmlNode = configDoc.CreateNode(XmlNodeType.XmlDeclaration, "", "");
-
-            //create <Root> Node
-            //XmlElement rootElement = configDoc.CreateElement("configuration");
-            //configDoc.AppendChild(rootElement);
-                
-            //create <InstallationId> Node
-            XmlElement installationElement = configDoc.CreateElement("InstallationId");
-            XmlText installationIdText = configDoc.CreateTextNode(Guid.Empty.ToString());
-            installationElement.AppendChild(installationIdText);
-            configDoc.ChildNodes.Item(0).AppendChild(installationElement);
-            */
 
             #region old code, load game config and bind game combo box
             /*
@@ -91,7 +73,7 @@ namespace Trollkit {
             gameComboBox.DataSource = gameConfigs;
 
             //load JoyToKey configurations from the default folder //TODO: should have an upload button, copies to default folder
-            String joyToKeyFolderPath = Global.ApplicationFolderPath + @"JoyToKey\";
+            String joyToKeyFolderPath = Global.ApplicationFolderPath + @"\JoyToKey\";
             string[] joyToKeyConfigFilePaths = Directory.GetFiles(joyToKeyFolderPath, "*.cfg");
 
             //add None as a default
@@ -113,9 +95,9 @@ namespace Trollkit {
 
             //autostart last game played
             if (autostartCheckBox.Checked
-                && Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Trollkit", "LastGamePlayed", null) != null) {
+                && Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Trollkit", "PathOfLastGamePlayed", null) != null) {
                 //select last game
-                String lastGamePlayed = (String)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Trollkit", "LastGamePlayed", null);
+                    String lastGamePlayed = (String)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Trollkit", "PathOfLastGamePlayed", null);
                 gameComboBox.SelectedItem = gameConfigs.Single(g => g.Path == lastGamePlayed); //TODO: use path or title?
                 
                 //play in arcade mode
@@ -129,12 +111,14 @@ namespace Trollkit {
             GameConfiguration gameConfig = gameConfigs.Single(g => g.Title == (String)gameComboBox.SelectedValue); //TODO: should store path into value
 
             if (File.Exists(gameConfig.Path)) {
-                //set registry key for last game played
-                Registry.SetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Trollkit", "LastGamePlayed", gameConfig.Path); //TODO: should just use a XML file instead, application config
-                //for x64 adds to HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Trollkit
-                Registry.SetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Trollkit", "PathOfLastJoyToKeyConfigUsed", (String)joyToKeyComboBox.SelectedValue);
-                Registry.SetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Trollkit", "FullScreen", fullScreenCheckBox.Checked);
-                Registry.SetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Trollkit", "HideMouse", hideMouseCheckBox.Checked);
+                //save settings for last game played
+                AMS.Profile.Xml profile = new AMS.Profile.Xml(Global.ConfigurationFilePath);
+                using (profile.Buffer()) {
+                    profile.SetValue("Settings", "PathOfLastGamePlayed", gameConfig.Path);
+                    profile.SetValue("Settings", "PathOfLastJoyToKeyConfigUsed", (String)joyToKeyComboBox.SelectedValue);
+                    profile.SetValue("Settings", "FullScreen", fullScreenCheckBox.Checked);
+                    profile.SetValue("Settings", "HideMouse", hideMouseCheckBox.Checked);
+                }
 
                 //run the selected game
                 this.Hide(); //should lock the window instead?
@@ -184,30 +168,6 @@ namespace Trollkit {
 
         private void autostartCheckBox_CheckedChanged(object sender, EventArgs e) {
             AutoStart.isOn = autostartCheckBox.Checked;
-            #region old code
-            /*
-            if (autostartCheckBox.Checked) {
-                //add application shortcut to startup folder
-                #region old ClickOnce code
-                //#if (!DEBUG)
-                //ClickOnce.AppShortcut.AutoStart(true);
-                //#endif
-                #endregion
-
-                Registry.SetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Trollkit", "AutostartLastGame", true);
-            }
-            else {
-                //remove application shortcut from startup folder
-                #region old ClickOnce code
-                #if (!DEBUG)
-                ClickOnce.AppShortcut.AutoStart(false);
-                #endif
-                #endregion
-
-                Registry.SetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Trollkit", "AutostartLastGame", false);
-            }
-            */
-            #endregion
         }
 
         #region downloadGame
