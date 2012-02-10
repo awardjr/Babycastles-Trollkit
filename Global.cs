@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Diagnostics;
 using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace Trollkit {
     /// <summary>
@@ -11,11 +12,10 @@ namespace Trollkit {
     /// </summary>
     class Global {
         /// <summary>
-        /// Returns Program Files\Trollkit\
+        /// Returns the folder path of the application
         /// </summary>
         public static String ApplicationFolderPath {
-            get { return System.IO.Path.GetDirectoryName(
-                    System.Reflection.Assembly.GetExecutingAssembly().Location); }
+            get { return Application.StartupPath; }
         }
 
         /// <summary>

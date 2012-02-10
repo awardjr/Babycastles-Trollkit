@@ -13,14 +13,19 @@
 //rename to "Troll Kit"
 
 //TOTAL REDESIGN
-//be able to manually add games and JoyToKey configs from other locations, important for installed games in different locations
-//seperate game list and download list
+//add an auto-updater
+//CLEAN THIS SHIT UP, KEEP IT SIMPLE
 //test first run of program
 //test test test!
 
 //later:
 //if JoyToKey config file name is same as game name (or executable name?), choose that in the drop down menu when the game is selected
 //still have game configurations for autoselecting options?
+//be able to manually add games and JoyToKey configs from other locations, important for installed games in different locations
+//should have an upload button, copies JoyToKey config to default folder
+//upon clicking a combobox, rebind
+//use standard XML parsing code, likely XPATH, not the AMS.Profile library
+//seperate game list and download list
 
 //TODO: not code related
 //test on the next exhibition

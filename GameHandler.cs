@@ -53,7 +53,6 @@ namespace Trollkit {
 
                 if (closed) {
                     game = runGame(gameConfig, hideMouse, fullScreen);
-
                     closed = false;
                 }
 
@@ -84,8 +83,8 @@ namespace Trollkit {
 
             if (joyToKeyConfigPath != String.Empty) {
                 //run JoyToKey
-                String joyToKeyFolderPath = Global.ApplicationFolderPath + @"JoyToKey\";
-                String joyToKeyFilePath = joyToKeyFolderPath + "JoyToKey.exe";
+                String joyToKeyFolderPath = Global.ApplicationFolderPath + @"\JoyToKey";
+                String joyToKeyFilePath = joyToKeyFolderPath + @"\JoyToKey.exe";
 
                 ProcessStartInfo joyToKeyPsi = new ProcessStartInfo(joyToKeyFilePath, '"' + Path.GetFileNameWithoutExtension(joyToKeyConfigPath) + '"');
                 joyToKeyPsi.WorkingDirectory = joyToKeyFolderPath;
