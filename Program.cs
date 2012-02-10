@@ -4,11 +4,9 @@
 //delete c:\portable games folder when uninstalling, or store games in ../portable games?
 //change start menu troll kit support shortcut to the github repository
 //try to hide title bar or at least the minimize and maximize buttons
-//add a download bar
 //send error log to a server to detect the status of the program. Send computer ID too.
 //remove minimize/maxmize butons
 //re-center window for non full screen games
-//add start menu shortcut for JoyToKey
 //Kunal says Syed should get a demoscene program to show trippy graphics, keygen style, when you launch trollkit
 //rename to "Troll Kit"
 
@@ -26,6 +24,7 @@
 //upon clicking a combobox, rebind
 //use standard XML parsing code, likely XPATH, not the AMS.Profile library
 //seperate game list and download list
+//combine .exe and .msi into one installer
 
 //TODO: not code related
 //test on the next exhibition

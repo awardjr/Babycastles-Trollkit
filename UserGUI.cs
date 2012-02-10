@@ -20,7 +20,7 @@ namespace Trollkit {
     public partial class UserGUI : Form {
         private List<GameConfiguration> gameConfigs = new List<GameConfiguration>();
         private List<Rahil.ListItemData<String>> joyToKeyConfigs = new List<Rahil.ListItemData<String>>();
-        private String portableGamesFolderPath = Global.ApplicationFolderPath + @"\Portable Games\";
+        private String portableGamesFolderPath = Global.ApplicationFolderPath + @"\Portable Games";
 
         public UserGUI() {
             InitializeComponent();
@@ -34,6 +34,10 @@ namespace Trollkit {
                 Directory.CreateDirectory(Path.GetDirectoryName(Global.ConfigurationFilePath));
                 configDoc.Save(Global.ConfigurationFilePath);
             }
+
+            //create a portable games folder if it does not exist
+            if (!Directory.Exists(portableGamesFolderPath))
+                Directory.CreateDirectory(portableGamesFolderPath);
 
             bindGameComboBox();
 

@@ -88,7 +88,7 @@ namespace Trollkit {
 
                 ProcessStartInfo joyToKeyPsi = new ProcessStartInfo(joyToKeyFilePath, '"' + Path.GetFileNameWithoutExtension(joyToKeyConfigPath) + '"');
                 joyToKeyPsi.WorkingDirectory = joyToKeyFolderPath;
-                joyToKeyPsi.WindowStyle = ProcessWindowStyle.Minimized; //TODO: not working
+                //joyToKeyPsi.WindowStyle = ProcessWindowStyle.Minimized; //TODO: not working
                 //MinimizeWindow.minimize("JoyToKey"); //fail
                 Process.Start(joyToKeyPsi);
             }
