@@ -65,12 +65,12 @@ namespace Trollkit {
         }
 
         private Process runGame(GameConfiguration gameConfig, Boolean hideMouse, Boolean fullScreen) {
-            if (hideMouse) //TODO: || gameConfig.HideMouse
+            if (hideMouse)
                 Cursor.Position = new Point(2000, 2000); //work around
             //another work around, set the cursor graphic to a transparent one, http://forums.whirlpool.net.au/archive/1172326
 
             ProcessStartInfo psi = new ProcessStartInfo(gameConfig.Path);
-            if (fullScreen) //TODO: || gameConfig.FullScreen
+            if (fullScreen)
                 psi.WindowStyle = ProcessWindowStyle.Maximized; //TODO: only maximizes fully if the taskbar is set to auto-hide
 
             return Process.Start(psi);
@@ -78,12 +78,12 @@ namespace Trollkit {
 
         private void runJoyToKey(ref GameConfiguration gameConfig, String joyToKeyConfigPath) {
             //close JoyToKey
-            //TODO: should open a different config file instead of restarting the application
+            //TODO: figure out how to open a different config file instead of restarting the application
             Rahil.Shared.tryKillProcess("JoyToKey");
 
             if (joyToKeyConfigPath != String.Empty) {
                 //run JoyToKey
-                String joyToKeyFolderPath = Global.ApplicationFolderPath + @"\JoyToKey";
+                String joyToKeyFolderPath = Global.JoyToKeyFolderPath;
                 String joyToKeyFilePath = joyToKeyFolderPath + @"\JoyToKey.exe";
 
                 ProcessStartInfo joyToKeyPsi = new ProcessStartInfo(joyToKeyFilePath, '"' + Path.GetFileNameWithoutExtension(joyToKeyConfigPath) + '"');

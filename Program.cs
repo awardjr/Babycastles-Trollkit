@@ -1,36 +1,42 @@
 ﻿//TODO: main list
-//add more error handling! Especially with Game Handler
-//restart application or operating system if problems occur (memory leak, unrecoverable error, etc.)
-//delete c:\portable games folder when uninstalling, or store games in ../portable games?
+//add more error handling!
 //change start menu troll kit support shortcut to the github repository
 //try to hide title bar or at least the minimize and maximize buttons
 //send error log to a server to detect the status of the program. Send computer ID too.
 //remove minimize/maxmize butons
 //re-center window for non full screen games
 //Kunal says Syed should get a demoscene program to show trippy graphics, keygen style, when you launch trollkit
-//rename to "Troll Kit"
+//rename to "Troll Kit", just the title, not in the code?
+//ask Arthur for original Trollkit github repository
+//delete files upon uninstall
+//test full screen/hide mouse/etc in a non ClickOnce application to determine if the problem is related to priveleges
+//clickonce elevated privelege using app.manifest and publish manifest?
+//use windows installer, write auto-update code, move everything to program files folder
 
 //TOTAL REDESIGN
-//add an auto-updater
 //CLEAN THIS SHIT UP, KEEP IT SIMPLE
 //test first run of program
 //test test test!
 
+//if arcade mode, do not auto update
+
 //later:
 //if JoyToKey config file name is same as game name (or executable name?), choose that in the drop down menu when the game is selected
-//still have game configurations for autoselecting options?
 //be able to manually add games and JoyToKey configs from other locations, important for installed games in different locations
 //should have an upload button, copies JoyToKey config to default folder
 //upon clicking a combobox, rebind
-//use standard XML parsing code, likely XPATH, not the AMS.Profile library
-//seperate game list and download list
-//combine .exe and .msi into one installer
+//use standard XML parsing code, likely XPATH, not the AMS.Profile library, http://www.codeproject.com/Articles/9494/Manipulate-XML-data-with-XPath-and-XmlDocument-C
+//add game configurations to automatically set settings (full screen, hide mouse) for each game?
+//add download game functionality
 
-//TODO: not code related
+//much later:
+//certificate
+
+//not code related
 //test on the next exhibition
 //find other volunteers or friendly open source game programmers
 
-//TODO: current
+//current
 //cannot find file or assembly Rahil for the installed version. Try the release version
 //code project XML vs LINQ to XML
 //DESIGN: should have an add/edit/remove window for games and JoyToKey

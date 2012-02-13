@@ -19,7 +19,7 @@ namespace Trollkit {
         internal static extern bool MoveWindow(IntPtr hWnd, int X, int Y, int nWidth, int nHeight, bool bRepaint);
 
         public static void set(IntPtr handle) {
-            //TODO: don't know what's wrong. The handle seems fine.
+            //TODO: don't know what's wrong. The handle seems fine. Maybe beccause the application doesn't have elevated priveledges?
             int isSuccessful = SetWindowPos(handle, HWND_TOPMOST, 0, 0, Screen.PrimaryScreen.Bounds.Right,
                                               Screen.PrimaryScreen.Bounds.Bottom, SWP_SHOWWINDOW);
 

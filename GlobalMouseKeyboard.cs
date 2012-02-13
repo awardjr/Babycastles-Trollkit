@@ -11,7 +11,7 @@ namespace Trollkit {
     {
         private readonly KeyboardHookListener keyboardHookManager;
 
-        public Boolean F2IsPressed { get; set; } //should be readonly / private set;
+        public Boolean F2IsPressed { get; set; }
         public Boolean F4IsPressed { get; set; }
 
         public GlobalMouseKeyboard() {

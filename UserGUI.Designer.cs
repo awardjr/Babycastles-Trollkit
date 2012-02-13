@@ -83,11 +83,11 @@
             // autostartCheckBox
             // 
             this.autostartCheckBox.AutoSize = true;
-            this.autostartCheckBox.Location = new System.Drawing.Point(72, 92);
+            this.autostartCheckBox.Location = new System.Drawing.Point(72, 138);
             this.autostartCheckBox.Name = "autostartCheckBox";
-            this.autostartCheckBox.Size = new System.Drawing.Size(230, 17);
+            this.autostartCheckBox.Size = new System.Drawing.Size(154, 17);
             this.autostartCheckBox.TabIndex = 4;
-            this.autostartCheckBox.Text = "Autostart in arcade mode using last settings";
+            this.autostartCheckBox.Text = "Autostart using last settings";
             this.autostartCheckBox.UseVisualStyleBackColor = true;
             this.autostartCheckBox.CheckedChanged += new System.EventHandler(this.autostartCheckBox_CheckedChanged);
             // 
@@ -111,7 +111,7 @@
             // hideMouseCheckBox
             // 
             this.hideMouseCheckBox.AutoSize = true;
-            this.hideMouseCheckBox.Location = new System.Drawing.Point(72, 138);
+            this.hideMouseCheckBox.Location = new System.Drawing.Point(72, 115);
             this.hideMouseCheckBox.Name = "hideMouseCheckBox";
             this.hideMouseCheckBox.Size = new System.Drawing.Size(82, 17);
             this.hideMouseCheckBox.TabIndex = 6;
@@ -121,7 +121,7 @@
             // fullScreenCheckBox
             // 
             this.fullScreenCheckBox.AutoSize = true;
-            this.fullScreenCheckBox.Location = new System.Drawing.Point(72, 115);
+            this.fullScreenCheckBox.Location = new System.Drawing.Point(72, 92);
             this.fullScreenCheckBox.Name = "fullScreenCheckBox";
             this.fullScreenCheckBox.Size = new System.Drawing.Size(77, 17);
             this.fullScreenCheckBox.TabIndex = 7;

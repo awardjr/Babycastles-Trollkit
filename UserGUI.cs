@@ -20,24 +20,36 @@ namespace Trollkit {
     public partial class UserGUI : Form {
         private List<GameConfiguration> gameConfigs = new List<GameConfiguration>();
         private List<Rahil.ListItemData<String>> joyToKeyConfigs = new List<Rahil.ListItemData<String>>();
-        private String portableGamesFolderPath = Global.ApplicationFolderPath + @"\Portable Games";
 
         public UserGUI() {
             InitializeComponent();
         }
 
         private void UserGUI_Load(object sender, EventArgs e) {
+            //install JoyToKey if it does not exist
+            if (!File.Exists(Global.JoyToKeyFolderPath + "JoyToKey.exe")) {
+                #if (DEBUG)
+                String archivePath = @"..\..\JoyToKey.zip";
+                #else
+                String archivePath = @"JoyToKey.zip";
+                #endif
+
+                using (ZipFile zip = ZipFile.Read(archivePath)) {
+                    zip.ExtractAll(Global.CommonApplicationDataFolderPath, ExtractExistingFileAction.DoNotOverwrite); //the archive contains the folder JoyToKey
+                }
+            }
+
             //create a config file if it does not exist
             if (!File.Exists(Global.ConfigurationFilePath)) {
                 XmlDocument configDoc = new XmlDocument();
-                configDoc.LoadXml("<?xml version=\"1.0\" encoding=\"UTF-8\" ?><configuration></configuration>");
+                configDoc.LoadXml("<?xml version=\"1.0\" encoding=\"UTF-8\" ?><configuration><section name=\"GamePaths\"></section></configuration>");
                 Directory.CreateDirectory(Path.GetDirectoryName(Global.ConfigurationFilePath));
                 configDoc.Save(Global.ConfigurationFilePath);
             }
 
             //create a portable games folder if it does not exist
-            if (!Directory.Exists(portableGamesFolderPath))
-                Directory.CreateDirectory(portableGamesFolderPath);
+            if (!Directory.Exists(Global.PortableGamesFolderPath))
+                Directory.CreateDirectory(Global.PortableGamesFolderPath);
 
             bindGameComboBox();
 
@@ -46,6 +58,7 @@ namespace Trollkit {
             //bind settings checkboxes from config file
             String pathOfLastGamePlayed;
 
+            //see http://www.codeproject.com/Articles/5304/Read-Write-XML-files-Config-files-INI-files-or-the
             AMS.Profile.Xml profile = new AMS.Profile.Xml(Global.ConfigurationFilePath);
             using (profile.Buffer()) {
                 pathOfLastGamePlayed = profile.GetValue("Settings", "PathOfLastGamePlayed", String.Empty);
@@ -54,13 +67,11 @@ namespace Trollkit {
                 hideMouseCheckBox.Checked = profile.GetValue("Settings", "HideMouse", false);
             }
 
-            autostartCheckBox.Checked = AutoStart.isOn;
-
             //autostart last game played
-            if (autostartCheckBox.Checked && pathOfLastGamePlayed != String.Empty) {
+            if (/*autostartCheckBox.Checked &&*/ arcadeModeCheckBox.Checked == true && pathOfLastGamePlayed != String.Empty) {
                 //select last game
                 String lastGamePlayed = pathOfLastGamePlayed;
-                gameComboBox.SelectedItem = gameConfigs.Single(g => g.Path == lastGamePlayed); //TODO: use path or title?
+                gameComboBox.SelectedItem = gameConfigs.Single(g => g.Path == lastGamePlayed);
 
                 //play in arcade mode
                 arcadeModeCheckBox.Checked = true;
@@ -69,8 +80,13 @@ namespace Trollkit {
         }
 
         private void bindGameComboBox() {
+            gameConfigs.Clear();
+            gameComboBox.DataSource = null;
+
             //add games from the Portable Games folder
-            String[] filePaths = Directory.GetFiles(portableGamesFolderPath, "*.exe"); //TODO: add more extensions here
+            String[] filePaths = Directory.GetFiles(Global.PortableGamesFolderPath, "*.*")
+                .Where(file => file.EndsWith(".exe") || file.EndsWith(".swf"))
+                .ToArray();
 
             foreach (String filePath in filePaths)
                 gameConfigs.Add(new GameConfiguration { Path = filePath, Title = Path.GetFileNameWithoutExtension(filePath) });
@@ -94,14 +110,17 @@ namespace Trollkit {
             }
 
             //bind game combo box
-            gameComboBox.ValueMember = "Title";
-            //joyToKeyComboBox.DisplayMember = "Title";
+            gameComboBox.ValueMember = "Path";
+            gameComboBox.DisplayMember = "Title";
             gameComboBox.DataSource = gameConfigs;
         }
 
         private void bindJoyToKeyComboBox() {
+            joyToKeyConfigs.Clear();
+            joyToKeyComboBox.DataSource = null;
+
             //load JoyToKey configurations from the default folder
-            String joyToKeyFolderPath = Global.ApplicationFolderPath + @"\JoyToKey\";
+            String joyToKeyFolderPath = Global.CommonApplicationDataFolderPath + @"\JoyToKey\";
             string[] joyToKeyConfigFilePaths = Directory.GetFiles(joyToKeyFolderPath, "*.cfg");
 
             //add None as a default
@@ -118,7 +137,7 @@ namespace Trollkit {
 
         private void playButton_Click(object sender, EventArgs e) //rename button to something else?
         {
-            GameConfiguration gameConfig = gameConfigs.Single(g => g.Title == (String)gameComboBox.SelectedValue); //TODO: should store path into value
+            GameConfiguration gameConfig = gameConfigs.Single(g => g.Path == (String)gameComboBox.SelectedValue);
 
             if (File.Exists(gameConfig.Path)) {
                 //save settings for last game played
@@ -149,7 +168,18 @@ namespace Trollkit {
         }
 
         private void autostartCheckBox_CheckedChanged(object sender, EventArgs e) {
-            AutoStart.isOn = autostartCheckBox.Checked;
+            if (autostartCheckBox.Checked) {
+                //add application shortcut to startup folder
+                #if (!DEBUG)
+                ClickOnce.AppShortcut.AutoStart(true);
+                #endif
+            }
+            else {
+                //remove application shortcut from startup folder
+                #if (!DEBUG)
+                ClickOnce.AppShortcut.AutoStart(false);
+                #endif
+            }
         }
 
 
@@ -176,7 +206,7 @@ namespace Trollkit {
         }
 
         private void runJoyToKeyButton_Click(object sender, EventArgs e) {
-            String joyToKeyFolderPath = Global.ApplicationFolderPath + @"\JoyToKey";
+            String joyToKeyFolderPath = Global.JoyToKeyFolderPath;
             String joyToKeyFilePath = joyToKeyFolderPath + @"\JoyToKey.exe";
 
             ProcessStartInfo joyToKeyPsi = new ProcessStartInfo(joyToKeyFilePath);
