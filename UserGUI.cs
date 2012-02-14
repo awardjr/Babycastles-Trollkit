@@ -166,6 +166,9 @@ namespace Trollkit {
 
         private void gameComboBox_SelectedIndexChanged(object sender, EventArgs e) {
             //if JoyToKey config file of selected game exists and has the same name, select that
+            if (gameComboBox.SelectedItem == null)
+                return;
+
             String selectedGameTitle = ((GameConfiguration)gameComboBox.SelectedItem).Title;
             if (joyToKeyConfigs.Any(c => c.Text == selectedGameTitle))
                 joyToKeyComboBox.SelectedItem = joyToKeyConfigs.First(c => c.Text == selectedGameTitle);

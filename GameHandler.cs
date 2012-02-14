@@ -70,6 +70,8 @@ namespace Trollkit {
             //another work around, set the cursor graphic to a transparent one, http://forums.whirlpool.net.au/archive/1172326
 
             ProcessStartInfo psi = new ProcessStartInfo(gameConfig.Path);
+            psi.WorkingDirectory = Path.GetDirectoryName(gameConfig.Path);
+
             if (fullScreen)
                 psi.WindowStyle = ProcessWindowStyle.Maximized; //TODO: only maximizes fully if the taskbar is set to auto-hide
 
