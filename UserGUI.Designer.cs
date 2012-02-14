@@ -58,6 +58,7 @@
             this.gameComboBox.Name = "gameComboBox";
             this.gameComboBox.Size = new System.Drawing.Size(121, 21);
             this.gameComboBox.TabIndex = 1;
+            this.gameComboBox.DropDown += new System.EventHandler(this.gameComboBox_DropDown);
             this.gameComboBox.SelectedIndexChanged += new System.EventHandler(this.gameComboBox_SelectedIndexChanged);
             // 
             // playButton
@@ -107,6 +108,7 @@
             this.joyToKeyComboBox.Name = "joyToKeyComboBox";
             this.joyToKeyComboBox.Size = new System.Drawing.Size(121, 21);
             this.joyToKeyComboBox.TabIndex = 0;
+            this.joyToKeyComboBox.DropDown += new System.EventHandler(this.joyToKeyComboBox_DropDown);
             // 
             // hideMouseCheckBox
             // 
@@ -152,7 +154,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(316, 194);
+            this.ClientSize = new System.Drawing.Size(319, 194);
             this.Controls.Add(this.runJoyToKeyButton);
             this.Controls.Add(this.browseGameButton);
             this.Controls.Add(this.fullScreenCheckBox);
@@ -166,7 +168,7 @@
             this.Controls.Add(this.label1);
             this.Name = "UserGUI";
             this.Text = "Trollkit";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.onFormClosing);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UserGUI_FormClosing);
             this.Load += new System.EventHandler(this.UserGUI_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

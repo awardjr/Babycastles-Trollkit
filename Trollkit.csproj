@@ -18,15 +18,15 @@
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
-    <UpdateMode>Background</UpdateMode>
+    <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>1</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>true</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>http://rahilpatel.com/trollkit/</InstallUrl>
-    <SupportUrl>http://babycastles.com/</SupportUrl>
-    <ErrorReportUrl>http://babycastles.com/</ErrorReportUrl>
+    <SupportUrl>https://github.com/Rahil627/Babycastles-Trollkit</SupportUrl>
+    <ErrorReportUrl>https://github.com/Rahil627/Babycastles-Trollkit</ErrorReportUrl>
     <ProductName>Trollkit</ProductName>
     <PublisherName>Babycastles</PublisherName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>

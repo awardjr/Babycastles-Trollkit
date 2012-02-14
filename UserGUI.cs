@@ -86,6 +86,9 @@ namespace Trollkit {
             gameConfigs.Clear();
             gameComboBox.DataSource = null;
 
+            //add None as a default
+            gameConfigs.Add(new GameConfiguration { Path = String.Empty, Title = "None" });
+
             //add games from the Portable Games folder
             String[] filePaths = Directory.GetFiles(Global.PortableGamesFolderPath, "*.*")
                 .Where(file => file.EndsWith(".exe") || file.EndsWith(".swf"))
@@ -162,10 +165,10 @@ namespace Trollkit {
         }
 
         private void gameComboBox_SelectedIndexChanged(object sender, EventArgs e) {
-
             //if JoyToKey config file of selected game exists and has the same name, select that
-            //if ((String)gameComboBox.SelectedValue == joyToKeyConfigs.SingleOrDefault(c => c.Text == (String)gameComboBox.SelectedValue).Text) //TODO: selectedText?
-            //joyToKeyComboBox.SelectedItem = joyToKeyConfigs.Single(c => c.Text == (String)gameComboBox.SelectedValue);
+            String selectedGameTitle = ((GameConfiguration)gameComboBox.SelectedItem).Title;
+            if (joyToKeyConfigs.Any(c => c.Text == selectedGameTitle))
+                joyToKeyComboBox.SelectedItem = joyToKeyConfigs.First(c => c.Text == selectedGameTitle);
         }
 
         private void autostartCheckBox_CheckedChanged(object sender, EventArgs e) {
@@ -194,7 +197,7 @@ namespace Trollkit {
         }
 
 
-        private void onFormClosing(object sender, FormClosingEventArgs e) {
+        private void UserGUI_FormClosing(object sender, FormClosingEventArgs e) {
             Rahil.Shared.tryKillProcess("JoyToKey");
         }
 
@@ -213,6 +216,7 @@ namespace Trollkit {
                 }
 
                 bindGameComboBox();
+                gameComboBox.SelectedItem = gameConfigs.Single(g => g.Path == openFileDialog.FileName);
             }
         }
 
@@ -223,6 +227,14 @@ namespace Trollkit {
             ProcessStartInfo joyToKeyPsi = new ProcessStartInfo(joyToKeyFilePath);
             joyToKeyPsi.WorkingDirectory = joyToKeyFolderPath;
             Process.Start(joyToKeyPsi);
+        }
+
+        private void joyToKeyComboBox_DropDown(object sender, EventArgs e) {
+            bindJoyToKeyComboBox();
+        }
+
+        private void gameComboBox_DropDown(object sender, EventArgs e) {
+            //bindGameComboBox();
         }
 
     }

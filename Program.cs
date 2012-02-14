@@ -13,20 +13,18 @@
 //clickonce elevated privelege using app.manifest and publish manifest?
 //use windows installer, write auto-update code, move everything to program files folder
 //autostart with last played game settings vs current settings
+//if arcade mode, do not auto update
+//drag and drop - control or entire form?
+//add file dialog for JoyToKey
 
 //TOTAL REDESIGN
 //CLEAN THIS SHIT UP, KEEP IT SIMPLE
 //test first run of program
 //test test test!
 
-//if arcade mode, do not auto update
-
 //later:
-//if JoyToKey config file name is same as game name (or executable name?), choose that in the drop down menu when the game is selected
-//be able to manually add games and JoyToKey configs from other locations, important for installed games in different locations
-//should have an upload button, copies JoyToKey config to default folder
-//upon clicking a combobox, rebind
 //use standard XML parsing code, likely XPATH, not the AMS.Profile library, http://www.codeproject.com/Articles/9494/Manipulate-XML-data-with-XPath-and-XmlDocument-C
+//orrrr use LINQ to XML!
 //add game configurations to automatically set settings (full screen, hide mouse) for each game?
 //add download game functionality
 
@@ -36,11 +34,6 @@
 //not code related
 //test on the next exhibition
 //find other volunteers or friendly open source game programmers
-
-//current
-//cannot find file or assembly Rahil for the installed version. Try the release version
-//code project XML vs LINQ to XML
-//DESIGN: should have an add/edit/remove window for games and JoyToKey
 
 using System;
 using System.Collections.Generic;
