@@ -12,7 +12,6 @@ namespace ClickOnce
 
             String startupShortcut = ClickOnceHelper.GetStartupShortcut(ClickOnceHelper.AssemblyProductName,
                                                                         ClickOnceHelper.ShortcutType.Application);
-
             // Always remove the startup shortcut if it exists.  
             // This will handling disabling the run at startup functionality 
             // or ensure the most recent shortcut is copied into the Startup folder if we're enabling.
@@ -28,7 +27,6 @@ namespace ClickOnce
 
             String programShortcut = ClickOnceHelper.GetProgramShortcut(ClickOnceHelper.AssemblyCompanyName,
                                                                         ClickOnceHelper.AssemblyProductName);
-
             if (File.Exists(programShortcut))
             {
                 // Enable run at startup by copying the progam shortcut into the startup folder.

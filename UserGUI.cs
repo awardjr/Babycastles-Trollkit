@@ -57,24 +57,27 @@ namespace Trollkit {
 
             //bind settings checkboxes from config file
             String pathOfLastGamePlayed;
+            Boolean autostartCheckBoxValue;
 
             //see http://www.codeproject.com/Articles/5304/Read-Write-XML-files-Config-files-INI-files-or-the
             AMS.Profile.Xml profile = new AMS.Profile.Xml(Global.ConfigurationFilePath);
             using (profile.Buffer()) {
                 pathOfLastGamePlayed = profile.GetValue("Settings", "PathOfLastGamePlayed", String.Empty);
                 joyToKeyComboBox.SelectedItem = profile.GetValue("Settings", "PathOfLastJoyToKeyConfigUsed", String.Empty);
+                arcadeModeCheckBox.Checked = profile.GetValue("Settings", "ArcadeMode", false);
                 fullScreenCheckBox.Checked = profile.GetValue("Settings", "FullScreen", false);
                 hideMouseCheckBox.Checked = profile.GetValue("Settings", "HideMouse", false);
+                autostartCheckBoxValue = profile.GetValue("Settings", "AutoStart", false);
             }
 
-            //autostart last game played
-            if (/*autostartCheckBox.Checked &&*/ arcadeModeCheckBox.Checked == true && pathOfLastGamePlayed != String.Empty) {
-                //select last game
-                String lastGamePlayed = pathOfLastGamePlayed;
-                gameComboBox.SelectedItem = gameConfigs.Single(g => g.Path == lastGamePlayed);
+            autostartCheckBox.Checked = autostartCheckBoxValue; //TODO: hackish, save all data on closing instead?
 
-                //play in arcade mode
-                arcadeModeCheckBox.Checked = true;
+            //autostart last game played
+            if (autostartCheckBox.Checked && arcadeModeCheckBox.Checked == true && pathOfLastGamePlayed != String.Empty) {
+                //select last game
+                gameComboBox.SelectedItem = gameConfigs.Single(g => g.Path == pathOfLastGamePlayed);
+
+                //play
                 playButton_Click(null, null);
             }
         }
@@ -145,6 +148,7 @@ namespace Trollkit {
                 using (profile.Buffer()) {
                     profile.SetValue("Settings", "PathOfLastGamePlayed", gameConfig.Path);
                     profile.SetValue("Settings", "PathOfLastJoyToKeyConfigUsed", (String)joyToKeyComboBox.SelectedValue);
+                    profile.SetValue("Settings", "ArcadeMode", arcadeModeCheckBox.Checked);
                     profile.SetValue("Settings", "FullScreen", fullScreenCheckBox.Checked);
                     profile.SetValue("Settings", "HideMouse", hideMouseCheckBox.Checked);
                 }
@@ -155,10 +159,7 @@ namespace Trollkit {
                 this.Show();
                 return;
             }
-
-
         }
-
 
         private void gameComboBox_SelectedIndexChanged(object sender, EventArgs e) {
 
@@ -173,12 +174,22 @@ namespace Trollkit {
                 #if (!DEBUG)
                 ClickOnce.AppShortcut.AutoStart(true);
                 #endif
+
+                AMS.Profile.Xml profile = new AMS.Profile.Xml(Global.ConfigurationFilePath);
+                using (profile.Buffer()) {
+                    profile.SetValue("Settings", "AutoStart", true);
+                }
             }
             else {
                 //remove application shortcut from startup folder
                 #if (!DEBUG)
                 ClickOnce.AppShortcut.AutoStart(false);
                 #endif
+
+                AMS.Profile.Xml profile = new AMS.Profile.Xml(Global.ConfigurationFilePath);
+                using (profile.Buffer()) {
+                    profile.SetValue("Settings", "AutoStart", false);
+                }
             }
         }
 

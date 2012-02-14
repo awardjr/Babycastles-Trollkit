@@ -12,6 +12,7 @@
 //test full screen/hide mouse/etc in a non ClickOnce application to determine if the problem is related to priveleges
 //clickonce elevated privelege using app.manifest and publish manifest?
 //use windows installer, write auto-update code, move everything to program files folder
+//autostart with last played game settings vs current settings
 
 //TOTAL REDESIGN
 //CLEAN THIS SHIT UP, KEEP IT SIMPLE

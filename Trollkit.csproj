@@ -27,11 +27,11 @@
     <InstallUrl>http://rahilpatel.com/trollkit/</InstallUrl>
     <SupportUrl>http://babycastles.com/</SupportUrl>
     <ErrorReportUrl>http://babycastles.com/</ErrorReportUrl>
-    <ProductName>Troll Kit</ProductName>
+    <ProductName>Trollkit</ProductName>
     <PublisherName>Babycastles</PublisherName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>43</ApplicationRevision>
+    <ApplicationRevision>51</ApplicationRevision>
     <ApplicationVersion>0.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
